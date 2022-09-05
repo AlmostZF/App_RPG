@@ -12,15 +12,16 @@ class _BattleScreenState extends State<BattleScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Color(0xff323433),
       body: Padding(
-        padding: EdgeInsets.only(top: size.width * .08),
+        padding: EdgeInsets.only(top: size.width * .08, left: size.width*.006),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.black,
+                  backgroundColor: const Color.fromARGB(25, 217, 217, 217),
                   maxRadius: size.width * .15,
                 ),
                 Column(
@@ -28,7 +29,9 @@ class _BattleScreenState extends State<BattleScreen> {
                     Container(
                       height: size.width * .1,
                       width: size.width * .5,
-                      decoration: const BoxDecoration(color: Colors.black),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: const Color.fromARGB(25, 217, 217, 217)),
                       child: Center(
                         child: Text(
                           "NOME DO USÁRIO",
@@ -48,7 +51,9 @@ class _BattleScreenState extends State<BattleScreen> {
                               height: size.width * .1,
                               width: size.width * .1,
                               decoration:
-                                  const BoxDecoration(color: Colors.black),
+                                  BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: const Color.fromARGB(25, 217, 217, 217)),
                               child: Center(
                                 child: Text(
                                   "ICON",
@@ -65,7 +70,10 @@ class _BattleScreenState extends State<BattleScreen> {
                               height: size.width * .1,
                               width: size.width * .1,
                               decoration:
-                                  const BoxDecoration(color: Colors.black),
+                                  BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: const Color.fromARGB(25, 217, 217, 217),
+                                    ),
                               child: Center(
                                 child: Text(
                                   "ICON",
@@ -82,7 +90,9 @@ class _BattleScreenState extends State<BattleScreen> {
                               height: size.width * .1,
                               width: size.width * .1,
                               decoration:
-                                  const BoxDecoration(color: Colors.black),
+                                  BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: const Color.fromARGB(25, 217, 217, 217)),
                               child: Center(
                                 child: Text(
                                   "ICON",
@@ -99,7 +109,9 @@ class _BattleScreenState extends State<BattleScreen> {
                               height: size.width * .1,
                               width: size.width * .1,
                               decoration:
-                                  const BoxDecoration(color: Colors.black),
+                                  BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: const Color.fromARGB(25, 217, 217, 217)),
                               child: Center(
                                 child: Text(
                                   "ICON",
@@ -116,7 +128,9 @@ class _BattleScreenState extends State<BattleScreen> {
                               height: size.width * .1,
                               width: size.width * .1,
                               decoration:
-                                  const BoxDecoration(color: Colors.black),
+                                  BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: const Color.fromARGB(25, 217, 217, 217)),
                               child: Center(
                                 child: Text(
                                   "ICON",
@@ -134,7 +148,6 @@ class _BattleScreenState extends State<BattleScreen> {
                 )
               ],
             ),
-            
           ],
         ),
       ),
