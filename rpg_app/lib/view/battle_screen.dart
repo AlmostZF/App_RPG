@@ -148,6 +148,30 @@ class _BattleScreenState extends State<BattleScreen> {
                 )
               ],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.star),
+                    Text("Nível"),
+                    Icon(Icons.star),
+                  ],
+                ),
+                GestureDetector(
+                  child: Icon(Icons.backpack),
+                )
+              ],
+            ),
+            Text("Poderes",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: size.width*.09
+            ),
+            ),
+            // START CARROSEL
+            
+            // END CARROSEL
           ],
         ),
       ),

@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
                 height: size.width*.3,
                 width: size.width*.3,
                 decoration: BoxDecoration(
-                  color: customColors.colorTeste
+                  color: Colors.amber
                 ),
                 child: const Center(
                   child: Text(
