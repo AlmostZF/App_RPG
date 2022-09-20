@@ -378,7 +378,7 @@ class _BattleScreenState extends State<BattleScreen> {
             ),
             // END COIN
             // START GRÁFICO
-            
+
             // END GRÁFICO
           ],
         ),
