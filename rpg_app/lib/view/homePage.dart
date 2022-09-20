@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_app/constants/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
+  
 }
 
 class _HomePageState extends State<HomePage> {
@@ -20,8 +22,8 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 height: size.width*.3,
                 width: size.width*.3,
-                decoration: const BoxDecoration(
-                  color: Colors.black
+                decoration: BoxDecoration(
+                  color: Colors.amber
                 ),
                 child: const Center(
                   child: Text(
