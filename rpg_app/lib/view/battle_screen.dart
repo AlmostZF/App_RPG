@@ -335,6 +335,51 @@ class _BattleScreenState extends State<BattleScreen> {
               ],
             ),
             // END SLIDER MANA
+            // START COIN
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.balance),
+                          Text("Banco")
+                        ],
+                      ),
+                      Text("1120,00")
+                    ],
+                  ),
+                                    Column(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.monetization_on),
+                          Text("Ouro")
+                        ],
+                      ),
+                      Text("110,00")
+                    ],
+                  ),
+                                    Column(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.diamond),
+                          Text("Diamante")
+                        ],
+                      ),
+                      Text("20,00")
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            // END COIN
+            // START GRÁFICO
+            
+            // END GRÁFICO
           ],
         ),
       ),
