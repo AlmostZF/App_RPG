@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:kg_charts/kg_charts.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:rpg_app/model/carousel_model.dart';
@@ -173,7 +176,7 @@ class _BattleScreenState extends State<BattleScreen> {
               style: TextStyle(color: Colors.white, fontSize: size.width * .09),
             ),
             // START CARROSEL
-                       Container(
+            Container(
               width: double.infinity,
               height: 100.0,
               //color: Colors.amber,
@@ -351,7 +354,7 @@ class _BattleScreenState extends State<BattleScreen> {
                       Text("1120,00")
                     ],
                   ),
-                                    Column(
+                  Column(
                     children: [
                       Row(
                         children: [
@@ -362,7 +365,7 @@ class _BattleScreenState extends State<BattleScreen> {
                       Text("110,00")
                     ],
                   ),
-                                    Column(
+                  Column(
                     children: [
                       Row(
                         children: [
@@ -378,6 +381,47 @@ class _BattleScreenState extends State<BattleScreen> {
             ),
             // END COIN
             // START GRÁFICO
+            
+RadarWidget(
+            skewing: 0,
+            radarMap: RadarMapModel(
+                legend: [
+                  LegendModel('10/10',const Color(0XFF0EBD8D)),
+                ],
+                indicator: [
+                  IndicatorModel("English",100),
+                  IndicatorModel("Physics",100),
+                  IndicatorModel("Chemistry",100),
+                  IndicatorModel("Biology",100),
+                  IndicatorModel("Politics",100),
+                  IndicatorModel("History",100),
+                ],
+                data: [
+                  //   MapDataModel([48,32.04,1.00,94.5,19,60,50,30,19,60,50]),
+                  //   MapDataModel([42.59,34.04,1.10,68,99,30,19,60,50,19,30]),
+                  MapDataModel([100,90,90,90,10,20]),
+                ],
+                radius: 130,
+                duration: 2000,
+                shape: Shape.square,
+                maxWidth: 70,
+                line: LineModel(1),
+            ),
+            textStyle: const TextStyle(color: Colors.black,fontSize: 14),
+            isNeedDrawLegend: true,
+            lineText: (p,length) =>  "${(p*100~/length)}%",
+            dilogText: (IndicatorModel indicatorModel,List<LegendModel> legendModels,List<double> mapDataModels) {
+              StringBuffer text = StringBuffer("");
+              for(int i=0;i<mapDataModels.length;i++){
+                text.write("${legendModels[i].name} : ${mapDataModels[i].toString()}");
+                if(i!=mapDataModels.length-1){
+                  text.write("\n");
+                }
+              }
+              return text.toString();
+            },
+            outLineText: (data,max)=> "${data*100~/max}%",
+          ),
 
             // END GRÁFICO
           ],

@@ -81,6 +81,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
+  kg_charts:
+    dependency: "direct main"
+    description:
+      name: kg_charts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5"
   lints:
     dependency: transitive
     description:
@@ -193,3 +200,4 @@ packages:
     version: "2.1.1"
 sdks:
   dart: ">=2.14.0 <3.0.0"
+  flutter: ">=1.17.0"
