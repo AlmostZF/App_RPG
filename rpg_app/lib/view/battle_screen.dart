@@ -173,7 +173,7 @@ class _BattleScreenState extends State<BattleScreen> {
               style: TextStyle(color: Colors.white, fontSize: size.width * .09),
             ),
             // START CARROSEL
-
+                      
             // END CARROSEL
             // START SLIDER VIDA
             Column(
