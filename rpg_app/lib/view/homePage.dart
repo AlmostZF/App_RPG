@@ -10,7 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  CustomColors customColors = CustomColors();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
