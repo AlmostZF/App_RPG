@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_app/controller/battele_controller.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:rpg_app/model/carousel_model.dart';
 
@@ -11,10 +12,7 @@ class BattleScreen extends StatefulWidget {
 
 class _BattleScreenState extends State<BattleScreen> {
   CarouselModel carousel = new CarouselModel();
-  int _valueVida = 20;
-  int _valueMana = 20;
-  int maxVida = 100;
-  int maxMana = 100;
+  BattleController battleController = BattleController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -226,7 +224,7 @@ class _BattleScreenState extends State<BattleScreen> {
                           children: [
                             Icon(Icons.heart_broken),
                             Text("Vida"),
-                            Text("$_valueVida/$maxVida"),
+                            Text("${battleController.valueVida}/${battleController.maxVida}"),
                           ],
                         ),
                         Row(
@@ -234,23 +232,22 @@ class _BattleScreenState extends State<BattleScreen> {
                             GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    _valueVida--;
-                                    print(_valueVida);
+                                    battleController.valueVida--;
                                   });
                                 },
                                 child: Icon(Icons.remove)),
                             SfSlider(
                               activeColor: Colors.red,
                               min: 0.0,
-                              max: maxVida,
-                              value: _valueVida,
+                              max: battleController.maxVida,
+                              value: battleController.valueVida,
                               showTicks: false,
                               showLabels: false,
                               enableTooltip: true,
                               minorTicksPerInterval: 1,
                               onChanged: (dynamic value) {
                                 setState(() {
-                                  _valueVida = value;
+                                  battleController.valueVida= value;
                                 });
                               },
                               thumbIcon: Icon(
@@ -263,8 +260,7 @@ class _BattleScreenState extends State<BattleScreen> {
                             GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    _valueVida++;
-                                    print(_valueVida);
+                                    battleController.valueVida++;
                                   });
                                 },
                                 child: Icon(Icons.add))
@@ -289,7 +285,7 @@ class _BattleScreenState extends State<BattleScreen> {
                           children: [
                             Icon(Icons.hourglass_bottom),
                             Text("Mana"),
-                            Text("$_valueMana/$maxMana"),
+                            Text("${battleController.valueMana}/${battleController.maxMana}"),
                           ],
                         ),
                         Row(
@@ -297,23 +293,22 @@ class _BattleScreenState extends State<BattleScreen> {
                             GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    _valueMana--;
-                                    print(_valueMana);
+                                    battleController.valueMana--;
                                   });
                                 },
                                 child: Icon(Icons.remove)),
                             SfSlider(
                               activeColor: Colors.blue,
                               min: 0.0,
-                              max: maxMana,
-                              value: _valueMana,
+                              max: battleController.maxMana,
+                              value: battleController.valueMana,
                               showTicks: false,
                               showLabels: false,
                               enableTooltip: true,
                               minorTicksPerInterval: 1,
                               onChanged: (dynamic value) {
                                 setState(() {
-                                  _valueMana = value;
+                                  battleController.valueMana = value;
                                 });
                               },
                               thumbIcon: Icon(
@@ -326,8 +321,8 @@ class _BattleScreenState extends State<BattleScreen> {
                             GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    _valueMana++;
-                                    print(_valueMana);
+                                    battleController.valueMana++;
+                                    print(battleController.valueMana);
                                   });
                                 },
                                 child: Icon(Icons.add))
