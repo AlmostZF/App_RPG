@@ -45,7 +45,7 @@ class _BattleScreenState extends State<BattleScreen> {
                         child: Text(
                           "NOME DO USÁRIO",
                           style: TextStyle(
-                              fontSize: size.width * .07, color: Colors.white),
+                              fontSize: size.width * .06, color: Colors.white),
                         ),
                       ),
                     ),
@@ -55,7 +55,7 @@ class _BattleScreenState extends State<BattleScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(6.0),
+                            padding: EdgeInsets.all(size.width * .01),
                             child: Container(
                               height: size.width * .1,
                               width: size.width * .1,
@@ -74,7 +74,7 @@ class _BattleScreenState extends State<BattleScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(6.0),
+                            padding: EdgeInsets.all(size.width * .01),
                             child: Container(
                               height: size.width * .1,
                               width: size.width * .1,
@@ -93,7 +93,7 @@ class _BattleScreenState extends State<BattleScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(6.0),
+                            padding: EdgeInsets.all(size.width * .01),
                             child: Container(
                               height: size.width * .1,
                               width: size.width * .1,
@@ -112,7 +112,7 @@ class _BattleScreenState extends State<BattleScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(6.0),
+                            padding: EdgeInsets.all(size.width * .01),
                             child: Container(
                               height: size.width * .1,
                               width: size.width * .1,
@@ -131,7 +131,7 @@ class _BattleScreenState extends State<BattleScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(6.0),
+                            padding: EdgeInsets.all(size.width * .01),
                             child: Container(
                               height: size.width * .1,
                               width: size.width * .1,
