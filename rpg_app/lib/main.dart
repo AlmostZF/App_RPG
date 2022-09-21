@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_app/view/homePage.dart';
+import 'package:rpg_app/provider/personagens.dart';
+import 'package:rpg_app/routes/approutes.dart';
+import 'package:rpg_app/view/personagemListPage.dart';
+import 'package:provider/provider.dart';
 import 'package:rpg_app/view/registerPage.dart';
 
 void main() {
@@ -9,12 +12,21 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: RegisterPage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => Personagens(),
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          AppRoutes.HOME: (_) => PersonagemListPage(),
+          AppRoutes.PERSONAGEM_FORM: (_) => RegisterPage()
+        },
+      ),
     );
   }
 }
