@@ -4,8 +4,6 @@ import 'package:rpg_app/components/personagemTile.dart';
 import 'package:rpg_app/provider/personagens.dart';
 import 'package:rpg_app/routes/approutes.dart';
 import 'package:rpg_app/view/homePage.dart';
-import 'package:rpg_app/view/models/personagem.dart';
-import 'package:rpg_app/view/registerPage.dart';
 
 class PersonagemListPage extends StatefulWidget {
   const PersonagemListPage({Key? key}) : super(key: key);

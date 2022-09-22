@@ -11,7 +11,7 @@ class PersonagemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final avatar = personagem.avatarUrl == null || personagem.avatarUrl.isEmpty
-        ? CircleAvatar(
+        ? const CircleAvatar(
             child: Icon(
               Icons.person,
             ),
@@ -30,7 +30,7 @@ class PersonagemTile extends StatelessWidget {
           children: [
             IconButton(
               color: Colors.orange,
-              icon: Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
               onPressed: () {
                 Navigator.of(context).pushNamed(
                   AppRoutes.PERSONAGEM_FORM,
@@ -40,22 +40,22 @@ class PersonagemTile extends StatelessWidget {
             ),
             IconButton(
               color: Colors.red,
-              icon: Icon(Icons.delete),
+              icon: const Icon(Icons.delete),
               onPressed: () {
                 showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(
-                    title: Text("Excluir personagem"),
-                    content: Text("Tem certeza?"),
+                    title: const Text("Excluir personagem"),
+                    content: const Text("Tem certeza?"),
                     actions: [
                       ElevatedButton(
-                        child: Text("Não"),
+                        child: const Text("Não"),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
                       ),
                       ElevatedButton(
-                        child: Text("Sim"),
+                        child: const Text("Sim"),
                         onPressed: () {
                           Provider.of<Personagens>(context, listen: false)
                               .remove(personagem);

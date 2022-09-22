@@ -1,7 +1,7 @@
 import 'package:rpg_app/view/models/personagem.dart';
 
 const FAKE_PERSONAGENS = {
-  "1": const Personagem(
+  "1": Personagem(
       id: "1",
       nome: "Ray",
       jogador: "Letícia",
@@ -20,7 +20,7 @@ const FAKE_PERSONAGENS = {
       mana: "2",
       avatarUrl:
           "https://cdn.pixabay.com/photo/2021/10/08/20/28/barbarian-6692466_960_720.png"),
-  "2": const Personagem(
+  "2": Personagem(
       id: "2",
       nome: "Star",
       jogador: "Letícia",
@@ -39,7 +39,7 @@ const FAKE_PERSONAGENS = {
       mana: "100",
       avatarUrl:
           "https://cdn.pixabay.com/photo/2021/10/08/20/28/healer-6692464_960_720.png"),
-  "3": const Personagem(
+  "3": Personagem(
       id: "3",
       nome: "Elizabeth",
       jogador: "Letícia",

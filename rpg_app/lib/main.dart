@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          AppRoutes.HOME: (_) => PersonagemListPage(),
-          AppRoutes.PERSONAGEM_FORM: (_) => RegisterPage()
+          AppRoutes.HOME: (_) => const PersonagemListPage(),
+          AppRoutes.PERSONAGEM_FORM: (_) => const RegisterPage()
         },
       ),
     );

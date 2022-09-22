@@ -75,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
           title: const Text("Cadastrar personagem"),
           actions: [
             IconButton(
-              icon: Icon(Icons.save),
+              icon: const Icon(Icons.save),
               onPressed: () {
                 _form.currentState?.save();
 
@@ -112,19 +112,19 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               Expanded(
                 child: Stepper(
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   type: stepperType,
                   steps: _mySteps(),
-                  currentStep: this._currentstep,
+                  currentStep: _currentstep,
                   onStepTapped: (step) {
                     setState(() {
-                      this._currentstep = step;
+                      _currentstep = step;
                     });
                   },
                   onStepContinue: () {
                     setState(() {
-                      if (this._currentstep < this._mySteps().length - 1) {
-                        this._currentstep = this._currentstep + 1;
+                      if (_currentstep < _mySteps().length - 1) {
+                        _currentstep = _currentstep + 1;
                       } else {
                         // if everything is completed
                         print('completed, check field');
@@ -133,10 +133,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   onStepCancel: () {
                     setState(() {
-                      if (this._currentstep > 0) {
-                        this._currentstep = this._currentstep - 1;
+                      if (_currentstep > 0) {
+                        _currentstep = _currentstep - 1;
                       } else {
-                        this._currentstep = 0;
+                        _currentstep = 0;
                       }
                     });
                   },
@@ -177,7 +177,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               onTap: () {
                                 pegarImagemGaleria();
                               },
-                              child: CircleAvatar(
+                              child: const CircleAvatar(
                                 child: Icon(Icons.add_photo_alternate_outlined),
                                 radius: 150.0,
                               ),
@@ -188,7 +188,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                 ],
@@ -199,7 +199,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     flex: 3,
                     child: TextFormField(
                       initialValue: _formData['nome'],
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Nome",
                       ),
                       onSaved: (value) => _formData['nome'] = value.toString(),
@@ -212,7 +212,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     flex: 3,
                     child: TextFormField(
                       initialValue: _formData['jogador'],
-                      decoration: InputDecoration(hintText: "Jogador"),
+                      decoration: const InputDecoration(hintText: "Jogador"),
                       onSaved: (value) =>
                           _formData['jogador'] = value.toString(),
                     ),
@@ -225,7 +225,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     flex: 3,
                     child: TextFormField(
                       initialValue: _formData['raca'],
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Raça",
                       ),
                       onSaved: (value) => _formData['raca'] = value.toString(),
@@ -238,7 +238,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     flex: 3,
                     child: TextFormField(
                       initialValue: _formData['classe'],
-                      decoration: InputDecoration(hintText: "Classe"),
+                      decoration: const InputDecoration(hintText: "Classe"),
                       onSaved: (value) =>
                           _formData['classe'] = value.toString(),
                     ),
@@ -250,7 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     flex: 1,
                     child: TextFormField(
                       initialValue: _formData['nivel'],
-                      decoration: InputDecoration(hintText: "Nível"),
+                      decoration: const InputDecoration(hintText: "Nível"),
                       onSaved: (value) => _formData['nivel'] = value.toString(),
                     ),
                   ),
@@ -258,7 +258,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               TextFormField(
                 initialValue: _formData['avatarUrl'],
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "Avatar URL",
                 ),
                 onSaved: (value) => _formData['avatarUrl'] = value.toString(),
@@ -266,12 +266,12 @@ class _RegisterPageState extends State<RegisterPage> {
               TextFormField(
                 initialValue: _formData['historia'],
                 maxLines: 4,
-                decoration: InputDecoration(hintText: "História"),
+                decoration: const InputDecoration(hintText: "História"),
                 onSaved: (value) => _formData['historia'] = value.toString(),
               ),
               TextFormField(
                 initialValue: _formData['ideais'],
-                decoration: InputDecoration(hintText: "Ideais"),
+                decoration: const InputDecoration(hintText: "Ideais"),
                 onSaved: (value) => _formData['ideais'] = value.toString(),
               ),
             ],
@@ -287,7 +287,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: TextFormField(
                       initialValue: _formData['forca'],
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Força",
                       ),
                       onSaved: (value) => _formData['forca'] = value.toString(),
@@ -299,7 +299,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: TextFormField(
                       initialValue: _formData['destreza'],
-                      decoration: InputDecoration(hintText: "Destreza"),
+                      decoration: const InputDecoration(hintText: "Destreza"),
                       onSaved: (value) =>
                           _formData['destreza'] = value.toString(),
                     ),
@@ -311,7 +311,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: TextFormField(
                       initialValue: _formData['constituicao'],
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Constituição",
                       ),
                       onSaved: (value) =>
@@ -324,7 +324,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: TextFormField(
                       initialValue: _formData['inteligencia'],
-                      decoration: InputDecoration(hintText: "Inteligência"),
+                      decoration:
+                          const InputDecoration(hintText: "Inteligência"),
                       onSaved: (value) =>
                           _formData['inteligencia'] = value.toString(),
                     ),
@@ -336,7 +337,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: TextFormField(
                       initialValue: _formData['sabedoria'],
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Sabedoria",
                       ),
                       onSaved: (value) =>
@@ -349,7 +350,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: TextFormField(
                       initialValue: _formData['carisma'],
-                      decoration: InputDecoration(hintText: "Carisma"),
+                      decoration: const InputDecoration(hintText: "Carisma"),
                       onSaved: (value) =>
                           _formData['carisma'] = value.toString(),
                     ),
@@ -369,7 +370,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: TextFormField(
                       initialValue: _formData['vida'],
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Vida",
                       ),
                       onSaved: (value) => _formData['vida'] = value.toString(),
@@ -381,7 +382,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: TextFormField(
                       initialValue: _formData['mana'],
-                      decoration: InputDecoration(hintText: "Mana"),
+                      decoration: const InputDecoration(hintText: "Mana"),
                       onSaved: (value) => _formData['mana'] = value.toString(),
                     ),
                   ),
@@ -396,14 +397,14 @@ class _RegisterPageState extends State<RegisterPage> {
           content: Column(
             children: [
               TextFormField(
-                decoration: InputDecoration(hintText: "Nome"),
+                decoration: const InputDecoration(hintText: "Nome"),
               ),
               Row(
                 children: [
                   Expanded(
                     flex: 3,
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Dano / Defesa",
                       ),
                     ),
@@ -414,7 +415,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     flex: 1,
                     child: TextFormField(
-                      decoration: InputDecoration(hintText: "Bônus"),
+                      decoration: const InputDecoration(hintText: "Bônus"),
                     ),
                   ),
                 ],
@@ -423,14 +424,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 25,
               ),
               TextFormField(
-                decoration: InputDecoration(hintText: "Nome"),
+                decoration: const InputDecoration(hintText: "Nome"),
               ),
               Row(
                 children: [
                   Expanded(
                     flex: 3,
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Dano / Defesa",
                       ),
                     ),
@@ -441,7 +442,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     flex: 1,
                     child: TextFormField(
-                      decoration: InputDecoration(hintText: "Bônus"),
+                      decoration: const InputDecoration(hintText: "Bônus"),
                     ),
                   ),
                 ],
@@ -450,14 +451,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 25,
               ),
               TextFormField(
-                decoration: InputDecoration(hintText: "Nome"),
+                decoration: const InputDecoration(hintText: "Nome"),
               ),
               Row(
                 children: [
                   Expanded(
                     flex: 3,
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Dano / Defesa",
                       ),
                     ),
@@ -468,7 +469,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     flex: 1,
                     child: TextFormField(
-                      decoration: InputDecoration(hintText: "Bônus"),
+                      decoration: const InputDecoration(hintText: "Bônus"),
                     ),
                   ),
                 ],
