@@ -52,17 +52,36 @@ class PersonagemTile extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(
-                    title: const Text("Excluir personagem"),
-                    content: const Text("Tem certeza?"),
+                    backgroundColor: Color(0xFF432986),
+                    title: const Text(
+                      "Excluir personagem",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    content: const Text(
+                      "Tem certeza?",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     actions: [
                       ElevatedButton(
-                        child: const Text("Não"),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xFFFFC62F),
+                        ),
+                        child: const Text(
+                          "Não",
+                          style: TextStyle(color: Colors.black),
+                        ),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
                       ),
                       ElevatedButton(
-                        child: const Text("Sim"),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xFFFFC62F),
+                        ),
+                        child: const Text(
+                          "Sim",
+                          style: TextStyle(color: Colors.black),
+                        ),
                         onPressed: () {
                           Provider.of<Personagens>(context, listen: false)
                               .remove(personagem);
