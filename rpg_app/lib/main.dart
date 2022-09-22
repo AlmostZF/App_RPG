@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          scaffoldBackgroundColor: Color(0xFF1C0D2E),
+        ),
         routes: {
           AppRoutes.HOME: (_) => const PersonagemListPage(),
           AppRoutes.PERSONAGEM_FORM: (_) => const RegisterPage()

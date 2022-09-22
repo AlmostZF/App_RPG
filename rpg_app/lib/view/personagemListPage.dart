@@ -19,28 +19,13 @@ class _PersonagemListPageState extends State<PersonagemListPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Meus Personagens"),
+          backgroundColor: Color(0xFF432986),
+          title: const Text(
+            "Meus Personagens",
+          ),
           actions: [
             IconButton(
                 onPressed: () {
-                  // personagens.put(Personagem(
-                  //     avatarUrl: "",
-                  //     carisma: "teste",
-                  //     classe: "teste",
-                  //     constituicao: "teste",
-                  //     destreza: "teste",
-                  //     forca: "teste",
-                  //     historia: "teste",
-                  //     id: "2",
-                  //     ideais: "teste",
-                  //     inteligencia: "teste",
-                  //     jogador: "teste",
-                  //     mana: "teste",
-                  //     nivel: "teste",
-                  //     nome: "A",
-                  //     raca: "teste",
-                  //     sabedoria: "teste",
-                  //     vida: "teste"));
                   Navigator.of(context).pushNamed(AppRoutes.PERSONAGEM_FORM);
                 },
                 icon: Icon(Icons.add))
@@ -55,61 +40,6 @@ class _PersonagemListPageState extends State<PersonagemListPage> {
         body: ListView.builder(
           itemCount: personagens.count,
           itemBuilder: (ctx, i) => PersonagemTile(personagens.byIndex(i)),
-        )
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 8),
-        //   child: Column(
-        //     children: [
-        //       Expanded(
-        //         child: Column(
-        //           children: [
-        //             Card(
-        //               clipBehavior: Clip.antiAlias,
-        //               child: Column(
-        //                 children: [
-        //                   ListTile(
-        //                     leading: const Icon(
-        //                       Icons.assignment_ind_outlined,
-        //                       size: 50.0,
-        //                       color: Colors.purple,
-        //                     ),
-        //                     title: const Text('ZF'),
-        //                     subtitle: Text(
-        //                       "Idade: 10 - Classe: Mago",
-        //                       style: TextStyle(
-        //                         color: Colors.black.withOpacity(0.6),
-        //                       ),
-        //                     ),
-        //                   ),
-        //                 ],
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //       SizedBox(
-        //         child: Row(
-        //           children: [
-        //             Expanded(
-        //               child: ElevatedButton(
-        //                 onPressed: () {
-        //                   Navigator.of(context).push(MaterialPageRoute(
-        //                       builder: (context) => const RegisterPage()));
-        //                 },
-        //                 child: const Text(
-        //                   "NOVO PERSONAGEM",
-        //                 ),
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //       const SizedBox(
-        //         height: 10.0,
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        );
+        ));
   }
 }

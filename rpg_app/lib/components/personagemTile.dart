@@ -11,9 +11,11 @@ class PersonagemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final avatar = personagem.avatarUrl == null || personagem.avatarUrl.isEmpty
-        ? const CircleAvatar(
-            child: Icon(
-              Icons.person,
+        ? Container(
+            child: CircleAvatar(
+              child: Icon(
+                Icons.person,
+              ),
             ),
           )
         : CircleAvatar(
@@ -21,15 +23,20 @@ class PersonagemTile extends StatelessWidget {
           );
     return ListTile(
       leading: avatar,
-      title: Text(personagem.nome),
-      subtitle:
-          Text("Classe: ${personagem.classe} | Raça: ${personagem.raca} "),
+      title: Text(
+        personagem.nome,
+        style: TextStyle(fontWeight: FontWeight.w800),
+      ),
+      textColor: Colors.white,
+      subtitle: Text(
+        "Classe: ${personagem.classe} | Raça: ${personagem.raca}",
+      ),
       trailing: Container(
         width: 100,
         child: Row(
           children: [
             IconButton(
-              color: Colors.orange,
+              color: Color(0xFFFFFFFF),
               icon: const Icon(Icons.edit),
               onPressed: () {
                 Navigator.of(context).pushNamed(
@@ -39,7 +46,7 @@ class PersonagemTile extends StatelessWidget {
               },
             ),
             IconButton(
-              color: Colors.red,
+              color: Color(0xFFFFC62F),
               icon: const Icon(Icons.delete),
               onPressed: () {
                 showDialog(

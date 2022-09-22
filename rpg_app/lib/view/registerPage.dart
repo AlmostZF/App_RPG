@@ -71,42 +71,45 @@ class _RegisterPageState extends State<RegisterPage> {
       _loadFormData(personagem);
     } catch (e) {}
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Cadastrar personagem"),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.save),
-              onPressed: () {
-                _form.currentState?.save();
+      appBar: AppBar(
+        title: const Text("Cadastrar personagem"),
+        backgroundColor: Color(0xFF432986),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.save),
+            onPressed: () {
+              _form.currentState?.save();
 
-                Provider.of<Personagens>(context, listen: false).put(
-                  Personagem(
-                    id: _formData['id'].toString(),
-                    nome: _formData['nome'].toString(),
-                    jogador: _formData['jogador'].toString(),
-                    raca: _formData['raca'].toString(),
-                    classe: _formData['classe'].toString(),
-                    nivel: _formData['nivel'].toString(),
-                    historia: _formData['historia'].toString(),
-                    ideais: _formData['ideais'].toString(),
-                    forca: _formData['forca'].toString(),
-                    destreza: _formData['destreza'].toString(),
-                    constituicao: _formData['constituicao'].toString(),
-                    inteligencia: _formData['inteligencia'].toString(),
-                    sabedoria: _formData['sabedoria'].toString(),
-                    carisma: _formData['carisma'].toString(),
-                    vida: _formData['vida'].toString(),
-                    mana: _formData['mana'].toString(),
-                    avatarUrl: _formData['avatarUrl'].toString(),
-                  ),
-                );
+              Provider.of<Personagens>(context, listen: false).put(
+                Personagem(
+                  id: _formData['id'].toString(),
+                  nome: _formData['nome'].toString(),
+                  jogador: _formData['jogador'].toString(),
+                  raca: _formData['raca'].toString(),
+                  classe: _formData['classe'].toString(),
+                  nivel: _formData['nivel'].toString(),
+                  historia: _formData['historia'].toString(),
+                  ideais: _formData['ideais'].toString(),
+                  forca: _formData['forca'].toString(),
+                  destreza: _formData['destreza'].toString(),
+                  constituicao: _formData['constituicao'].toString(),
+                  inteligencia: _formData['inteligencia'].toString(),
+                  sabedoria: _formData['sabedoria'].toString(),
+                  carisma: _formData['carisma'].toString(),
+                  vida: _formData['vida'].toString(),
+                  mana: _formData['mana'].toString(),
+                  avatarUrl: _formData['avatarUrl'].toString(),
+                ),
+              );
 
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-        body: Form(
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+      body: Container(
+        color: Color(0xFFFFFFFF),
+        child: Form(
           key: _form,
           child: Row(
             children: [
@@ -144,7 +147,9 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   pegarImagemGaleria() async {
@@ -161,7 +166,9 @@ class _RegisterPageState extends State<RegisterPage> {
   List<Step> _mySteps() {
     List<Step> _steps = [
       Step(
-          title: Text(_currentstep == 0 ? "Características" : ""),
+          title: Text(
+            _currentstep == 0 ? "Características" : "",
+          ),
           content: Column(
             children: [
               Column(
