@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:rpg_app/provider/personagens.dart';
+import 'package:rpg_app/view/models/personagem.dart';
 import 'package:rpg_app/view/personagemListPage.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -18,55 +21,129 @@ class _RegisterPageState extends State<RegisterPage> {
   int _currentstep = 0;
   StepperType stepperType = StepperType.horizontal;
 
+  final _form = GlobalKey<FormState>();
+  final Map<String, String> _formData = {};
+
+  void _loadFormData(Personagem personagem) {
+    if (personagem != null) {
+      id:
+      _formData['id'] = personagem.id;
+      nome:
+      _formData['nome'] = personagem.nome;
+      jogador:
+      _formData['jogador'] = personagem.jogador;
+      raca:
+      _formData['raca'] = personagem.raca;
+      classe:
+      _formData['classe'] = personagem.classe;
+      nivel:
+      _formData['nivel'] = personagem.nivel;
+      historia:
+      _formData['historia'] = personagem.historia;
+      ideais:
+      _formData['ideais'] = personagem.ideais;
+      forca:
+      _formData['forca'] = personagem.forca;
+      destreza:
+      _formData['destreza'] = personagem.destreza;
+      constituicao:
+      _formData['constituicao'] = personagem.constituicao;
+      inteligencia:
+      _formData['inteligencia'] = personagem.inteligencia;
+      sabedoria:
+      _formData['sabedoria'] = personagem.sabedoria;
+      carisma:
+      _formData['carisma'] = personagem.carisma;
+      vida:
+      _formData['vida'] = personagem.vida;
+      mana:
+      _formData['mana'] = personagem.mana;
+      avatarUrl:
+      _formData['avatarUrl'] = personagem.avatarUrl;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    try {
+      final personagem =
+          ModalRoute.of(context)?.settings.arguments as Personagem;
+      _loadFormData(personagem);
+    } catch (e) {}
     return Scaffold(
         appBar: AppBar(
           title: const Text("Cadastrar personagem"),
           actions: [
             IconButton(
+              icon: Icon(Icons.save),
               onPressed: () {
+                _form.currentState?.save();
+
+                Provider.of<Personagens>(context, listen: false).put(
+                  Personagem(
+                    id: _formData['id'].toString(),
+                    nome: _formData['nome'].toString(),
+                    jogador: _formData['jogador'].toString(),
+                    raca: _formData['raca'].toString(),
+                    classe: _formData['classe'].toString(),
+                    nivel: _formData['nivel'].toString(),
+                    historia: _formData['historia'].toString(),
+                    ideais: _formData['ideais'].toString(),
+                    forca: _formData['forca'].toString(),
+                    destreza: _formData['destreza'].toString(),
+                    constituicao: _formData['constituicao'].toString(),
+                    inteligencia: _formData['inteligencia'].toString(),
+                    sabedoria: _formData['sabedoria'].toString(),
+                    carisma: _formData['carisma'].toString(),
+                    vida: _formData['vida'].toString(),
+                    mana: _formData['mana'].toString(),
+                    avatarUrl: _formData['avatarUrl'].toString(),
+                  ),
+                );
+
                 Navigator.of(context).pop();
               },
-              icon: Icon(Icons.save),
             ),
           ],
         ),
-        body: Row(
-          children: [
-            Expanded(
-              child: Stepper(
-                physics: ClampingScrollPhysics(),
-                type: stepperType,
-                steps: _mySteps(),
-                currentStep: this._currentstep,
-                onStepTapped: (step) {
-                  setState(() {
-                    this._currentstep = step;
-                  });
-                },
-                onStepContinue: () {
-                  setState(() {
-                    if (this._currentstep < this._mySteps().length - 1) {
-                      this._currentstep = this._currentstep + 1;
-                    } else {
-                      // if everything is completed
-                      print('completed, check field');
-                    }
-                  });
-                },
-                onStepCancel: () {
-                  setState(() {
-                    if (this._currentstep > 0) {
-                      this._currentstep = this._currentstep - 1;
-                    } else {
-                      this._currentstep = 0;
-                    }
-                  });
-                },
+        body: Form(
+          key: _form,
+          child: Row(
+            children: [
+              Expanded(
+                child: Stepper(
+                  physics: ClampingScrollPhysics(),
+                  type: stepperType,
+                  steps: _mySteps(),
+                  currentStep: this._currentstep,
+                  onStepTapped: (step) {
+                    setState(() {
+                      this._currentstep = step;
+                    });
+                  },
+                  onStepContinue: () {
+                    setState(() {
+                      if (this._currentstep < this._mySteps().length - 1) {
+                        this._currentstep = this._currentstep + 1;
+                      } else {
+                        // if everything is completed
+                        print('completed, check field');
+                      }
+                    });
+                  },
+                  onStepCancel: () {
+                    setState(() {
+                      if (this._currentstep > 0) {
+                        this._currentstep = this._currentstep - 1;
+                      } else {
+                        this._currentstep = 0;
+                      }
+                    });
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 
@@ -118,66 +195,84 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 3,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
+                      initialValue: _formData['nome'],
                       decoration: InputDecoration(
                         hintText: "Nome",
                       ),
+                      onSaved: (value) => _formData['nome'] = value.toString(),
                     ),
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 3,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
+                      initialValue: _formData['jogador'],
                       decoration: InputDecoration(hintText: "Jogador"),
+                      onSaved: (value) =>
+                          _formData['jogador'] = value.toString(),
                     ),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 3,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
+                      initialValue: _formData['raca'],
                       decoration: InputDecoration(
                         hintText: "Raça",
                       ),
+                      onSaved: (value) => _formData['raca'] = value.toString(),
                     ),
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 3,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
+                      initialValue: _formData['classe'],
                       decoration: InputDecoration(hintText: "Classe"),
+                      onSaved: (value) =>
+                          _formData['classe'] = value.toString(),
                     ),
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 1,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
+                      initialValue: _formData['nivel'],
                       decoration: InputDecoration(hintText: "Nível"),
+                      onSaved: (value) => _formData['nivel'] = value.toString(),
                     ),
                   ),
                 ],
               ),
-              TextField(
+              TextFormField(
+                initialValue: _formData['avatarUrl'],
+                decoration: InputDecoration(
+                  hintText: "Avatar URL",
+                ),
+                onSaved: (value) => _formData['avatarUrl'] = value.toString(),
+              ),
+              TextFormField(
+                initialValue: _formData['historia'],
                 maxLines: 4,
                 decoration: InputDecoration(hintText: "História"),
+                onSaved: (value) => _formData['historia'] = value.toString(),
               ),
-              TextField(
+              TextFormField(
+                initialValue: _formData['ideais'],
                 decoration: InputDecoration(hintText: "Ideais"),
+                onSaved: (value) => _formData['ideais'] = value.toString(),
               ),
             ],
           ),
@@ -189,63 +284,74 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               Row(
                 children: [
-                  const Expanded(
-                    child: TextField(
-                      // controller: _controller,
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: _formData['forca'],
                       decoration: InputDecoration(
                         hintText: "Força",
                       ),
+                      onSaved: (value) => _formData['forca'] = value.toString(),
                     ),
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
-                    child: TextField(
-                      // controller: _controller,
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: _formData['destreza'],
                       decoration: InputDecoration(hintText: "Destreza"),
+                      onSaved: (value) =>
+                          _formData['destreza'] = value.toString(),
                     ),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  const Expanded(
-                    child: TextField(
-                      // controller: _controller,
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: _formData['constituicao'],
                       decoration: InputDecoration(
                         hintText: "Constituição",
                       ),
+                      onSaved: (value) =>
+                          _formData['constituicao'] = value.toString(),
                     ),
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
-                    child: TextField(
-                      // controller: _controller,
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: _formData['inteligencia'],
                       decoration: InputDecoration(hintText: "Inteligência"),
+                      onSaved: (value) =>
+                          _formData['inteligencia'] = value.toString(),
                     ),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  const Expanded(
-                    child: TextField(
-                      // controller: _controller,
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: _formData['sabedoria'],
                       decoration: InputDecoration(
                         hintText: "Sabedoria",
                       ),
+                      onSaved: (value) =>
+                          _formData['sabedoria'] = value.toString(),
                     ),
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
-                    child: TextField(
-                      // controller: _controller,
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: _formData['carisma'],
                       decoration: InputDecoration(hintText: "Carisma"),
+                      onSaved: (value) =>
+                          _formData['carisma'] = value.toString(),
                     ),
                   ),
                 ],
@@ -260,21 +366,23 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               Row(
                 children: [
-                  const Expanded(
-                    child: TextField(
-                      // controller: _controller,
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: _formData['vida'],
                       decoration: InputDecoration(
                         hintText: "Vida",
                       ),
+                      onSaved: (value) => _formData['vida'] = value.toString(),
                     ),
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
-                    child: TextField(
-                      // controller: _controller,
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: _formData['mana'],
                       decoration: InputDecoration(hintText: "Mana"),
+                      onSaved: (value) => _formData['mana'] = value.toString(),
                     ),
                   ),
                 ],
@@ -287,15 +395,14 @@ class _RegisterPageState extends State<RegisterPage> {
           title: Text(_currentstep == 3 ? "Habilidades" : ""),
           content: Column(
             children: [
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(hintText: "Nome"),
               ),
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 3,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
                       decoration: InputDecoration(
                         hintText: "Dano / Defesa",
                       ),
@@ -304,10 +411,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 1,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
                       decoration: InputDecoration(hintText: "Bônus"),
                     ),
                   ),
@@ -316,15 +422,14 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(
                 height: 25,
               ),
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(hintText: "Nome"),
               ),
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 3,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
                       decoration: InputDecoration(
                         hintText: "Dano / Defesa",
                       ),
@@ -333,10 +438,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 1,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
                       decoration: InputDecoration(hintText: "Bônus"),
                     ),
                   ),
@@ -345,15 +449,14 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(
                 height: 25,
               ),
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(hintText: "Nome"),
               ),
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 3,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
                       decoration: InputDecoration(
                         hintText: "Dano / Defesa",
                       ),
@@ -362,10 +465,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 1,
-                    child: TextField(
-                      // controller: _controller,
+                    child: TextFormField(
                       decoration: InputDecoration(hintText: "Bônus"),
                     ),
                   ),
