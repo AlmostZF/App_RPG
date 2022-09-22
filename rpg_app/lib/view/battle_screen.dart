@@ -469,7 +469,7 @@ class _BattleScreenState extends State<BattleScreen> {
                 skewing: 0,
                 radarMap: RadarMapModel(
                   legend: [
-                    LegendModel('10/10', const Color(0XFF0EBD8D)),
+                    LegendModel('10/10', const Color(0xFFFFC62F)),
                   ],
                   indicator: [
                     IndicatorModel("Força", 100),
@@ -487,10 +487,11 @@ class _BattleScreenState extends State<BattleScreen> {
                   radius: 130,
                   duration: 2000,
                   shape: Shape.square,
+                  
                   maxWidth: 70,
-                  line: LineModel(1),
+                  line: LineModel(2),
                 ),
-                textStyle: const TextStyle(color: Colors.black, fontSize: 14),
+                textStyle: const TextStyle(color: Colors.white, fontSize: 14),
                 isNeedDrawLegend: true,
                 lineText: (p, length) => "${(p * 100 ~/ length)}%",
                 dilogText: (IndicatorModel indicatorModel,
