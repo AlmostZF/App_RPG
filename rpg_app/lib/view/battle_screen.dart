@@ -188,11 +188,9 @@ class _BattleScreenState extends State<BattleScreen> {
                       return SizedBox(width: size.width * 0.01);
                     }
                     return Container(
-
                       margin: EdgeInsets.all(size.width * 0.02),
                       width: size.width * 0.167,
                       height: size.height * 0.167,
-
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           boxShadow: [
@@ -227,7 +225,8 @@ class _BattleScreenState extends State<BattleScreen> {
                           children: [
                             Icon(Icons.heart_broken),
                             Text("Vida"),
-                            Text("${battleController.valueVida}/${battleController.maxVida}"),
+                            Text(
+                                "${battleController.valueVida}/${battleController.maxVida}"),
                           ],
                         ),
                         Row(
@@ -250,7 +249,7 @@ class _BattleScreenState extends State<BattleScreen> {
                               minorTicksPerInterval: 1,
                               onChanged: (dynamic value) {
                                 setState(() {
-                                  battleController.valueVida= value;
+                                  battleController.valueVida = value;
                                 });
                               },
                               thumbIcon: Icon(
@@ -288,7 +287,8 @@ class _BattleScreenState extends State<BattleScreen> {
                           children: [
                             Icon(Icons.hourglass_bottom),
                             Text("Mana"),
-                            Text("${battleController.valueMana}/${battleController.maxMana}"),
+                            Text(
+                                "${battleController.valueMana}/${battleController.maxMana}"),
                           ],
                         ),
                         Row(
@@ -311,7 +311,7 @@ class _BattleScreenState extends State<BattleScreen> {
                               minorTicksPerInterval: 1,
                               onChanged: (dynamic value) {
                                 setState(() {
-                                  battleController.valueMana = value;
+                                  // battleController.valueMana = value;
                                 });
                               },
                               thumbIcon: Icon(
@@ -346,10 +346,7 @@ class _BattleScreenState extends State<BattleScreen> {
                   Column(
                     children: [
                       Row(
-                        children: [
-                          Icon(Icons.balance),
-                          Text("Banco")
-                        ],
+                        children: [Icon(Icons.balance), Text("Banco")],
                       ),
                       Text("1120,00")
                     ],
@@ -357,10 +354,7 @@ class _BattleScreenState extends State<BattleScreen> {
                   Column(
                     children: [
                       Row(
-                        children: [
-                          Icon(Icons.monetization_on),
-                          Text("Ouro")
-                        ],
+                        children: [Icon(Icons.monetization_on), Text("Ouro")],
                       ),
                       Text("110,00")
                     ],
@@ -368,10 +362,7 @@ class _BattleScreenState extends State<BattleScreen> {
                   Column(
                     children: [
                       Row(
-                        children: [
-                          Icon(Icons.diamond),
-                          Text("Diamante")
-                        ],
+                        children: [Icon(Icons.diamond), Text("Diamante")],
                       ),
                       Text("20,00")
                     ],
@@ -381,47 +372,49 @@ class _BattleScreenState extends State<BattleScreen> {
             ),
             // END COIN
             // START GRÁFICO
-            
-RadarWidget(
-            skewing: 0,
-            radarMap: RadarMapModel(
+
+            RadarWidget(
+              skewing: 0,
+              radarMap: RadarMapModel(
                 legend: [
-                  LegendModel('10/10',const Color(0XFF0EBD8D)),
+                  LegendModel('10/10', const Color(0XFF0EBD8D)),
                 ],
                 indicator: [
-                  IndicatorModel("English",100),
-                  IndicatorModel("Physics",100),
-                  IndicatorModel("Chemistry",100),
-                  IndicatorModel("Biology",100),
-                  IndicatorModel("Politics",100),
-                  IndicatorModel("History",100),
+                  IndicatorModel("English", 100),
+                  IndicatorModel("Physics", 100),
+                  IndicatorModel("Chemistry", 100),
+                  IndicatorModel("Biology", 100),
+                  IndicatorModel("Politics", 100),
+                  IndicatorModel("History", 100),
                 ],
                 data: [
                   //   MapDataModel([48,32.04,1.00,94.5,19,60,50,30,19,60,50]),
                   //   MapDataModel([42.59,34.04,1.10,68,99,30,19,60,50,19,30]),
-                  MapDataModel([100,90,90,90,10,20]),
+                  MapDataModel([100, 90, 90, 90, 10, 20]),
                 ],
                 radius: 130,
                 duration: 2000,
                 shape: Shape.square,
                 maxWidth: 70,
                 line: LineModel(1),
-            ),
-            textStyle: const TextStyle(color: Colors.black,fontSize: 14),
-            isNeedDrawLegend: true,
-            lineText: (p,length) =>  "${(p*100~/length)}%",
-            dilogText: (IndicatorModel indicatorModel,List<LegendModel> legendModels,List<double> mapDataModels) {
-              StringBuffer text = StringBuffer("");
-              for(int i=0;i<mapDataModels.length;i++){
-                text.write("${legendModels[i].name} : ${mapDataModels[i].toString()}");
-                if(i!=mapDataModels.length-1){
-                  text.write("\n");
+              ),
+              textStyle: const TextStyle(color: Colors.black, fontSize: 14),
+              isNeedDrawLegend: true,
+              lineText: (p, length) => "${(p * 100 ~/ length)}%",
+              dilogText: (IndicatorModel indicatorModel,
+                  List<LegendModel> legendModels, List<double> mapDataModels) {
+                StringBuffer text = StringBuffer("");
+                for (int i = 0; i < mapDataModels.length; i++) {
+                  text.write(
+                      "${legendModels[i].name} : ${mapDataModels[i].toString()}");
+                  if (i != mapDataModels.length - 1) {
+                    text.write("\n");
+                  }
                 }
-              }
-              return text.toString();
-            },
-            outLineText: (data,max)=> "${data*100~/max}%",
-          ),
+                return text.toString();
+              },
+              outLineText: (data, max) => "${data * 100 ~/ max}%",
+            ),
 
             // END GRÁFICO
           ],
