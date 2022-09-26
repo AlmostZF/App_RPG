@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/routes/app_routes.dart';
+import 'package:provider/provider.dart';
 import 'package:rpg_app/view/battle_screen.dart';
+import 'package:rpg_app/view/homePage.dart';
+import 'package:rpg_app/view/persons_screen.dart';
+import 'package:rpg_app/view/register_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,13 +14,27 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: BattleScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => Persons(),
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          scaffoldBackgroundColor: Color(0xFF1C0D2E),
+          hintColor: Colors.white,
+        ),
+        routes: {
+          AppRoutes.HOME: (_) => const HomePage(),
+          AppRoutes.BATTLE_SCREEN: (_) => const BattleScreen(),
+          AppRoutes.PERSOM_FORM: (_) => const RegisterScreen(),
+          AppRoutes.PERSONS_SCREEN: (_) => const PersonScreen(),
+        },
+      ),
     );
   }
 }
-
