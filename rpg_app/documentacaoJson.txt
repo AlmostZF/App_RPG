@@ -1,0 +1,191 @@
+MODELO DE JSON 
+
+{
+    "person": [
+        {
+            "id": 122,
+            "apelido": "EastWinds",
+            "raca": "Elfo",
+            "classe": "Arqueiro",
+            "nivel": 3,
+            "historia": "O Elfo EastWinds nasceu nas florestas místicas....",
+            "ideais": "Matar Trolls",
+            "avatarUrl": "http://....",
+            "habilidades": {
+                "carisma": 10,
+                "constituicao": 15,
+                "destreza": 13,
+                "forca": 12,
+                "inteligencia": 20,
+                "sabedoria": 25
+            },
+            "status": {
+                "vida": 150,
+                "mana": 80
+            }
+        }
+    ]
+}
+---------------------------------------------------------------------------------------------------------
+Documentação Campos:
+id: Referece ao id único de cada personagem 																	                              [int]
+apelido: Apelido escolhido pelo usuário 																		                                [String]
+raca: raça do personagem escolhido pelo usuário 																                            [String]
+classe:	Classe a qual o personagem pertecem																		                              [String]
+nivel:	nível em que o  personagem  se encontra (pode ser alterado pelo mestre/player)							        [String]
+historia: História que player escolheu para seu personagem														                      [String]
+ideias: Ideais que o personagem terá																		                                  	[String]
+avatarUrl: url do avatar do personagem  (storage)																                            [String]
+habidades: {
+	carisma: Quantidade de Carisma que o personagem possui  (pode ser alterado pelo mestre/player) 				    [int]
+	constituicao: Quantidade de Costituição que o personagem possui  (pode ser alterado pelo mestre/player)		[int]
+	destreza:	Quantidade de Destreza que o personagem possui  (pode ser alterado pelo mestre/player)			    [int]
+	forca:	Quantidade de Força que o personagem possui  (pode ser alterado pelo mestre/player)				      	[int]
+	inteligencia:	Quantidade de Inteligencia que o personagem possui  (pode ser alterado pelo mestre/player)	[int]
+	sabedoria:	Quantidade de Sabedoria que o personagem possui  (pode ser alterado pelo mestre/player)		  	[int]
+}
+status: {
+	vida:	Vida atual (pode ser alterado pelo mestre/player)										                          			[int]
+	mana:	Mana atual (pode ser alterado pelo mestre/player)										                          			[int]
+}
+---------------------------------------------------------------------------------------------------------
+Model Dart
+
+class ModelPersonagem {
+  List<Person> person;
+
+  ModelPersonagem({this.person});
+
+  ModelPersonagem.fromJson(Map<String, dynamic> json) {
+    if (json['person'] != null) {
+      person = new List<Person>();
+      json['person'].forEach((v) {
+        person.add(new Person.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.person != null) {
+      data['person'] = this.person.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Person {
+  int id;
+  String apelido;
+  String raca;
+  String classe;
+  int nivel;
+  String historia;
+  String ideais;
+  String avatarUrl;
+  Habilidades habilidades;
+  Status status;
+
+  Person(
+      {this.id,
+      this.apelido,
+      this.raca,
+      this.classe,
+      this.nivel,
+      this.historia,
+      this.ideais,
+      this.avatarUrl,
+      this.habilidades,
+      this.status});
+
+  Person.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    apelido = json['apelido'];
+    raca = json['raca'];
+    classe = json['classe'];
+    nivel = json['nivel'];
+    historia = json['historia'];
+    ideais = json['ideais'];
+    avatarUrl = json['avatarUrl'];
+    habilidades = json['habilidades'] != null
+        ? new Habilidades.fromJson(json['habilidades'])
+        : null;
+    status =
+        json['status'] != null ? new Status.fromJson(json['status']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['apelido'] = this.apelido;
+    data['raca'] = this.raca;
+    data['classe'] = this.classe;
+    data['nivel'] = this.nivel;
+    data['historia'] = this.historia;
+    data['ideais'] = this.ideais;
+    data['avatarUrl'] = this.avatarUrl;
+    if (this.habilidades != null) {
+      data['habilidades'] = this.habilidades.toJson();
+    }
+    if (this.status != null) {
+      data['status'] = this.status.toJson();
+    }
+    return data;
+  }
+}
+
+class Habilidades {
+  int carisma;
+  int constituicao;
+  int destreza;
+  int forca;
+  int inteligencia;
+  int sabedoria;
+
+  Habilidades(
+      {this.carisma,
+      this.constituicao,
+      this.destreza,
+      this.forca,
+      this.inteligencia,
+      this.sabedoria});
+
+  Habilidades.fromJson(Map<String, dynamic> json) {
+    carisma = json['carisma'];
+    constituicao = json['constituicao'];
+    destreza = json['destreza'];
+    forca = json['forca'];
+    inteligencia = json['inteligencia'];
+    sabedoria = json['sabedoria'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['carisma'] = this.carisma;
+    data['constituicao'] = this.constituicao;
+    data['destreza'] = this.destreza;
+    data['forca'] = this.forca;
+    data['inteligencia'] = this.inteligencia;
+    data['sabedoria'] = this.sabedoria;
+    return data;
+  }
+}
+
+class Status {
+  int vida;
+  int mana;
+
+  Status({this.vida, this.mana});
+
+  Status.fromJson(Map<String, dynamic> json) {
+    vida = json['vida'];
+    mana = json['mana'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['vida'] = this.vida;
+    data['mana'] = this.mana;
+    return data;
+  }
+}
