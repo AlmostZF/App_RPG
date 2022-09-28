@@ -1,7 +1,7 @@
 class Person {
   final String id;
   final String nome;
-  final String jogador;
+  final String jogador; //Mudar para apelido ?
   final String raca;
   final String classe;
   final String nivel;

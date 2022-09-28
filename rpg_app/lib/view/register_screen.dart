@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -494,6 +493,7 @@ class _RegisterPageState extends State<RegisterScreen> {
           isActive: _currentstep >= 3,
           state: _currentstep == 3 ? StepState.editing : StepState.complete),
     ];
+    print(_formData);
     return _steps;
   }
 }
