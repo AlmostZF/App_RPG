@@ -24,8 +24,7 @@ class Persons with ChangeNotifier {
       return;
     }
 
-    if (person.id != null &&
-        person.id.trim().isNotEmpty &&
+    if (person.id.trim().isNotEmpty &&
         _items.containsKey(person.id)) {
       _items.update(
         person.id,
@@ -76,9 +75,7 @@ class Persons with ChangeNotifier {
   }
 
   void remove(Person person) {
-    if (person != null && person.id != null) {
-      _items.remove(person.id);
-      notifyListeners();
-    }
+    _items.remove(person.id);
+    notifyListeners();
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
@@ -14,13 +12,13 @@ class BattleScreen extends StatefulWidget {
 }
 
 class _BattleScreenState extends State<BattleScreen> {
-  CarouselModel carousel = new CarouselModel();
+  CarouselModel carousel = CarouselModel();
   BattleController battleController = BattleController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff323433),
+      backgroundColor: const Color(0xff323433),
       body: Padding(
         padding:
             EdgeInsets.only(top: size.width * .08, left: size.width * .006),
@@ -160,14 +158,14 @@ class _BattleScreenState extends State<BattleScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  children: [
+                  children: const [
                     Icon(Icons.star),
                     Text("Nível"),
                     Icon(Icons.star),
                   ],
                 ),
                 GestureDetector(
-                  child: Icon(Icons.backpack),
+                  child: const Icon(Icons.backpack),
                 )
               ],
             ),
@@ -176,7 +174,7 @@ class _BattleScreenState extends State<BattleScreen> {
               style: TextStyle(color: Colors.white, fontSize: size.width * .09),
             ),
             // START CARROSEL
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 100.0,
               //color: Colors.amber,
@@ -223,8 +221,8 @@ class _BattleScreenState extends State<BattleScreen> {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.heart_broken),
-                            Text("Vida"),
+                            const Icon(Icons.heart_broken),
+                            const Text("Vida"),
                             Text(
                                 "${battleController.valueVida}/${battleController.maxVida}"),
                           ],
@@ -237,7 +235,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                     battleController.valueVida--;
                                   });
                                 },
-                                child: Icon(Icons.remove)),
+                                child: const Icon(Icons.remove)),
                             SfSlider(
                               activeColor: Colors.red,
                               min: 0.0,
@@ -252,7 +250,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                   battleController.valueVida = value;
                                 });
                               },
-                              thumbIcon: Icon(
+                              thumbIcon: const  Icon(
                                 Icons.health_and_safety_outlined,
                                 size: 20,
                               ),
@@ -265,7 +263,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                     battleController.valueVida++;
                                   });
                                 },
-                                child: Icon(Icons.add))
+                                child: const Icon(Icons.add))
                           ],
                         )
                       ],
@@ -285,8 +283,8 @@ class _BattleScreenState extends State<BattleScreen> {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.hourglass_bottom),
-                            Text("Mana"),
+                            const Icon(Icons.hourglass_bottom),
+                            const Text("Mana"),
                             Text(
                                 "${battleController.valueMana}/${battleController.maxMana}"),
                           ],
@@ -299,7 +297,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                     battleController.valueMana--;
                                   });
                                 },
-                                child: Icon(Icons.remove)),
+                                child: const Icon(Icons.remove)),
                             SfSlider(
                               activeColor: Colors.blue,
                               min: 0.0,
@@ -314,7 +312,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                   // battleController.valueMana = value;
                                 });
                               },
-                              thumbIcon: Icon(
+                              thumbIcon: const Icon(
                                 Icons.health_and_safety_outlined,
                                 size: 20,
                               ),
@@ -325,10 +323,9 @@ class _BattleScreenState extends State<BattleScreen> {
                                 onTap: () {
                                   setState(() {
                                     battleController.valueMana++;
-                                    print(battleController.valueMana);
                                   });
                                 },
-                                child: Icon(Icons.add))
+                                child: const Icon(Icons.add))
                           ],
                         )
                       ],
@@ -339,36 +336,34 @@ class _BattleScreenState extends State<BattleScreen> {
             ),
             // END SLIDER MANA
             // START COIN
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: [Icon(Icons.balance), Text("Banco")],
-                      ),
-                      Text("1120,00")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Row(
-                        children: [Icon(Icons.monetization_on), Text("Ouro")],
-                      ),
-                      Text("110,00")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Row(
-                        children: [Icon(Icons.diamond), Text("Diamante")],
-                      ),
-                      Text("20,00")
-                    ],
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      children: const [Icon(Icons.balance), Text("Banco")],
+                    ),
+                    const Text("1120,00")
+                  ],
+                ),
+                Column(
+                  children: [
+                    Row(
+                      children: const [Icon(Icons.monetization_on), Text("Ouro")],
+                    ),
+                    const Text("110,00")
+                  ],
+                ),
+                Column(
+                  children: [
+                    Row(
+                      children: const [Icon(Icons.diamond), Text("Diamante")],
+                    ),
+                    const Text("20,00")
+                  ],
+                ),
+              ],
             ),
             // END COIN
             // START GRÁFICO

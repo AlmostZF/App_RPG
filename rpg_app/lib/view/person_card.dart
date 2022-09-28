@@ -11,13 +11,11 @@ class PersomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final avatar = person.avatarUrl == null || person.avatarUrl.isEmpty
-        ? Container(
-            child: const CircleAvatar(
-              child: Icon(
-                Icons.person,
-              ),
-            ),
-          )
+        ? const CircleAvatar(
+          child: Icon(
+            Icons.person,
+          ),
+        )
         : CircleAvatar(
             backgroundImage: NetworkImage(person.avatarUrl),
           );
@@ -31,7 +29,7 @@ class PersomCard extends StatelessWidget {
       subtitle: Text(
         "Classe: ${person.classe} | Raça: ${person.raca}",
       ),
-      trailing: Container(
+      trailing: SizedBox(
         width: 100,
         child: Row(
           children: [
@@ -40,7 +38,7 @@ class PersomCard extends StatelessWidget {
               icon: const Icon(Icons.edit),
               onPressed: () {
                 Navigator.of(context).pushNamed(
-                  AppRoutes.PERSOM_FORM,
+                  AppRoutes.persomForm,
                   arguments: person,
                 );
               },
