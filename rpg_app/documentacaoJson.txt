@@ -28,10 +28,10 @@ MODELO DE JSON
 }
 ---------------------------------------------------------------------------------------------------------
 Documentação Campos:
-id: Referece ao id único de cada personagem 																	                              [int]
-apelido: Apelido escolhido pelo usuário 																		                                [String]
-raca: raça do personagem escolhido pelo usuário 																                            [String]
-classe:	Classe a qual o personagem pertecem																		                              [String]
+id: Referece ao id único de cada personagem 															[int]
+apelido: Apelido escolhido pelo usuário 														     [String]
+raca: raça do personagem escolhido pelo usuário 													     [String]
+classe:	Classe a qual o personagem pertecem		                                                                                                     [String]
 nivel:	nível em que o  personagem  se encontra (pode ser alterado pelo mestre/player)							        [String]
 historia: História que player escolheu para seu personagem														                      [String]
 ideias: Ideais que o personagem terá																		                                  	[String]
