@@ -2,7 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
+import 'package:rpg_app/constants/constants.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
+import 'package:rpg_app/view/homePage.dart';
+import 'package:rpg_app/view/modal.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:rpg_app/model/carousel_model.dart';
 
@@ -187,29 +190,62 @@ class _BattleScreenState extends State<BattleScreen> {
                     if (index == 0) {
                       return SizedBox(width: size.width * 0.01);
                     }
-                    return Container(
-                      margin: EdgeInsets.all(size.width * 0.02),
-                      width: size.width * 0.167,
-                      height: size.height * 0.167,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black45,
-                              offset: Offset(0, 2),
-                              blurRadius: 6.0,
-                            )
-                          ]),
-                      child: CircleAvatar(
-                        child: ClipOval(
-                          child: Image.network(
-                            carousel.carouselItens[index],
-                            height: size.width * 0.167,
-                            width: size.height * 0.167,
+                    return ClipOval(
+                      child: Container(
+                         margin: EdgeInsets.all(size.width * 0.02),
+                        width: size.width * 0.167,
+                        height: size.height * 0.167,
+                        child: AspectRatio(
+                          aspectRatio: 3 / 2,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: Ink.image(
+                                  image: NetworkImage(
+                                  carousel.carouselItens[index],
+                                ),
+                                
+                                fit: BoxFit.cover,
+                                   height: size.width * 0.167,
+                                  width: size.height * 0.167,
+                                  child: InkWell(
+                                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => Modal())))
+                                  ),
+                                ),
                           ),
                         ),
-                      ),
+                            
+                          ),
                     );
+                    
+                    // return Container(
+                    //   margin: EdgeInsets.all(size.width * 0.02),
+                    //   width: size.width * 0.167,
+                    //   height: size.height * 0.167,
+                    //   decoration: const BoxDecoration(
+                    //       shape: BoxShape.circle,
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //           color: Colors.black45,
+                    //           offset: Offset(0, 2),
+                    //           blurRadius: 6.0,
+                    //         )
+                    //       ]),
+                    //     child: ClipOval(
+                    //       child: Ink.image(
+                    //         image: NetworkImage(
+                    //         carousel.carouselItens[index],
+                    //       ),
+                          
+                    //       //fit: BoxFit.cover,
+                    //          height: size.width * 0.167,
+                    //          width: size.height * 0.167,
+                    //         child: InkWell(
+                    //           onTap: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => HomePage())))
+                    //         ),
+                    //       ),
+                          
+                    //     ),
+                    // );
                   }),
             ),
             // END CARROSEL
