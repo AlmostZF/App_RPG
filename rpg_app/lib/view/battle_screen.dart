@@ -5,7 +5,8 @@ import 'package:kg_charts/kg_charts.dart';
 import 'package:rpg_app/constants/constants.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
 import 'package:rpg_app/view/homePage.dart';
-import 'package:rpg_app/view/modal.dart';
+import 'package:rpg_app/view/modal_Item.dart';
+import 'package:rpg_app/view/modal_poder.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:rpg_app/model/carousel_model.dart';
 
@@ -208,7 +209,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                    height: size.width * 0.167,
                                   width: size.height * 0.167,
                                   child: InkWell(
-                                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => Modal())))
+                                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalPoder())))
                                   ),
                                 ),
                           ),
@@ -216,36 +217,6 @@ class _BattleScreenState extends State<BattleScreen> {
                             
                           ),
                     );
-                    
-                    // return Container(
-                    //   margin: EdgeInsets.all(size.width * 0.02),
-                    //   width: size.width * 0.167,
-                    //   height: size.height * 0.167,
-                    //   decoration: const BoxDecoration(
-                    //       shape: BoxShape.circle,
-                    //       boxShadow: [
-                    //         BoxShadow(
-                    //           color: Colors.black45,
-                    //           offset: Offset(0, 2),
-                    //           blurRadius: 6.0,
-                    //         )
-                    //       ]),
-                    //     child: ClipOval(
-                    //       child: Ink.image(
-                    //         image: NetworkImage(
-                    //         carousel.carouselItens[index],
-                    //       ),
-                          
-                    //       //fit: BoxFit.cover,
-                    //          height: size.width * 0.167,
-                    //          width: size.height * 0.167,
-                    //         child: InkWell(
-                    //           onTap: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => HomePage())))
-                    //         ),
-                    //       ),
-                          
-                    //     ),
-                    // );
                   }),
             ),
             // END CARROSEL

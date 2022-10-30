@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_app/constants/constants.dart';
 
-class Modal extends StatelessWidget {
-  const Modal({Key? key}) : super(key: key);
+class ModalItem extends StatelessWidget {
+  const ModalItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
    Size size = MediaQuery.of(context).size;
-    return AlertDialog(
-      title: const Text('Criar de poderes'),
 
+    return AlertDialog(
+      title: const Text('Criar Item',style: TextStyle(color: otherColor)),
+      backgroundColor: colorFist,
       actions: <Widget>[
         Stack(
           children: [
             Padding(
-              padding: EdgeInsets.only(right: size.width*0.3),
+              padding: EdgeInsets.only(right: size.width*0.3, top:size.width*0.032),
               child: SizedBox(
                 width: size.width*0.4,
                 height: size.height*0.06,
                 child: const TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Nome do Poder"
+                    labelText: "Nome do Item"
                     
                   ),
                 ),
@@ -31,23 +33,26 @@ class Modal extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Container(
-                  width:65,
-                  height: 65,
-                  color: Colors.amber,
+                  width: size.width*0.18,
+                  height: size.height*0.1,
+                  color: otherColor,
                 ),
               ),
             ),
           ],
         ),
        Padding(
-         padding: EdgeInsets.only(bottom: size.height*0.03),
+         padding: EdgeInsets.only(bottom: size.height*0.03, ),
          child: SizedBox(
            width: size.width*0.7,
            height: size.height*0.06,
-           child: const TextField(
-             decoration: InputDecoration(
-               border: OutlineInputBorder(),
-               labelText: "Tempo de Conjuração"
+           child: Padding(
+             padding: EdgeInsets.only(right: size.height*0.03),
+             child: const TextField(
+               decoration: InputDecoration(
+                 border: OutlineInputBorder(),
+                 labelText: "Peso"
+               ),
              ),
            ),
          ),
@@ -57,10 +62,13 @@ class Modal extends StatelessWidget {
          child: SizedBox(
            width: size.width*0.7,
            height: size.height*0.06,
-           child: const TextField(
-             decoration: InputDecoration(
-               border: OutlineInputBorder(),
-               labelText: "Alcance"
+           child:  Padding(
+             padding: EdgeInsets.only(right: size.height*0.03),
+             child: const TextField(
+               decoration: InputDecoration(
+                 border: OutlineInputBorder(),
+                 labelText: "Alcance"
+               ),
              ),
            ),
          ),
@@ -70,10 +78,13 @@ class Modal extends StatelessWidget {
          child: SizedBox(
            width: size.width*0.7,
            height: size.height*0.06,
-           child: const TextField(
-             decoration: InputDecoration(
-               border: OutlineInputBorder(),
-               labelText: "Duração"
+           child:  Padding(
+             padding: EdgeInsets.only(right: size.height*0.03),
+             child: const TextField(
+               decoration: InputDecoration(
+                 border: OutlineInputBorder(),
+                 labelText: "Dano"
+               ),
              ),
            ),
          ),
@@ -83,10 +94,13 @@ class Modal extends StatelessWidget {
          child: SizedBox(
            width: size.width*0.7,
            height: size.height*0.06,
-           child: const TextField(
-             decoration: InputDecoration(
-               border: OutlineInputBorder(),
-               labelText: "Mana"
+           child:  Padding(
+             padding: EdgeInsets.only(right: size.height*0.03),
+             child: const TextField(
+               decoration: InputDecoration(
+                 border: OutlineInputBorder(),
+                 labelText: "Resistencia"
+               ),
              ),
            ),
          ),
@@ -96,36 +110,13 @@ class Modal extends StatelessWidget {
          child: SizedBox(
            width: size.width*0.7,
            height: size.height*0.06,
-           child: const TextField(
-             decoration: InputDecoration(
-               border: OutlineInputBorder(),
-               labelText: "Dano"
-             ),
-           ),
-         ),
-       ),
-       Padding(
-         padding: EdgeInsets.only(bottom: size.height*0.03),
-         child: SizedBox(
-           width: size.width*0.7,
-           height: size.height*0.06,
-           child: const TextField(
-             decoration: InputDecoration(
-               border: OutlineInputBorder(),
-               labelText: "Componente"
-             ),
-           ),
-         ),
-       ),
-       Padding(
-         padding: EdgeInsets.only(bottom: size.height*0.03),
-         child: SizedBox(
-           width: size.width*0.7,
-           height: size.height*0.06,
-           child: const TextField(
-             decoration: InputDecoration(
-               border: OutlineInputBorder(),
-               labelText: "Nível"
+           child:  Padding(
+             padding: EdgeInsets.only(right: size.height*0.03),
+             child: const TextField(
+               decoration: InputDecoration(
+                 border: OutlineInputBorder(),
+                 labelText: "Preço"
+               ),
              ),
            ),
          ),
@@ -142,14 +133,14 @@ class Modal extends StatelessWidget {
                     child: SizedBox(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: Colors.amber
+                          color: backgroundColor
                         ),
                       ),
                     )
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Criar'),
-                      child: const Text('Criar', style: TextStyle(color: Colors.black)),
+                      child: const Text('Criar', style: TextStyle(color: secondColor)),
                     ),
                   ],
                 ),
@@ -162,15 +153,18 @@ class Modal extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned.fill(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.amber
+                    child: 
+                    SizedBox(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: backgroundColor
+                        ),
                       ),
                     )
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Limpar'),
-                      child: const Text('Limpar', style: TextStyle(color: Colors.black),),
+                      child: const Text('Limpar', style: TextStyle(color: secondColor),),
                     ),
                   ],
                 ),
