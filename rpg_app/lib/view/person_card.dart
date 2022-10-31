@@ -11,15 +11,16 @@ class PersomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final avatar = person.avatarUrl == null || person.avatarUrl.isEmpty
-        ? const CircleAvatar(
-          child: Icon(
-            Icons.person,
-          ),
-        )
+        ? Container(
+            child: const CircleAvatar(
+              child: Icon(
+                Icons.person,
+              ),
+            ),
+          )
         : CircleAvatar(
             backgroundImage: NetworkImage(person.avatarUrl),
           );
-
     return Card(
       color: Color(0xFF1C0D2E),
       child: ListTile(
@@ -41,7 +42,7 @@ class PersomCard extends StatelessWidget {
                 icon: const Icon(Icons.edit),
                 onPressed: () {
                   Navigator.of(context).pushNamed(
-                    AppRoutes.PERSOM_FORM,
+                    AppRoutes.persomForm,
                     arguments: person,
                   );
                 },
@@ -57,58 +58,6 @@ class PersomCard extends StatelessWidget {
                       title: const Text(
                         "Excluir personagem",
                         style: TextStyle(color: Colors.white),
-    return ListTile(
-      leading: avatar,
-      title: Text(
-        person.nome,
-        style: const TextStyle(fontWeight: FontWeight.w800),
-      ),
-      textColor: Colors.white,
-      subtitle: Text(
-        "Classe: ${person.classe} | Raça: ${person.raca}",
-      ),
-      trailing: SizedBox(
-        width: 100,
-        child: Row(
-          children: [
-            IconButton(
-              color: const Color(0xFFFFFFFF),
-              icon: const Icon(Icons.edit),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  AppRoutes.persomForm,
-                  arguments: person,
-                );
-              },
-            ),
-            IconButton(
-              color: const Color(0xFFFFC62F),
-              icon: const Icon(Icons.delete),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                    backgroundColor: const Color(0xFF432986),
-                    title: const Text(
-                      "Excluir personagem",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    content: const Text(
-                      "Tem certeza?",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    actions: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color(0xFFFFC62F),
-                        ),
-                        child: const Text(
-                          "Não",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
                       ),
                       content: const Text(
                         "Tem certeza?",
