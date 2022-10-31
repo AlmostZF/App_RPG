@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
-import 'package:rpg_app/constants/constants.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
-import 'package:rpg_app/view/homePage.dart';
-import 'package:rpg_app/view/modal_Item.dart';
 import 'package:rpg_app/view/modal_poder.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:rpg_app/model/carousel_model.dart';
@@ -152,36 +149,34 @@ class _BattleScreenState extends State<BattleScreen> {
                                 ),
                               ),
                             ),
-
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.star),
-                    Text("Nível"),
-                    Icon(Icons.star),
-                  ],
-                ),
-                GestureDetector(
-                  child: Icon(Icons.backpack),
-                )
-              ],
-            ),
-            Text(
-              "Poderes",
-              style: TextStyle(color: Colors.white, fontSize: size.width * .09),
-            ),
-            // START CARROSEL
-            Container(
+                    ],
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: const [
+                      Icon(Icons.star),
+                      Text("Nível"),
+                      Icon(Icons.star),
+                    ],
+                  ),
+                  GestureDetector(
+                    child: const Icon(Icons.backpack),
+                  )
+                ],
+              ),
+              Text(
+                "Poderes",
+                style: TextStyle(color: Colors.white, fontSize: size.width * .09),
+              ),
+              // START CARROSEL
+             Container(
               width: double.infinity,
               height: 100.0,
               //color: Colors.amber,
@@ -220,84 +215,6 @@ class _BattleScreenState extends State<BattleScreen> {
                     );
                   }),
             ),
-            // END CARROSEL
-            // START SLIDER VIDA
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Icon(Icons.heart_broken),
-                            Text("Vida"),
-                            Text(
-                                "${battleController.valueVida}/${battleController.maxVida}"),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: const [
-                      Icon(Icons.star),
-                      Text("Nível"),
-                      Icon(Icons.star),
-                    ],
-                  ),
-                  GestureDetector(
-                    child: const Icon(Icons.backpack),
-                  )
-                ],
-              ),
-              Text(
-                "Poderes",
-                style: TextStyle(color: Colors.white, fontSize: size.width * .09),
-              ),
-              // START CARROSEL
-              SizedBox(
-                width: double.infinity,
-                height: 100.0,
-                //color: Colors.amber,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: carousel.carouselItens.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      if (index == 0) {
-                        return SizedBox(width: size.width * 0.01);
-                      }
-                      return Container(
-                        margin: EdgeInsets.all(size.width * 0.02),
-                        width: size.width * 0.167,
-                        height: size.height * 0.167,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black45,
-                                offset: Offset(0, 2),
-                                blurRadius: 6.0,
-                              )
-                            ]),
-                        child: CircleAvatar(
-                          child: ClipOval(
-                            child: Image.network(
-                              carousel.carouselItens[index],
-                              height: size.width * 0.167,
-                              width: size.height * 0.167,
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-              ),
               // END CARROSEL
               // START SLIDER VIDA
               Column(
