@@ -36,4 +36,45 @@ class Person {
     required this.mana,
     required this.avatarUrl,
   });
+
+  factory Person.fromJson(Map<String, dynamic> json) => Person(
+      id: json['id'],
+      nome: json['nome'],
+      jogador: json['jogador'],
+      raca: json['raca'],
+      classe: json['classe'],
+      nivel: json['nivel'],
+      historia: json['historia'],
+      ideais: json['ideais'],
+      forca: json['forca'],
+      destreza: json['destreza'],
+      constituicao: json['constituicao'],
+      inteligencia: json['inteligencia'],
+      sabedoria: json['sabedoria'],
+      carisma: json['carisma'],
+      vida: json['vida'],
+      mana: json['mana'],
+      avatarUrl: json['avatarUrl']);
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['nome'] = nome;
+    data['raca'] = raca;
+    data['jogador'] = jogador;
+    data['classe'] = classe;
+    data['nivel'] = nivel;
+    data['historia'] = historia;
+    data['ideais'] = ideais;
+    data['forca'] = forca;
+    data['destreza'] = destreza;
+    data['constituicao'] = constituicao;
+    data['inteligencia'] = inteligencia;
+    data['sabedoria'] = sabedoria;
+    data['carisma'] = carisma;
+    data['vida'] = vida;
+    data['mana'] = mana;
+    data['avatarUrl'] = avatarUrl;
+    return data;
+  }
 }
