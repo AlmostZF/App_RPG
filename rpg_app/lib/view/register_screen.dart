@@ -100,7 +100,6 @@ class _RegisterPageState extends State<RegisterScreen> {
                   avatarUrl: _formData['avatarUrl'].toString(),
                 ),
               );
-
               Navigator.of(context).pop();
             },
           ),
