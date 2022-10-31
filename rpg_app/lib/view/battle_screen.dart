@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
+import 'package:rpg_app/constants/constants.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
+import 'package:rpg_app/view/homePage.dart';
+import 'package:rpg_app/view/modal_Item.dart';
+import 'package:rpg_app/view/modal_poder.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:rpg_app/model/carousel_model.dart';
 
@@ -148,6 +152,89 @@ class _BattleScreenState extends State<BattleScreen> {
                                 ),
                               ),
                             ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.star),
+                    Text("Nível"),
+                    Icon(Icons.star),
+                  ],
+                ),
+                GestureDetector(
+                  child: Icon(Icons.backpack),
+                )
+              ],
+            ),
+            Text(
+              "Poderes",
+              style: TextStyle(color: Colors.white, fontSize: size.width * .09),
+            ),
+            // START CARROSEL
+            Container(
+              width: double.infinity,
+              height: 100.0,
+              //color: Colors.amber,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: carousel.carouselItens.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index == 0) {
+                      return SizedBox(width: size.width * 0.01);
+                    }
+                    return ClipOval(
+                      child: Container(
+                         margin: EdgeInsets.all(size.width * 0.02),
+                        width: size.width * 0.167,
+                        height: size.height * 0.167,
+                        child: AspectRatio(
+                          aspectRatio: 3 / 2,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: Ink.image(
+                                  image: NetworkImage(
+                                  carousel.carouselItens[index],
+                                ),
+                                
+                                fit: BoxFit.cover,
+                                   height: size.width * 0.167,
+                                  width: size.height * 0.167,
+                                  child: InkWell(
+                                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalPoder())))
+                                  ),
+                                ),
+                          ),
+                        ),
+                            
+                          ),
+                    );
+                  }),
+            ),
+            // END CARROSEL
+            // START SLIDER VIDA
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.heart_broken),
+                            Text("Vida"),
+                            Text(
+                                "${battleController.valueVida}/${battleController.maxVida}"),
                           ],
                         ),
                       ),
