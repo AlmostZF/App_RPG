@@ -25,14 +25,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          scaffoldBackgroundColor: Color(0xFF1C0D2E),
+          scaffoldBackgroundColor:const  Color(0xFF1C0D2E),
           hintColor: Colors.white,
         ),
         routes: {
-          AppRoutes.HOME: (_) => const HomePage(),
-          AppRoutes.BATTLE_SCREEN: (_) => const BattleScreen(),
-          AppRoutes.PERSOM_FORM: (_) => const RegisterScreen(),
-          AppRoutes.PERSONS_SCREEN: (_) => const PersonScreen(),
+          AppRoutes.home: (_) => const HomePage(),
+          AppRoutes.battleScreen: (_) => const BattleScreen(),
+          AppRoutes.persomForm: (_) => const RegisterScreen(),
+          AppRoutes.personScreen: (_) => const PersonScreen(),
         },
       ),
     );
