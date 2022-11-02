@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          scaffoldBackgroundColor: Color(0xFF1C0D2E),
+          scaffoldBackgroundColor:const  Color(0xFF1C0D2E),
           hintColor: Colors.white,
         ),
         routes: {

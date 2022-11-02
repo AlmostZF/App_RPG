@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_app/constants/constants.dart';
 import 'package:rpg_app/routes/app_routes.dart';
-import 'package:rpg_app/view/battle_screen.dart';
-import 'package:rpg_app/view/persons_screen.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,7 +22,7 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 height: size.width * .3,
                 width: size.width * .3,
-                decoration: BoxDecoration(color: Colors.amber),
+                decoration:const  BoxDecoration(color: Colors.amber),
                 child: const Center(
                   child: Text(
                     "LOGO",
