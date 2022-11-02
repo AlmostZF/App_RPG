@@ -201,6 +201,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 3,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['nome'],
                       decoration: const InputDecoration(
                         hintText: "Nome",
@@ -215,6 +216,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 3,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['jogador'],
                       decoration: const InputDecoration(hintText: "Jogador"),
                       onSaved: (value) =>
@@ -228,6 +230,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 3,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['raca'],
                       decoration: const InputDecoration(
                         hintText: "Raça",
@@ -241,6 +244,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 3,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['classe'],
                       decoration: const InputDecoration(hintText: "Classe"),
                       onSaved: (value) =>
@@ -253,6 +257,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 1,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['nivel'],
                       decoration: const InputDecoration(hintText: "Nível"),
                       onSaved: (value) => _formData['nivel'] = value.toString(),
@@ -261,6 +266,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                 ],
               ),
               TextFormField(
+                style: const TextStyle(color: Colors.white),
                 initialValue: _formData['avatarUrl'],
                 decoration: const InputDecoration(
                   hintText: "Avatar URL",
@@ -268,12 +274,14 @@ class _RegisterPageState extends State<RegisterScreen> {
                 onSaved: (value) => _formData['avatarUrl'] = value.toString(),
               ),
               TextFormField(
+                style: const TextStyle(color: Colors.white),
                 initialValue: _formData['historia'],
                 maxLines: 4,
                 decoration: const InputDecoration(hintText: "História"),
                 onSaved: (value) => _formData['historia'] = value.toString(),
               ),
               TextFormField(
+                style: const TextStyle(color: Colors.white),
                 initialValue: _formData['ideais'],
                 decoration: const InputDecoration(hintText: "Ideais"),
                 onSaved: (value) => _formData['ideais'] = value.toString(),
@@ -293,6 +301,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['forca'],
                       decoration: const InputDecoration(
                         hintText: "Força",
@@ -305,6 +314,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   ),
                   Expanded(
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['destreza'],
                       decoration: const InputDecoration(hintText: "Destreza"),
                       onSaved: (value) =>
@@ -317,6 +327,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['constituicao'],
                       decoration: const InputDecoration(
                         hintText: "Constituição",
@@ -330,6 +341,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   ),
                   Expanded(
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['inteligencia'],
                       decoration:
                           const InputDecoration(hintText: "Inteligência"),
@@ -343,6 +355,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['sabedoria'],
                       decoration: const InputDecoration(
                         hintText: "Sabedoria",
@@ -356,6 +369,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   ),
                   Expanded(
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['carisma'],
                       decoration: const InputDecoration(hintText: "Carisma"),
                       onSaved: (value) =>
@@ -379,6 +393,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['vida'],
                       decoration: const InputDecoration(
                         hintText: "Vida",
@@ -391,6 +406,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   ),
                   Expanded(
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       initialValue: _formData['mana'],
                       decoration: const InputDecoration(hintText: "Mana"),
                       onSaved: (value) => _formData['mana'] = value.toString(),
@@ -410,6 +426,7 @@ class _RegisterPageState extends State<RegisterScreen> {
           content: Column(
             children: [
               TextFormField(
+                style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(hintText: "Nome"),
               ),
               Row(
@@ -417,6 +434,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 3,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         hintText: "Dano / Defesa",
                       ),
@@ -428,6 +446,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 1,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(hintText: "Bônus"),
                     ),
                   ),
@@ -437,6 +456,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                 height: 25,
               ),
               TextFormField(
+                style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(hintText: "Nome"),
               ),
               Row(
@@ -444,6 +464,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 3,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         hintText: "Dano / Defesa",
                       ),
@@ -455,6 +476,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 1,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(hintText: "Bônus"),
                     ),
                   ),
@@ -464,6 +486,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                 height: 25,
               ),
               TextFormField(
+                style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(hintText: "Nome"),
               ),
               Row(
@@ -471,6 +494,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 3,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         hintText: "Dano / Defesa",
                       ),
@@ -482,6 +506,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   Expanded(
                     flex: 1,
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(hintText: "Bônus"),
                     ),
                   ),
