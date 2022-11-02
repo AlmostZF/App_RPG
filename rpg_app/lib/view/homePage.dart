@@ -37,13 +37,13 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.only(top: size.width * .4),
               child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed(AppRoutes.BATTLE_SCREEN);
+                    Navigator.of(context).pushNamed(AppRoutes.battleScreen);
                   },
                   child: const Text("Criar Sala")),
             ),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.PERSONS_SCREEN);
+                  Navigator.of(context).pushNamed(AppRoutes.personScreen);
                 },
                 child: const Text("Entrar na Sala")),
           ],

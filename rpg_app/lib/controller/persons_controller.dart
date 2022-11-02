@@ -10,8 +10,7 @@ import 'package:rpg_app/model/person_model.dart';
 class Persons with ChangeNotifier {
   Persons() {
     getPersons();
-    //_person = getSinglePerson("28112208");
-    //_person.then((value) => print("bbb${value.nome}"));
+    print(hasPerson("31333154"));
   }
 
   Map<String, Person> _items = {};
@@ -37,6 +36,8 @@ class Persons with ChangeNotifier {
     if (person.id != null &&
         person.id.trim().isNotEmpty &&
         _items.containsKey(person.id)) {
+      postSinglePerson(person, person.id);
+
       _items.update(
         person.id,
         (_) => Person(
@@ -61,40 +62,44 @@ class Persons with ChangeNotifier {
     } else {
       final id = Random().nextInt(33333333).toString();
 
-      _items.putIfAbsent(
-        id,
-        () => Person(
-            avatarUrl: person.avatarUrl,
-            carisma: person.carisma,
-            classe: person.classe,
-            constituicao: person.constituicao,
-            destreza: person.destreza,
-            forca: person.forca,
-            historia: person.historia,
-            id: id,
-            ideais: person.ideais,
-            inteligencia: person.inteligencia,
-            jogador: person.jogador,
-            mana: person.mana,
-            nivel: person.nivel,
-            nome: person.nome,
-            raca: person.raca,
-            sabedoria: person.sabedoria,
-            vida: person.vida),
-      );
-      postSinglePerson(_items.values.last, _items.keys.last);
+      final finalp = Person(
+          avatarUrl: person.avatarUrl,
+          carisma: person.carisma,
+          classe: person.classe,
+          constituicao: person.constituicao,
+          destreza: person.destreza,
+          forca: person.forca,
+          historia: person.historia,
+          id: id,
+          ideais: person.ideais,
+          inteligencia: person.inteligencia,
+          jogador: person.jogador,
+          mana: person.mana,
+          nivel: person.nivel,
+          nome: person.nome,
+          raca: person.raca,
+          sabedoria: person.sabedoria,
+          vida: person.vida);
+
+      postSinglePerson(finalp, id);
+
+      _items.putIfAbsent(id, () => finalp);
     }
     notifyListeners();
   }
 
   void remove(Person person) {
-    if (person != null && person.id != null) {
-      _items.remove(person.id);
-      notifyListeners();
+    if (person == null && person.id == "") {
+      return;
     }
+    removeSinglePerson(person, person.id);
+
+    _items.remove(person.id);
+
+    notifyListeners();
   }
 
-  String title = "";
+  //Adiciona no banco ou atualiza
   Future<String> postSinglePerson(Person person, String id) async {
     var uri =
         Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/person/$id.json');
@@ -103,6 +108,16 @@ class Persons with ChangeNotifier {
     return response.body;
   }
 
+  //Remove do banco
+  Future<String> removeSinglePerson(Person person, String id) async {
+    var uri =
+        Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/person/$id.json');
+    final response = await http.delete(uri, body: json.encode(person));
+
+    return response.body;
+  }
+
+  //Pega o objeto Person inteiro do banco
   Future<Person> getSinglePerson(String id) async {
     var uri =
         Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/person/$id.json');
@@ -111,6 +126,22 @@ class Persons with ChangeNotifier {
     return Person.fromJson(json.decode(response.body));
   }
 
+  //-------------------Não apagar-------------------
+  //Verifica se existe um dado com este id no banco
+  bool hasPerson(String id) {
+    bool valor = false;
+    var uri =
+        Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/person/$id.json');
+
+    http.get(uri).then((value) => {
+          if (value.body != "null") {valor = true}
+        });
+    return valor;
+  }
+  //-------------------Não apagar-------------------
+
+  //Printa os valores do banco
+  //Na tela inicial
   Future<void> getPersons() async {
     var uri =
         Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/person.json');

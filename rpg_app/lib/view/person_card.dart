@@ -42,7 +42,7 @@ class PersomCard extends StatelessWidget {
                 icon: const Icon(Icons.edit),
                 onPressed: () {
                   Navigator.of(context).pushNamed(
-                    AppRoutes.PERSOM_FORM,
+                    AppRoutes.persomForm,
                     arguments: person,
                   );
                 },

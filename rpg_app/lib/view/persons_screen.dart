@@ -31,7 +31,7 @@ class _PersonScreenState extends State<PersonScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(AppRoutes.PERSOM_FORM);
+                Navigator.of(context).pushNamed(AppRoutes.persomForm);
               },
               icon: Icon(Icons.add))
         ],

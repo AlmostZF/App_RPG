@@ -29,10 +29,10 @@ class MyApp extends StatelessWidget {
           hintColor: Colors.white,
         ),
         routes: {
-          AppRoutes.HOME: (_) => const HomePage(),
-          AppRoutes.BATTLE_SCREEN: (_) => const BattleScreen(),
-          AppRoutes.PERSOM_FORM: (_) => const RegisterScreen(),
-          AppRoutes.PERSONS_SCREEN: (_) => const PersonScreen(),
+          AppRoutes.home: (_) => const HomePage(),
+          AppRoutes.battleScreen: (_) => const BattleScreen(),
+          AppRoutes.persomForm: (_) => const RegisterScreen(),
+          AppRoutes.personScreen: (_) => const PersonScreen(),
         },
       ),
     );
