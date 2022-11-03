@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_app/constants/constants.dart';
+import 'package:rpg_app/style/colors.dart';
 
 class ModalPoder extends StatelessWidget {
   const ModalPoder({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class ModalPoder extends StatelessWidget {
 
     return AlertDialog(
       title: const Text('Criar de poderes',style: TextStyle(color: otherColor)),
-      backgroundColor: colorFist,
+      backgroundColor: defaultColor,
       actions: <Widget>[
         Stack(
           children: [
@@ -165,7 +165,7 @@ class ModalPoder extends StatelessWidget {
                     child: SizedBox(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: backgroundColor
+                          color: colorFist
                         ),
                       ),
                     )
@@ -189,7 +189,7 @@ class ModalPoder extends StatelessWidget {
                     SizedBox(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: backgroundColor
+                          color: colorFist
                         ),
                       ),
                     )

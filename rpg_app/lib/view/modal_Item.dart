@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_app/constants/constants.dart';
+import 'package:rpg_app/style/colors.dart';
 
 class ModalItem extends StatelessWidget {
   const ModalItem({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class ModalItem extends StatelessWidget {
 
     return AlertDialog(
       title: const Text('Criar Item',style: TextStyle(color: otherColor)),
-      backgroundColor: colorFist,
+      backgroundColor: defaultColor,
       actions: <Widget>[
         Stack(
           children: [
@@ -133,7 +133,7 @@ class ModalItem extends StatelessWidget {
                     child: SizedBox(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: backgroundColor
+                          color: colorFist
                         ),
                       ),
                     )
@@ -157,7 +157,7 @@ class ModalItem extends StatelessWidget {
                     SizedBox(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: backgroundColor
+                          color: colorFist
                         ),
                       ),
                     )
