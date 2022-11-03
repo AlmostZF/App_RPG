@@ -189,31 +189,33 @@ class _BattleScreenState extends State<BattleScreen> {
                     if (index == 0) {
                       return SizedBox(width: size.width * 0.01);
                     }
-                    return ClipOval(
-                      child: Container(
-                         margin: EdgeInsets.all(size.width * 0.02),
-                        width: size.width * 0.167,
-                        height: size.height * 0.167,
-                        child: AspectRatio(
-                          aspectRatio: 3 / 2,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: Ink.image(
-                                  image: NetworkImage(
-                                  carousel.carouselItens[index],
-                                ),
-                                fit: BoxFit.cover,
-                                   height: size.width * 0.167,
-                                  width: size.height * 0.167,
-                                  child: InkWell(
-                                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalPoder())))
-                                  ),
-                                ),
+                    return Container(
+                       margin: EdgeInsets.all(size.width * 0.02),
+                      width: size.width * 0.180,
+                      height: size.height * 0.180,
+                      decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: secondColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black45,
+                                offset: Offset(0, 2),
+                                blurRadius: 6.0,
+                              )
+                            ]),
+                      child: InkWell(
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalItem()))),
+                        child: CircleAvatar(
+                          child: ClipOval(
+                            child: Image.network(
+                      carousel.carouselItens[index],
+                      height: size.width * 0.180,
+                      width: size.height * 0.180,
+                      
+                            ),
                           ),
                         ),
-                            
-                          ),
-                    );
+                    ));
                   }),
             ),
               // END CARROSEL
