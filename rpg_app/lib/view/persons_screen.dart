@@ -1,10 +1,11 @@
-import 'dart:js';
+
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
+import 'package:rpg_app/style/colors.dart';
 import 'package:rpg_app/view/person_card.dart';
 
 class PersonScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _PersonScreenState extends State<PersonScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF432986),
+        backgroundColor: defaultColor,
         title: const Text(
           "Meus Personagens",
         ),

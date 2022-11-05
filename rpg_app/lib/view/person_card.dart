@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/model/person_model.dart';
+import 'package:rpg_app/style/colors.dart';
 
 class PersomCard extends StatelessWidget {
   final Person person;
@@ -11,24 +12,25 @@ class PersomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final avatar = person.avatarUrl == null || person.avatarUrl.isEmpty
-        ? const CircleAvatar(
-          child: Icon(
-            Icons.person,
-          ),
-        )
+        ? Container(
+            child: const CircleAvatar(
+              child: Icon(
+                Icons.person,
+              ),
+            ),
+          )
         : CircleAvatar(
             backgroundImage: NetworkImage(person.avatarUrl),
           );
-
     return Card(
-      color: Color(0xFF1C0D2E),
+      color: backgroundColor,
       child: ListTile(
         leading: avatar,
         title: Text(
           person.nome,
           style: const TextStyle(fontWeight: FontWeight.w800),
         ),
-        textColor: Colors.white,
+        textColor: otherColor,
         subtitle: Text(
           "Classe: ${person.classe} | Raça: ${person.raca}",
         ),
@@ -37,87 +39,35 @@ class PersomCard extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
-                color: const Color(0xFFFFFFFF),
+                color: otherColor,
                 icon: const Icon(Icons.edit),
                 onPressed: () {
                   Navigator.of(context).pushNamed(
-                    AppRoutes.PERSOM_FORM,
+                    AppRoutes.persomForm,
                     arguments: person,
                   );
                 },
               ),
               IconButton(
-                color: const Color(0xFFFFC62F),
+                color: secondColor,
                 icon: const Icon(Icons.delete),
                 onPressed: () {
                   showDialog(
                     context: context,
                     builder: (ctx) => AlertDialog(
-                      backgroundColor: const Color(0xFF432986),
+                      backgroundColor: defaultColor,
                       title: const Text(
                         "Excluir personagem",
-                        style: TextStyle(color: Colors.white),
-    return ListTile(
-      leading: avatar,
-      title: Text(
-        person.nome,
-        style: const TextStyle(fontWeight: FontWeight.w800),
-      ),
-      textColor: Colors.white,
-      subtitle: Text(
-        "Classe: ${person.classe} | Raça: ${person.raca}",
-      ),
-      trailing: SizedBox(
-        width: 100,
-        child: Row(
-          children: [
-            IconButton(
-              color: const Color(0xFFFFFFFF),
-              icon: const Icon(Icons.edit),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  AppRoutes.persomForm,
-                  arguments: person,
-                );
-              },
-            ),
-            IconButton(
-              color: const Color(0xFFFFC62F),
-              icon: const Icon(Icons.delete),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                    backgroundColor: const Color(0xFF432986),
-                    title: const Text(
-                      "Excluir personagem",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    content: const Text(
-                      "Tem certeza?",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    actions: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color(0xFFFFC62F),
-                        ),
-                        child: const Text(
-                          "Não",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
+                        style: TextStyle(color: otherColor),
                       ),
                       content: const Text(
                         "Tem certeza?",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: otherColor),
                       ),
                       actions: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFFFFC62F),
+                            primary: secondColor,
                           ),
                           child: const Text(
                             "Não",
@@ -129,7 +79,7 @@ class PersomCard extends StatelessWidget {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFFFFC62F),
+                            primary: secondColor,
                           ),
                           child: const Text(
                             "Sim",
