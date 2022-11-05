@@ -214,7 +214,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: ((context) =>
-                                            const ModalItem())))
+                                            const ModalPoder())))
                                 : () => Navigator.push(
                                     context,
                                     MaterialPageRoute(
