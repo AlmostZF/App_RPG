@@ -207,7 +207,9 @@ class _BattleScreenState extends State<BattleScreen> {
                               )
                             ]),
                       child: InkWell(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalItem()))),
+                       onTap: index == 1
+                       ?() => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalItem())))
+                       :() => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalPoder()))),
                         child: CircleAvatar(
                           child: ClipOval(
                             child: Image.network(
