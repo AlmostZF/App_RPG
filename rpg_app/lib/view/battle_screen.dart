@@ -47,7 +47,7 @@ class _BattleScreenState extends State<BattleScreen> {
                           child: Text(
                             "NOME DO USÁRIO",
                             style: TextStyle(
-                                fontSize: size.width * .06, color: otherColor),
+                                fontSize: size.width * .04, color: otherColor),
                           ),
                         ),
                       ),
@@ -69,7 +69,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .04,
+                                        fontSize: size.width * .03,
                                         color: otherColor),
                                   ),
                                 ),
@@ -88,7 +88,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .04,
+                                        fontSize: size.width * .03,
                                         color: otherColor),
                                   ),
                                 ),
@@ -107,7 +107,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .04,
+                                        fontSize: size.width * .03,
                                         color: otherColor),
                                   ),
                                 ),
@@ -126,7 +126,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .04,
+                                        fontSize: size.width * .03,
                                         color: otherColor),
                                   ),
                                 ),
@@ -145,7 +145,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .04,
+                                        fontSize: size.width * .03,
                                         color: otherColor),
                                   ),
                                 ),
@@ -173,14 +173,17 @@ class _BattleScreenState extends State<BattleScreen> {
                   )
                 ],
               ),
-              Text(
-                "Poderes",
-                style: TextStyle(color: otherColor, fontSize: size.width * .09),
+              Padding(
+                padding: EdgeInsets.only(top:size.width * 0.02, bottom: size.width * 0.02 ),
+                child: Text(
+                  "Poderes",
+                  style: TextStyle(color: otherColor, fontSize: size.width * .07),
+                ),
               ),
               // START CARROSEL
              Container(
               width: double.infinity,
-              height: 100.0,
+              height: size.width * 0.23,
               //color: Colors.amber,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -191,16 +194,16 @@ class _BattleScreenState extends State<BattleScreen> {
                     }
                     return Container(
                        margin: EdgeInsets.all(size.width * 0.02),
-                      width: size.width * 0.180,
-                      height: size.height * 0.180,
+                      width: size.width * 0.182,
+                      height: size.height * 0.182,
                       decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: secondColor,
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black45,
-                                offset: Offset(0, 2),
-                                blurRadius: 6.0,
+                                color: secondColor,
+                                offset: Offset(0, 0),
+                                blurRadius: 4.0,
                               )
                             ]),
                       child: InkWell(
@@ -209,9 +212,8 @@ class _BattleScreenState extends State<BattleScreen> {
                           child: ClipOval(
                             child: Image.network(
                       carousel.carouselItens[index],
-                      height: size.width * 0.180,
-                      width: size.height * 0.180,
-                      
+                      height: size.width * 0.182,
+                      width: size.height * 0.182,
                             ),
                           ),
                         ),
