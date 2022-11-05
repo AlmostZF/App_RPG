@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
-import 'package:rpg_app/view/modal_Item.dart';
-import 'package:rpg_app/view/modal_poder.dart';
+import 'package:rpg_app/model/person_model.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:rpg_app/model/carousel_model.dart';
-import 'package:rpg_app/style/colors.dart';
 
 class BattleScreen extends StatefulWidget {
-  const BattleScreen({Key? key}) : super(key: key);
-
+  final Person person;
+  const BattleScreen(this.person);
   @override
-  State<BattleScreen> createState() => _BattleScreenState();
+  State<BattleScreen> createState() => _BattleScreenState(person);
 }
 
 class _BattleScreenState extends State<BattleScreen> {
   CarouselModel carousel = CarouselModel();
   BattleController battleController = BattleController();
+
+  final Person person;
+  _BattleScreenState(this.person);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    int maxMana = int.parse(person.mana);
+    int valueMana = int.parse(person.mana);
+
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: const Color(0xff323433),
       body: SingleChildScrollView(
         child: Padding(
           padding:
@@ -32,7 +38,7 @@ class _BattleScreenState extends State<BattleScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CircleAvatar(
-                    backgroundColor: colorFist,
+                    backgroundColor: const Color.fromARGB(25, 217, 217, 217),
                     maxRadius: size.width * .15,
                   ),
                   Column(
@@ -42,12 +48,13 @@ class _BattleScreenState extends State<BattleScreen> {
                         width: size.width * .5,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: colorFist),
+                            color: const Color.fromARGB(25, 217, 217, 217)),
                         child: Center(
                           child: Text(
-                            "NOME DO USÁRIO",
+                            person.nome,
                             style: TextStyle(
-                                fontSize: size.width * .04, color: otherColor),
+                                fontSize: size.width * .06,
+                                color: Colors.white),
                           ),
                         ),
                       ),
@@ -63,14 +70,14 @@ class _BattleScreenState extends State<BattleScreen> {
                                 width: size.width * .1,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        colorFist),
+                                    color: const Color.fromARGB(
+                                        25, 217, 217, 217)),
                                 child: Center(
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .03,
-                                        color: otherColor),
+                                        fontSize: size.width * .04,
+                                        color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -82,14 +89,15 @@ class _BattleScreenState extends State<BattleScreen> {
                                 width: size.width * .1,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  color: colorFist,
+                                  color:
+                                      const Color.fromARGB(25, 217, 217, 217),
                                 ),
                                 child: Center(
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .03,
-                                        color: otherColor),
+                                        fontSize: size.width * .04,
+                                        color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -101,14 +109,14 @@ class _BattleScreenState extends State<BattleScreen> {
                                 width: size.width * .1,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        colorFist),
+                                    color: const Color.fromARGB(
+                                        25, 217, 217, 217)),
                                 child: Center(
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .03,
-                                        color: otherColor),
+                                        fontSize: size.width * .04,
+                                        color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -120,14 +128,14 @@ class _BattleScreenState extends State<BattleScreen> {
                                 width: size.width * .1,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        colorFist),
+                                    color: const Color.fromARGB(
+                                        25, 217, 217, 217)),
                                 child: Center(
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .03,
-                                        color: otherColor),
+                                        fontSize: size.width * .04,
+                                        color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -139,14 +147,14 @@ class _BattleScreenState extends State<BattleScreen> {
                                 width: size.width * .1,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        colorFist),
+                                    color: const Color.fromARGB(
+                                        25, 217, 217, 217)),
                                 child: Center(
                                   child: Text(
                                     "ICON",
                                     style: TextStyle(
-                                        fontSize: size.width * .03,
-                                        color: otherColor),
+                                        fontSize: size.width * .04,
+                                        color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -162,66 +170,59 @@ class _BattleScreenState extends State<BattleScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
-                    children: const [
-                      Icon(Icons.star, color: otherColor),
-                      Text("Nível", style: TextStyle(color: otherColor)),
-                      Icon(Icons.star, color: otherColor),
+                    children: [
+                      Icon(Icons.star),
+                      Text("Nível: ${person.nivel}"),
+                      Icon(Icons.star),
                     ],
                   ),
                   GestureDetector(
-                    child: const Icon(Icons.backpack, color: otherColor,),
+                    child: const Icon(Icons.backpack),
                   )
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.only(top:size.width * 0.02, bottom: size.width * 0.02 ),
-                child: Text(
-                  "Poderes",
-                  style: TextStyle(color: otherColor, fontSize: size.width * .07),
-                ),
+              Text(
+                "Poderes",
+                style:
+                    TextStyle(color: Colors.white, fontSize: size.width * .09),
               ),
               // START CARROSEL
-             Container(
-              width: double.infinity,
-              height: size.width * 0.23,
-              //color: Colors.amber,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: carousel.carouselItens.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == 0) {
-                      return SizedBox(width: size.width * 0.01);
-                    }
-                    return Container(
-                       margin: EdgeInsets.all(size.width * 0.02),
-                      width: size.width * 0.182,
-                      height: size.height * 0.182,
-                      decoration: const BoxDecoration(
+              SizedBox(
+                width: double.infinity,
+                height: 100.0,
+                //color: Colors.amber,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: carousel.carouselItens.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index == 0) {
+                        return SizedBox(width: size.width * 0.01);
+                      }
+                      return Container(
+                        margin: EdgeInsets.all(size.width * 0.02),
+                        width: size.width * 0.167,
+                        height: size.height * 0.167,
+                        decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: secondColor,
                             boxShadow: [
                               BoxShadow(
-                                color: secondColor,
-                                offset: Offset(0, 0),
-                                blurRadius: 4.0,
+                                color: Colors.black45,
+                                offset: Offset(0, 2),
+                                blurRadius: 6.0,
                               )
                             ]),
-                      child: InkWell(
-                       onTap: index == 1
-                       ?() => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalItem())))
-                       :() => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalPoder()))),
                         child: CircleAvatar(
                           child: ClipOval(
                             child: Image.network(
-                      carousel.carouselItens[index],
-                      height: size.width * 0.182,
-                      width: size.height * 0.182,
+                              carousel.carouselItens[index],
+                              height: size.width * 0.167,
+                              width: size.height * 0.167,
                             ),
                           ),
                         ),
-                    ));
-                  }),
-            ),
+                      );
+                    }),
+              ),
               // END CARROSEL
               // START SLIDER VIDA
               Column(
@@ -231,16 +232,13 @@ class _BattleScreenState extends State<BattleScreen> {
                     children: [
                       Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: size.width*0.05),
-                            child: Row(
-                              children: [
-                                const Icon(Icons.heart_broken, color: otherColor,),
-                                const Text(" Vida ", style: TextStyle(color: otherColor)),
-                                Text(
-                                    "${battleController.valueVida}/${battleController.maxVida}", style: const TextStyle(color: otherColor),),
-                              ],
-                            ),
+                          Row(
+                            children: [
+                              const Icon(Icons.heart_broken),
+                              const Text("Vida"),
+                              Text(
+                                  "${battleController.valueVida}/${battleController.maxVida}"),
+                            ],
                           ),
                           Row(
                             children: [
@@ -250,7 +248,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                       battleController.valueVida--;
                                     });
                                   },
-                                  child: const Icon(Icons.remove, color: otherColor,)),
+                                  child: const Icon(Icons.remove)),
                               SfSlider(
                                 activeColor: Colors.red,
                                 min: 0.0,
@@ -265,7 +263,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                     battleController.valueVida = value;
                                   });
                                 },
-                                thumbIcon: const  Icon(
+                                thumbIcon: const Icon(
                                   Icons.health_and_safety_outlined,
                                   size: 20,
                                 ),
@@ -278,7 +276,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                       battleController.valueVida++;
                                     });
                                   },
-                                  child: const Icon(Icons.add, color: otherColor,))
+                                  child: const Icon(Icons.add))
                             ],
                           )
                         ],
@@ -298,10 +296,9 @@ class _BattleScreenState extends State<BattleScreen> {
                         children: [
                           Row(
                             children: [
-                              const Icon(Icons.hourglass_bottom, color: otherColor,),
-                              const Text("Mana", style: TextStyle(color: otherColor)),
-                              Text(
-                                  "${battleController.valueMana}/${battleController.maxMana}", style: const TextStyle(color: otherColor)),
+                              const Icon(Icons.hourglass_bottom),
+                              const Text("Mana"),
+                              Text("$valueMana/$maxMana"),
                             ],
                           ),
                           Row(
@@ -309,22 +306,23 @@ class _BattleScreenState extends State<BattleScreen> {
                               GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      battleController.valueMana--;
+                                      valueMana--;
+                                      print(valueMana);
                                     });
                                   },
-                                  child: const Icon(Icons.remove, color: otherColor,)),
+                                  child: const Icon(Icons.remove)),
                               SfSlider(
                                 activeColor: Colors.blue,
                                 min: 0.0,
-                                max: battleController.maxMana,
-                                value: battleController.valueMana,
+                                max: maxMana,
+                                value: valueMana,
                                 showTicks: false,
                                 showLabels: false,
                                 enableTooltip: true,
                                 minorTicksPerInterval: 1,
                                 onChanged: (dynamic value) {
                                   setState(() {
-                                    // battleController.valueMana = value;
+                                    //valueMana = value;
                                   });
                                 },
                                 thumbIcon: const Icon(
@@ -337,10 +335,10 @@ class _BattleScreenState extends State<BattleScreen> {
                               GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      battleController.valueMana++;
+                                      valueMana++;
                                     });
                                   },
-                                  child: const Icon(Icons.add, color: otherColor))
+                                  child: const Icon(Icons.add))
                             ],
                           )
                         ],
@@ -356,88 +354,87 @@ class _BattleScreenState extends State<BattleScreen> {
                 children: [
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: const [Icon(Icons.balance, color: otherColor), Text("Banco", style: TextStyle(color: otherColor))],
-                        ),
+                      Row(
+                        children: const [Icon(Icons.balance), Text("Banco")],
                       ),
-                      const Text("1120,00",style: TextStyle(color: otherColor))
+                      const Text("1120,00")
                     ],
                   ),
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: const [Icon(Icons.monetization_on, color: otherColor), Text("Ouro",style: TextStyle(color: otherColor))],
-                        ),
+                      Row(
+                        children: const [
+                          Icon(Icons.monetization_on),
+                          Text("Ouro")
+                        ],
                       ),
-                      const Text("110,00",style: TextStyle(color: otherColor))
+                      const Text("110,00")
                     ],
                   ),
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: const [Icon(Icons.diamond, color: otherColor), Text("Diamante",style: TextStyle(color: otherColor))],
-                        ),
+                      Row(
+                        children: const [Icon(Icons.diamond), Text("Diamante")],
                       ),
-                      const Text("20,00",style: TextStyle(color: otherColor))
+                      const Text("20,00")
                     ],
                   ),
                 ],
               ),
               // END COIN
               // START GRÁFICO
-      
-              Padding(
-                padding: EdgeInsets.only(top: size.height*0.03),
-                child: RadarWidget(
-                  skewing: 0,
-                  radarMap: RadarMapModel(
-                    legend: [
-                      LegendModel('10/10', secondColor),
-                    ],
-                    indicator: [
-                      IndicatorModel("English", 100, ),
-                      IndicatorModel("Physics", 100),
-                      IndicatorModel("Chemistry", 100),
-                      IndicatorModel("Biology", 100),
-                      IndicatorModel("Politics", 100),
-                      IndicatorModel("History", 100),
-                    ],
-                    data: [
-                      //   MapDataModel([48,32.04,1.00,94.5,19,60,50,30,19,60,50]),
-                      //   MapDataModel([42.59,34.04,1.10,68,99,30,19,60,50,19,30]),
-                      MapDataModel([100, 90, 90, 90, 10, 20]),
-                    ],
-                    radius: 130,
-                    duration: 2000,
-                    shape: Shape.square,
-                    maxWidth: 70,
-                    line: LineModel(1),
-                  ),
-                  textStyle: const TextStyle(color: otherColor, fontSize: 14),
-                  isNeedDrawLegend: true,
-                  lineText: (p, length) => "${(p * 100 ~/ length)}%",
-                  dilogText: (IndicatorModel indicatorModel,
-                      List<LegendModel> legendModels, List<double> mapDataModels) {
-                    StringBuffer text = StringBuffer("");
-                    for (int i = 0; i < mapDataModels.length; i++) {
-                      text.write(
-                          "${legendModels[i].name} : ${mapDataModels[i].toString()}");
-                      if (i != mapDataModels.length - 1) {
-                        text.write("\n");
-                      }
-                    }
-                    return text.toString();
-                  },
-                  outLineText: (data, max) => "${data * 100 ~/ max}%",
+
+              RadarWidget(
+                skewing: 0,
+                radarMap: RadarMapModel(
+                  legend: [
+                    LegendModel('10/10', const Color(0XFF0EBD8D)),
+                  ],
+                  indicator: [
+                    IndicatorModel("Força", 100),
+                    IndicatorModel("Destreza", 100),
+                    IndicatorModel("Constituição", 100),
+                    IndicatorModel("Inteligência", 100),
+                    IndicatorModel("Sabedoria", 100),
+                    IndicatorModel("Carisma", 100),
+                  ],
+                  data: [
+                    //   MapDataModel([48,32.04,1.00,94.5,19,60,50,30,19,60,50]),
+                    //   MapDataModel([42.59,34.04,1.10,68,99,30,19,60,50,19,30]),
+                    MapDataModel([
+                      double.parse(person.forca),
+                      double.parse(person.destreza),
+                      double.parse(person.constituicao),
+                      double.parse(person.inteligencia),
+                      double.parse(person.sabedoria),
+                      double.parse(person.carisma)
+                    ]),
+                  ],
+                  radius: 130,
+                  duration: 2000,
+                  shape: Shape.square,
+                  maxWidth: 70,
+                  line: LineModel(1),
                 ),
+                textStyle: const TextStyle(color: Colors.black, fontSize: 14),
+                isNeedDrawLegend: true,
+                lineText: (p, length) => "${(p * 100 ~/ length)}%",
+                dilogText: (IndicatorModel indicatorModel,
+                    List<LegendModel> legendModels,
+                    List<double> mapDataModels) {
+                  StringBuffer text = StringBuffer("");
+                  for (int i = 0; i < mapDataModels.length; i++) {
+                    text.write(
+                        "${legendModels[i].name} : ${mapDataModels[i].toString()}");
+                    if (i != mapDataModels.length - 1) {
+                      text.write("\n");
+                    }
+                  }
+                  return text.toString();
+                },
+                outLineText: (data, max) => "${data * 100 ~/ max}%",
               ),
-      
+
               // END GRÁFICO
             ],
           ),
