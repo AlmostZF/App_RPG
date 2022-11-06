@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
+import 'package:rpg_app/view/invetory_screen.dart';
 import 'package:rpg_app/view/modal_Item.dart';
 import 'package:rpg_app/view/modal_poder.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -63,8 +64,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                 width: size.width * .1,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        colorFist),
+                                    color: colorFist),
                                 child: Center(
                                   child: Text(
                                     "ICON",
@@ -101,8 +101,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                 width: size.width * .1,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        colorFist),
+                                    color: colorFist),
                                 child: Center(
                                   child: Text(
                                     "ICON",
@@ -120,8 +119,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                 width: size.width * .1,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        colorFist),
+                                    color: colorFist),
                                 child: Center(
                                   child: Text(
                                     "ICON",
@@ -139,8 +137,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                 width: size.width * .1,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        colorFist),
+                                    color: colorFist),
                                 child: Center(
                                   child: Text(
                                     "ICON",
@@ -169,59 +166,72 @@ class _BattleScreenState extends State<BattleScreen> {
                     ],
                   ),
                   GestureDetector(
-                    child: const Icon(Icons.backpack, color: otherColor,),
+                    child: const Icon(
+                      Icons.backpack,
+                      color: otherColor,
+                    ),
                   )
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(top:size.width * 0.02, bottom: size.width * 0.02 ),
+                padding: EdgeInsets.only(
+                    top: size.width * 0.02, bottom: size.width * 0.02),
                 child: Text(
                   "Poderes",
-                  style: TextStyle(color: otherColor, fontSize: size.width * .07),
+                  style:
+                      TextStyle(color: otherColor, fontSize: size.width * .07),
                 ),
               ),
               // START CARROSEL
-             Container(
-              width: double.infinity,
-              height: size.width * 0.23,
-              //color: Colors.amber,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: carousel.carouselItens.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == 0) {
-                      return SizedBox(width: size.width * 0.01);
-                    }
-                    return Container(
-                       margin: EdgeInsets.all(size.width * 0.02),
-                      width: size.width * 0.182,
-                      height: size.height * 0.182,
-                      decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: secondColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: secondColor,
-                                offset: Offset(0, 0),
-                                blurRadius: 4.0,
-                              )
-                            ]),
-                      child: InkWell(
-                       onTap: index == 1
-                       ?() => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalItem())))
-                       :() => Navigator.push(context, MaterialPageRoute(builder: ((context) => const ModalPoder()))),
-                        child: CircleAvatar(
-                          child: ClipOval(
-                            child: Image.network(
-                      carousel.carouselItens[index],
-                      height: size.width * 0.182,
-                      width: size.height * 0.182,
+              Container(
+                width: double.infinity,
+                height: size.width * 0.23,
+                //color: Colors.amber,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: carousel.carouselItens.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index == 0) {
+                        return SizedBox(width: size.width * 0.01);
+                      }
+                      return Container(
+                          margin: EdgeInsets.all(size.width * 0.02),
+                          width: size.width * 0.182,
+                          height: size.height * 0.182,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: secondColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: secondColor,
+                                  offset: Offset(0, 0),
+                                  blurRadius: 4.0,
+                                )
+                              ]),
+                          child: InkWell(
+                            onTap: index == 1
+                                ? () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) =>
+                                            const ModalPoder())))
+                                : () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) =>
+                                            const Invetory()))),
+                            child: CircleAvatar(
+                              child: ClipOval(
+                                child: Image.network(
+                                  carousel.carouselItens[index],
+                                  height: size.width * 0.182,
+                                  width: size.height * 0.182,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                    ));
-                  }),
-            ),
+                          ));
+                    }),
+              ),
               // END CARROSEL
               // START SLIDER VIDA
               Column(
@@ -232,13 +242,19 @@ class _BattleScreenState extends State<BattleScreen> {
                       Column(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: size.width*0.05),
+                            padding: EdgeInsets.only(top: size.width * 0.05),
                             child: Row(
                               children: [
-                                const Icon(Icons.heart_broken, color: otherColor,),
-                                const Text(" Vida ", style: TextStyle(color: otherColor)),
+                                const Icon(
+                                  Icons.heart_broken,
+                                  color: otherColor,
+                                ),
+                                const Text(" Vida ",
+                                    style: TextStyle(color: otherColor)),
                                 Text(
-                                    "${battleController.valueVida}/${battleController.maxVida}", style: const TextStyle(color: otherColor),),
+                                  "${battleController.valueVida}/${battleController.maxVida}",
+                                  style: const TextStyle(color: otherColor),
+                                ),
                               ],
                             ),
                           ),
@@ -250,7 +266,10 @@ class _BattleScreenState extends State<BattleScreen> {
                                       battleController.valueVida--;
                                     });
                                   },
-                                  child: const Icon(Icons.remove, color: otherColor,)),
+                                  child: const Icon(
+                                    Icons.remove,
+                                    color: otherColor,
+                                  )),
                               SfSlider(
                                 activeColor: Colors.red,
                                 min: 0.0,
@@ -265,7 +284,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                     battleController.valueVida = value;
                                   });
                                 },
-                                thumbIcon: const  Icon(
+                                thumbIcon: const Icon(
                                   Icons.health_and_safety_outlined,
                                   size: 20,
                                 ),
@@ -278,7 +297,10 @@ class _BattleScreenState extends State<BattleScreen> {
                                       battleController.valueVida++;
                                     });
                                   },
-                                  child: const Icon(Icons.add, color: otherColor,))
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: otherColor,
+                                  ))
                             ],
                           )
                         ],
@@ -298,10 +320,15 @@ class _BattleScreenState extends State<BattleScreen> {
                         children: [
                           Row(
                             children: [
-                              const Icon(Icons.hourglass_bottom, color: otherColor,),
-                              const Text("Mana", style: TextStyle(color: otherColor)),
+                              const Icon(
+                                Icons.hourglass_bottom,
+                                color: otherColor,
+                              ),
+                              const Text("Mana",
+                                  style: TextStyle(color: otherColor)),
                               Text(
-                                  "${battleController.valueMana}/${battleController.maxMana}", style: const TextStyle(color: otherColor)),
+                                  "${battleController.valueMana}/${battleController.maxMana}",
+                                  style: const TextStyle(color: otherColor)),
                             ],
                           ),
                           Row(
@@ -312,7 +339,10 @@ class _BattleScreenState extends State<BattleScreen> {
                                       battleController.valueMana--;
                                     });
                                   },
-                                  child: const Icon(Icons.remove, color: otherColor,)),
+                                  child: const Icon(
+                                    Icons.remove,
+                                    color: otherColor,
+                                  )),
                               SfSlider(
                                 activeColor: Colors.blue,
                                 min: 0.0,
@@ -340,7 +370,8 @@ class _BattleScreenState extends State<BattleScreen> {
                                       battleController.valueMana++;
                                     });
                                   },
-                                  child: const Icon(Icons.add, color: otherColor))
+                                  child:
+                                      const Icon(Icons.add, color: otherColor))
                             ],
                           )
                         ],
@@ -359,10 +390,13 @@ class _BattleScreenState extends State<BattleScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: const [Icon(Icons.balance, color: otherColor), Text("Banco", style: TextStyle(color: otherColor))],
+                          children: const [
+                            Icon(Icons.balance, color: otherColor),
+                            Text("Banco", style: TextStyle(color: otherColor))
+                          ],
                         ),
                       ),
-                      const Text("1120,00",style: TextStyle(color: otherColor))
+                      const Text("1120,00", style: TextStyle(color: otherColor))
                     ],
                   ),
                   Column(
@@ -370,10 +404,13 @@ class _BattleScreenState extends State<BattleScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: const [Icon(Icons.monetization_on, color: otherColor), Text("Ouro",style: TextStyle(color: otherColor))],
+                          children: const [
+                            Icon(Icons.monetization_on, color: otherColor),
+                            Text("Ouro", style: TextStyle(color: otherColor))
+                          ],
                         ),
                       ),
-                      const Text("110,00",style: TextStyle(color: otherColor))
+                      const Text("110,00", style: TextStyle(color: otherColor))
                     ],
                   ),
                   Column(
@@ -381,19 +418,23 @@ class _BattleScreenState extends State<BattleScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: const [Icon(Icons.diamond, color: otherColor), Text("Diamante",style: TextStyle(color: otherColor))],
+                          children: const [
+                            Icon(Icons.diamond, color: otherColor),
+                            Text("Diamante",
+                                style: TextStyle(color: otherColor))
+                          ],
                         ),
                       ),
-                      const Text("20,00",style: TextStyle(color: otherColor))
+                      const Text("20,00", style: TextStyle(color: otherColor))
                     ],
                   ),
                 ],
               ),
               // END COIN
               // START GRÁFICO
-      
+
               Padding(
-                padding: EdgeInsets.only(top: size.height*0.03),
+                padding: EdgeInsets.only(top: size.height * 0.03),
                 child: RadarWidget(
                   skewing: 0,
                   radarMap: RadarMapModel(
@@ -401,7 +442,10 @@ class _BattleScreenState extends State<BattleScreen> {
                       LegendModel('10/10', secondColor),
                     ],
                     indicator: [
-                      IndicatorModel("English", 100, ),
+                      IndicatorModel(
+                        "English",
+                        100,
+                      ),
                       IndicatorModel("Physics", 100),
                       IndicatorModel("Chemistry", 100),
                       IndicatorModel("Biology", 100),
@@ -423,7 +467,8 @@ class _BattleScreenState extends State<BattleScreen> {
                   isNeedDrawLegend: true,
                   lineText: (p, length) => "${(p * 100 ~/ length)}%",
                   dilogText: (IndicatorModel indicatorModel,
-                      List<LegendModel> legendModels, List<double> mapDataModels) {
+                      List<LegendModel> legendModels,
+                      List<double> mapDataModels) {
                     StringBuffer text = StringBuffer("");
                     for (int i = 0; i < mapDataModels.length; i++) {
                       text.write(
@@ -437,7 +482,7 @@ class _BattleScreenState extends State<BattleScreen> {
                   outLineText: (data, max) => "${data * 100 ~/ max}%",
                 ),
               ),
-      
+
               // END GRÁFICO
             ],
           ),
