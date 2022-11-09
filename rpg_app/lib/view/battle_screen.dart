@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
@@ -25,6 +27,24 @@ class _BattleScreenState extends State<BattleScreen> {
 
     int maxMana = int.parse(person.mana);
     int valueMana = int.parse(person.mana);
+
+    List<double> atributos = [
+      double.parse(person.forca),
+      double.parse(person.destreza),
+      double.parse(person.constituicao),
+      double.parse(person.inteligencia),
+      double.parse(person.sabedoria),
+      double.parse(person.carisma)
+    ];
+
+    dynamic atributoMaximo = atributos.first;
+    void maiorAtributo() {
+      atributos.forEach((e) {
+        if (e > atributoMaximo) atributoMaximo = e;
+      });
+    }
+
+    maiorAtributo();
 
     return Scaffold(
       backgroundColor: const Color(0xff323433),
@@ -307,7 +327,6 @@ class _BattleScreenState extends State<BattleScreen> {
                                   onTap: () {
                                     setState(() {
                                       valueMana--;
-                                      print(valueMana);
                                     });
                                   },
                                   child: const Icon(Icons.remove)),
@@ -322,7 +341,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                 minorTicksPerInterval: 1,
                                 onChanged: (dynamic value) {
                                   setState(() {
-                                    //valueMana = value;
+                                    valueMana = value;
                                   });
                                 },
                                 thumbIcon: const Icon(
@@ -391,12 +410,12 @@ class _BattleScreenState extends State<BattleScreen> {
                     LegendModel('10/10', const Color(0XFF0EBD8D)),
                   ],
                   indicator: [
-                    IndicatorModel("Força", 100),
-                    IndicatorModel("Destreza", 100),
-                    IndicatorModel("Constituição", 100),
-                    IndicatorModel("Inteligência", 100),
-                    IndicatorModel("Sabedoria", 100),
-                    IndicatorModel("Carisma", 100),
+                    IndicatorModel("Força", atributoMaximo),
+                    IndicatorModel("Destreza", atributoMaximo),
+                    IndicatorModel("Constituição", atributoMaximo),
+                    IndicatorModel("Inteligência", atributoMaximo),
+                    IndicatorModel("Sabedoria", atributoMaximo),
+                    IndicatorModel("Carisma", atributoMaximo),
                   ],
                   data: [
                     //   MapDataModel([48,32.04,1.00,94.5,19,60,50,30,19,60,50]),
@@ -407,7 +426,7 @@ class _BattleScreenState extends State<BattleScreen> {
                       double.parse(person.constituicao),
                       double.parse(person.inteligencia),
                       double.parse(person.sabedoria),
-                      double.parse(person.carisma)
+                      double.parse(person.carisma),
                     ]),
                   ],
                   radius: 130,
