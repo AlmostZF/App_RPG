@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           AppRoutes.home: (_) => const HomePage(),
-          AppRoutes.battleScreen: (_) => const BattleScreen(),
+          //AppRoutes.battleScreen: (_) => const BattleScreen(),
           AppRoutes.persomForm: (_) => const RegisterScreen(),
           AppRoutes.personScreen: (_) => const PersonScreen(),
         },

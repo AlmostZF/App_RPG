@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/model/person_model.dart';
-import 'package:rpg_app/style/colors.dart';
+import 'package:rpg_app/view/battle_screen.dart';
 
 class PersomCard extends StatelessWidget {
   final Person person;
@@ -23,80 +23,87 @@ class PersomCard extends StatelessWidget {
             backgroundImage: NetworkImage(person.avatarUrl),
           );
     return Card(
-      color: backgroundColor,
-      child: ListTile(
-        leading: avatar,
-        title: Text(
-          person.nome,
-          style: const TextStyle(fontWeight: FontWeight.w800),
-        ),
-        textColor: otherColor,
-        subtitle: Text(
-          "Classe: ${person.classe} | Raça: ${person.raca}",
-        ),
-        trailing: Container(
-          width: 100,
-          child: Row(
-            children: [
-              IconButton(
-                color: otherColor,
-                icon: const Icon(Icons.edit),
-                onPressed: () {
-                  Navigator.of(context).pushNamed(
-                    AppRoutes.persomForm,
-                    arguments: person,
-                  );
-                },
-              ),
-              IconButton(
-                color: secondColor,
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (ctx) => AlertDialog(
-                      backgroundColor: defaultColor,
-                      title: const Text(
-                        "Excluir personagem",
-                        style: TextStyle(color: otherColor),
-                      ),
-                      content: const Text(
-                        "Tem certeza?",
-                        style: TextStyle(color: otherColor),
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: secondColor,
-                          ),
-                          child: const Text(
-                            "Não",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
+      color: Color(0xFF1C0D2E),
+      child: InkWell(
+        splashColor: const Color(0xFFFFC62F),
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => BattleScreen(person)));
+        },
+        child: ListTile(
+          leading: avatar,
+          title: Text(
+            person.nome,
+            style: const TextStyle(fontWeight: FontWeight.w800),
+          ),
+          textColor: Colors.white,
+          subtitle: Text(
+            "Classe: ${person.classe} | Raça: ${person.raca}",
+          ),
+          trailing: Container(
+            width: 100,
+            child: Row(
+              children: [
+                IconButton(
+                  color: const Color(0xFFFFFFFF),
+                  icon: const Icon(Icons.edit),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      AppRoutes.persomForm,
+                      arguments: person,
+                    );
+                  },
+                ),
+                IconButton(
+                  color: const Color(0xFFFFC62F),
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        backgroundColor: const Color(0xFF432986),
+                        title: const Text(
+                          "Excluir personagem",
+                          style: TextStyle(color: Colors.white),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: secondColor,
+                        content: const Text(
+                          "Tem certeza?",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        actions: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: const Color(0xFFFFC62F),
+                            ),
+                            child: const Text(
+                              "Não",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
                           ),
-                          child: const Text(
-                            "Sim",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          onPressed: () {
-                            Provider.of<Persons>(context, listen: false)
-                                .remove(person);
-                            Navigator.of(context).pop();
-                          },
-                        )
-                      ],
-                    ),
-                  );
-                },
-              )
-            ],
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: const Color(0xFFFFC62F),
+                            ),
+                            child: const Text(
+                              "Sim",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onPressed: () {
+                              Provider.of<Persons>(context, listen: false)
+                                  .remove(person);
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
