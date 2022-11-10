@@ -15,7 +15,7 @@ class ModalPoder extends StatelessWidget {
           padding: EdgeInsets.only(top: size.width * 0.15),
           child: Column(
             children: [
-              const Text('Criar de poderes',
+              const Text('Adicionar poder',
                   style: TextStyle(
                       color: otherColor,
                       fontWeight: FontWeight.bold,

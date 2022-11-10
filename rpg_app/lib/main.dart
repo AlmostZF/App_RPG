@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:provider/provider.dart';
-import 'package:rpg_app/view/battle_screen.dart';
+import 'package:rpg_app/style/colors.dart';
 import 'package:rpg_app/view/homePage.dart';
 import 'package:rpg_app/view/persons_screen.dart';
 import 'package:rpg_app/view/register_screen.dart';
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          scaffoldBackgroundColor: const Color(0xFF1C0D2E),
+          scaffoldBackgroundColor: backgroundColor,
           hintColor: Colors.white,
         ),
         routes: {

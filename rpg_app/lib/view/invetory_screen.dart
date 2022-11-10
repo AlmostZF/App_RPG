@@ -54,33 +54,35 @@ class _InvetoryState extends State<Invetory> {
                                                   const Invetory()))),
                                   child: Image.network(
                                     carousel.carouselItens[index],
-                                    height: size.width * 0.182,
-                                    width: size.height * 0.182,
+                                    height: size.width * 0.160,
+                                    width: size.height * 0.160,
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: size.width * 0.02),
+                                  padding:
+                                      EdgeInsets.only(top: size.width * 0.02),
                                   child: Column(
                                     children: [
                                       SizedBox(
                                           width: size.width * 0.42,
-                                          child: Text("Nome: Guilherme")),
+                                          child: const Text("Nome: Guilherme")),
                                       SizedBox(
                                           width: size.width * 0.42,
-                                          child: Text("Peso: Guilherme")),
+                                          child: const Text("Peso: Guilherme")),
                                       SizedBox(
                                           width: size.width * 0.42,
-                                          child: Text("Dano: Guilherme")),
+                                          child: const Text("Dano: Guilherme")),
                                       SizedBox(
                                           width: size.width * 0.42,
-                                          child: Text("Alcance: Guilherme")),
+                                          child:
+                                              const Text("Alcance: Guilherme")),
                                       SizedBox(
                                           width: size.width * 0.42,
-                                          child: Text("Descrição: Guilherme")),
+                                          child: const Text(
+                                              "Descrição: Guilherme")),
                                     ],
                                   ),
-                                ), 
-                                
+                                ),
                               ],
                             )),
                       );
@@ -93,7 +95,7 @@ class _InvetoryState extends State<Invetory> {
             padding: EdgeInsets.only(top: 90, left: 25),
             child: Text('Inventario',
                 style: TextStyle(
-                    color: defaultColor,
+                    color: otherColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 20)),
           ),
@@ -102,14 +104,14 @@ class _InvetoryState extends State<Invetory> {
                 top: size.width * 0.23, left: size.width * 0.85),
             child: GestureDetector(
                 onTap: () {
-                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => const ModalItem())));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const ModalItem())));
                 },
                 child: Icon(
                   Icons.add,
-                  size: size.height*0.05,
+                  size: size.height * 0.05,
                   color: secondColor,
                 )),
           )

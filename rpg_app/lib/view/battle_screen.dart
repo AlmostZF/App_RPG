@@ -31,6 +31,9 @@ class _BattleScreenState extends State<BattleScreen> {
     int maxMana = int.parse(person.mana);
     int valueMana = int.parse(person.mana);
 
+    int maxVida = int.parse(person.vida);
+    int valueVida = int.parse(person.vida);
+
     List<double> atributos = [
       double.parse(person.forca),
       double.parse(person.destreza),
@@ -50,7 +53,7 @@ class _BattleScreenState extends State<BattleScreen> {
     maiorAtributo();
 
     return Scaffold(
-      backgroundColor: const Color(0xff323433),
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
           padding:
@@ -60,145 +63,163 @@ class _BattleScreenState extends State<BattleScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleAvatar(
-                    backgroundColor: const Color.fromARGB(25, 217, 217, 217),
-                    maxRadius: size.width * .15,
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        height: size.width * .1,
-                        width: size.width * .5,
-                        decoration: BoxDecoration(
+                  person.avatarUrl.isEmpty
+                      ? CircleAvatar(
+                          maxRadius: size.width * .13,
+                          child: Icon(
+                            Icons.person,
+                            size: size.width * .13,
+                          ),
+                        )
+                      : CircleAvatar(
+                          maxRadius: size.width * .13,
+                          backgroundImage: NetworkImage(person.avatarUrl),
+                        ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: size.width * .1,
+                          width: size.width * .6,
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: const Color.fromARGB(25, 217, 217, 217)),
-                        child: Center(
-                          child: Text(
-                            person.nome,
-                            style: TextStyle(
-                                fontSize: size.width * .06,
-                                color: Colors.white),
+                            color: colorFist,
+                          ),
+                          child: Center(
+                            child: Text(
+                              person.nome,
+                              style: TextStyle(
+                                  fontSize: size.width * .06,
+                                  color: Colors.white),
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(size.width * .01),
+                                child: Container(
+                                  height: size.width * .1,
+                                  width: size.width * .1,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: colorFist),
+                                  child: const Center(
+                                    child: CircleAvatar(
+                                      backgroundColor: colorFist,
+                                      backgroundImage: NetworkImage(
+                                          "https://cdn-icons-png.flaticon.com/512/7957/7957568.png"),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(size.width * .01),
+                                child: Container(
+                                  height: size.width * .1,
+                                  width: size.width * .1,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: colorFist,
+                                  ),
+                                  child: const Center(
+                                    child: CircleAvatar(
+                                      backgroundColor: colorFist,
+                                      backgroundImage: NetworkImage(
+                                          "https://cdn-icons-png.flaticon.com/512/3548/3548916.png"),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(size.width * .01),
+                                child: Container(
+                                  height: size.width * .1,
+                                  width: size.width * .1,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: colorFist),
+                                  child: const Center(
+                                    child: CircleAvatar(
+                                      backgroundColor: colorFist,
+                                      backgroundImage: NetworkImage(
+                                          "https://cdn-icons-png.flaticon.com/512/7957/7957565.png"),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(size.width * .01),
+                                child: Container(
+                                  height: size.width * .1,
+                                  width: size.width * .1,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: colorFist),
+                                  child: const Center(
+                                    child: CircleAvatar(
+                                      backgroundColor: colorFist,
+                                      backgroundImage: NetworkImage(
+                                          "https://cdn-icons-png.flaticon.com/512/3426/3426286.png"),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(size.width * .01),
+                                child: Container(
+                                  height: size.width * .1,
+                                  width: size.width * .1,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: colorFist),
+                                  child: const Center(
+                                    child: CircleAvatar(
+                                      backgroundColor: colorFist,
+                                      backgroundImage: NetworkImage(
+                                          "https://cdn-icons-png.flaticon.com/512/1907/1907823.png"),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
                           children: [
-                            Padding(
-                              padding: EdgeInsets.all(size.width * .01),
-                              child: Container(
-                                height: size.width * .1,
-                                width: size.width * .1,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: colorFist),
-                                child: Center(
-                                  child: Text(
-                                    "ICON",
-                                    style: TextStyle(
-                                        fontSize: size.width * .04,
-                                        color: Colors.white),
-                                  ),
-                                ),
+                            const Icon(
+                              Icons.star,
+                              color: secondColor,
+                            ),
+                            Text(
+                              "Nível: ${person.nivel}",
+                              style: TextStyle(
+                                fontSize: size.width * .05,
+                                color: secondColor,
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(size.width * .01),
-                              child: Container(
-                                height: size.width * .1,
-                                width: size.width * .1,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color:
-                                      const Color.fromARGB(25, 217, 217, 217),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "ICON",
-                                    style: TextStyle(
-                                        fontSize: size.width * .04,
-                                        color: Colors.white),
-                                  ),
-                                ),
-                              ),
+                            const Icon(
+                              Icons.star,
+                              color: secondColor,
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(size.width * .01),
-                              child: Container(
-                                height: size.width * .1,
-                                width: size.width * .1,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: colorFist),
-                                child: Center(
-                                  child: Text(
-                                    "ICON",
-                                    style: TextStyle(
-                                        fontSize: size.width * .04,
-                                        color: Colors.white),
-                                  ),
-                                ),
+                            GestureDetector(
+                              child: const Icon(
+                                Icons.backpack,
+                                color: otherColor,
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(size.width * .01),
-                              child: Container(
-                                height: size.width * .1,
-                                width: size.width * .1,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: colorFist),
-                                child: Center(
-                                  child: Text(
-                                    "ICON",
-                                    style: TextStyle(
-                                        fontSize: size.width * .04,
-                                        color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(size.width * .01),
-                              child: Container(
-                                height: size.width * .1,
-                                width: size.width * .1,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: colorFist),
-                                child: Center(
-                                  child: Text(
-                                    "ICON",
-                                    style: TextStyle(
-                                        fontSize: size.width * .04,
-                                        color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ),
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          const Invetory()))),
+                            )
                           ],
                         ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.star),
-                      Text("Nível: ${person.nivel}"),
-                      Icon(Icons.star),
-                    ],
-                  ),
-                  GestureDetector(
-                    child: const Icon(
-                      Icons.backpack,
-                      color: otherColor,
+                      ],
                     ),
                   )
                 ],
@@ -206,11 +227,6 @@ class _BattleScreenState extends State<BattleScreen> {
               Padding(
                 padding: EdgeInsets.only(
                     top: size.width * 0.02, bottom: size.width * 0.02),
-                child: Text(
-                  "Poderes",
-                  style:
-                      TextStyle(color: otherColor, fontSize: size.width * .07),
-                ),
               ),
               // START CARROSEL
               Container(
@@ -245,11 +261,13 @@ class _BattleScreenState extends State<BattleScreen> {
                                     MaterialPageRoute(
                                         builder: ((context) =>
                                             const ModalPoder())))
-                                : () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            const Invetory()))),
+                                : null,
+                            //Utilizar quando fizermos o CRUD
+                            // () => Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: ((context) =>
+                            //             const Invetory()))),
                             child: CircleAvatar(
                               child: ClipOval(
                                 child: Image.network(
@@ -282,7 +300,7 @@ class _BattleScreenState extends State<BattleScreen> {
                                 const Text(" Vida ",
                                     style: TextStyle(color: otherColor)),
                                 Text(
-                                  "${battleController.valueVida}/${battleController.maxVida}",
+                                  "${valueVida}/${maxVida}",
                                   style: const TextStyle(color: otherColor),
                                 ),
                               ],
@@ -356,8 +374,7 @@ class _BattleScreenState extends State<BattleScreen> {
                               ),
                               const Text("Mana",
                                   style: TextStyle(color: otherColor)),
-                              Text(
-                                  "${battleController.valueMana}/${battleController.maxMana}",
+                              Text("$valueMana/$maxMana",
                                   style: const TextStyle(color: otherColor)),
                             ],
                           ),
@@ -412,54 +429,62 @@ class _BattleScreenState extends State<BattleScreen> {
               ),
               // END SLIDER MANA
               // START COIN
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: const [
-                            Icon(Icons.balance, color: otherColor),
-                            Text("Banco", style: TextStyle(color: otherColor))
-                          ],
-                        ),
-                      ),
-                      const Text("1120,00", style: TextStyle(color: otherColor))
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: const [
-                            Icon(Icons.monetization_on, color: otherColor),
-                            Text("Ouro", style: TextStyle(color: otherColor))
-                          ],
-                        ),
-                      ),
-                      const Text("110,00", style: TextStyle(color: otherColor))
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: const [
-                            Icon(Icons.diamond, color: otherColor),
-                            Text("Diamante",
-                                style: TextStyle(color: otherColor))
-                          ],
-                        ),
-                      ),
-                      const Text("20,00", style: TextStyle(color: otherColor))
-                    ],
-                  ),
-                ],
-              ),
+              //---------------------------------CONCORDAMOS EM TIRAR(GUI LETICIA)
+              //---------------------------------CONCORDAMOS EM TIRAR(GUI LETICIA)
+              //---------------------------------CONCORDAMOS EM TIRAR(GUI LETICIA)
+              //---------------------------------CONCORDAMOS EM TIRAR(GUI LETICIA)
+              //---------------------------------CONCORDAMOS EM TIRAR(GUI LETICIA)
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Column(
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.all(8.0),
+              //           child: Row(
+              //             children: const [
+              //               Icon(Icons.balance, color: otherColor),
+              //               Text("Banco", style: TextStyle(color: otherColor))
+              //             ],
+              //           ),
+              //         ),
+              //         const Text("1120,00", style: TextStyle(color: otherColor))
+              //       ],
+              //     ),
+              //     Column(
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.all(8.0),
+              //           child: Row(
+              //             children: const [
+              //               Icon(Icons.monetization_on, color: otherColor),
+              //               Text("Ouro", style: TextStyle(color: otherColor))
+              //             ],
+              //           ),
+              //         ),
+              //         const Text("110,00", style: TextStyle(color: otherColor))
+              //       ],
+              //     ),
+              //     Column(
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.all(8.0),
+              //           child: Row(
+              //             children: const [
+              //               Icon(Icons.diamond, color: otherColor),
+              //               Text("Diamante",
+              //                   style: TextStyle(color: otherColor))
+              //             ],
+              //           ),
+              //         ),
+              //         const Text("20,00", style: TextStyle(color: otherColor))
+              //       ],
+              //     ),
+              //   ],
+              // ),
+              //---------------------------------CONCORDAMOS EM TIRAR(GUI LETICIA)
+              //---------------------------------CONCORDAMOS EM TIRAR(GUI LETICIA)
+              //---------------------------------CONCORDAMOS EM TIRAR(GUI LETICIA)
               // END COIN
               // START GRÁFICO
 
@@ -496,8 +521,10 @@ class _BattleScreenState extends State<BattleScreen> {
                   line: LineModel(1),
                 ),
                 textStyle: const TextStyle(color: otherColor, fontSize: 14),
-                isNeedDrawLegend: true,
-                lineText: (p, length) => "${(p * 100 ~/ length)}%",
+                //Mudei pra falso pois acedito q nao precisamos disso
+                isNeedDrawLegend: false,
+                //Precisamos dessa info?
+                // lineText: (p, length) => "${(p * 100 ~/ length)}%",
                 dilogText: (IndicatorModel indicatorModel,
                     List<LegendModel> legendModels,
                     List<double> mapDataModels) {
