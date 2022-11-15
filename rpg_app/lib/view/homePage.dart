@@ -37,9 +37,9 @@ class _HomePageState extends State<HomePage> {
                 width: size.width * 0.35,
                 child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(AppRoutes.battleScreen);
+                      Navigator.of(context).pushNamed(AppRoutes.roomsScreen);
                     },
-                    child: const Text("Criar Sala")),
+                    child: const Text("Campanhas")),
               ),
             ),
             SizedBox(
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.of(context).pushNamed(AppRoutes.personScreen);
                   },
-                  child: const Text("Entrar na Sala")),
+                  child: const Text("Personagens")),
             ),
           ],
         ),

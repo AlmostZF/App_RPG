@@ -67,13 +67,14 @@ class _RegisterPageState extends State<RegisterScreen> {
     try {
       final person = ModalRoute.of(context)?.settings.arguments as Person;
       _loadFormData(person);
-    } catch (e){
+    } catch (e) {
       print(e);
     }
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cadastrar personagem"),
-        backgroundColor: defaultColor,
+        backgroundColor: secondColor,
+        foregroundColor: colorFist,
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
