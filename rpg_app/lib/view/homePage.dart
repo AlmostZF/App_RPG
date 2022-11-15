@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       Navigator.of(context).pushNamed(AppRoutes.roomsScreen);
                     },
-                    child: const Text("Campanhas")),
+                    child: const Text("Criar sala")),
               ),
             ),
             SizedBox(
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.of(context).pushNamed(AppRoutes.personScreen);
                   },
-                  child: const Text("Personagens")),
+                  child: const Text("Entrar na sala")),
             ),
           ],
         ),
