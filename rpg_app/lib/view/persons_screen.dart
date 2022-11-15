@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
@@ -24,17 +22,21 @@ class _PersonScreenState extends State<PersonScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: defaultColor,
+        backgroundColor: secondColor,
+        foregroundColor: colorFist,
         title: const Text(
           "Meus Personagens",
         ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(AppRoutes.persomForm);
-              },
-              icon: const Icon(Icons.add))
-        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: secondColor,
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.persomForm);
+        },
+        child: const Icon(
+          Icons.add,
+          color: defaultColor,
+        ),
       ),
       body: ListView.builder(
         itemCount: persons.count,
