@@ -129,7 +129,7 @@ class _RegisterPageState extends State<RegisterRoomScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: secondColor,
         onPressed: () {
-          Navigator.of(context).pushNamed(AppRoutes.roomsScreen);
+          Navigator.of(context).pop();
         },
         child: const Icon(
           Icons.save,
