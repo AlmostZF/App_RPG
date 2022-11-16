@@ -7,7 +7,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:rpg_app/model/person_model.dart';
 
+
 class Persons with ChangeNotifier {
+
+
   Persons() {
     getPersons();
     print(hasPerson("31333154"));
@@ -180,4 +183,5 @@ class Persons with ChangeNotifier {
       throw error;
     }
   }
+  
 }

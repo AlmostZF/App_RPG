@@ -2,7 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:rpg_app/controller/image_controller.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/controller/service.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/style/colors.dart';
 
@@ -15,6 +17,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterScreen> {
   ImagePicker imagePicker = ImagePicker();
+  ControllerImage image = ControllerImage();
   File? imagemSelecionada;
 
   int _currentstep = 0;
@@ -77,7 +80,12 @@ class _RegisterPageState extends State<RegisterScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
-            onPressed: () {
+            onPressed: () async {
+              setState(() {
+                image.loading = true;
+              });
+              await image.buildContextBody(context);
+              
               _form.currentState?.save();
 
               Provider.of<Persons>(context, listen: false).put(
@@ -176,20 +184,25 @@ class _RegisterPageState extends State<RegisterScreen> {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle, color: Colors.grey.shade200),
                     child: Center(
-                      child: imagemSelecionada == null
+                      child: image.file == null
                           ? GestureDetector(
-                              onTap: () {
-                                pegarImagemGaleria();
+                              onTap: () async {
+                               await image.getImage(ImageSource.gallery);
+                               setState(() {
+                                 
+                               });
                               },
                               child: const CircleAvatar(
                                 child: Icon(Icons.add_photo_alternate_outlined),
                                 radius: 150.0,
                               ),
                             )
-                          : CircleAvatar(
-                              backgroundImage: FileImage(imagemSelecionada!),
-                              radius: 150.0,
-                            ),
+                          :
+                          ClipOval(child: Image.file(File(image.file!.path),width: 200, height: 200, fit: BoxFit.cover,)),// : CircleAvatar(
+                          //  child: Image.file(File(image.file!.path)),
+                          //     // backgroundImage: FileImage(imagemSelecionada!),
+                          //     radius: 150.0,
+                          //   ),
                     ),
                   ),
                   const SizedBox(
@@ -266,14 +279,14 @@ class _RegisterPageState extends State<RegisterScreen> {
                   ),
                 ],
               ),
-              TextFormField(
-                style: const TextStyle(color: otherColor),
-                initialValue: _formData['avatarUrl'],
-                decoration: const InputDecoration(
-                  hintText: "Avatar URL",
-                ),
-                onSaved: (value) => _formData['avatarUrl'] = value.toString(),
-              ),
+              // TextFormField(
+              //   style: const TextStyle(color: otherColor),
+              //   initialValue: _formData['avatarUrl'],
+              //   decoration: const InputDecoration(
+              //     hintText: "Avatar URL",
+              //   ),
+              //   onSaved: (value) => _formData['avatarUrl'] = value.toString(),
+              // ),
               TextFormField(
                 style: const TextStyle(color: otherColor),
                 initialValue: _formData['historia'],

@@ -5,3 +5,4 @@ import 'package:flutter/material.dart';
   const secondColor = Color(0xFFFFC62F);
   const defaultColor = Color(0xFF432986);
   const otherColor = Color(0xFFFFFFFF);
+
