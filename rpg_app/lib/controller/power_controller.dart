@@ -34,7 +34,7 @@ class Powers with ChangeNotifier {
     if (power.id != null &&
         power.id.trim().isNotEmpty &&
         _itemsPower.containsKey(power.id)) {
-      postSinglePerson(power, power.id);
+      postSinglePower(power, power.id);
 
       _itemsPower.update(
         power.id,
@@ -65,7 +65,7 @@ class Powers with ChangeNotifier {
         nivel: power.nivel,
       );
 
-      postSinglePerson(finalp, id);
+      postSinglePower(finalp, id);
 
       _itemsPower.putIfAbsent(id, () => finalp);
     }
@@ -76,7 +76,7 @@ class Powers with ChangeNotifier {
     if (power == null && power.id == "") {
       return;
     }
-    removeSinglePerson(power, power.id);
+    removeSinglePower(power, power.id);
 
     _itemsPower.remove(power.id);
 
@@ -84,7 +84,7 @@ class Powers with ChangeNotifier {
   }
 
   //Adiciona no banco ou atualiza
-  Future<String> postSinglePerson(Power power, String id) async {
+  Future<String> postSinglePower(Power power, String id) async {
     var uri =
         Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/power/$id.json');
     final response = await http.put(uri, body: json.encode(power));
@@ -93,7 +93,7 @@ class Powers with ChangeNotifier {
   }
 
   //Remove do banco
-  Future<String> removeSinglePerson(Power power, String id) async {
+  Future<String> removeSinglePower(Power power, String id) async {
     var uri =
         Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/power/$id.json');
     final response = await http.delete(uri, body: json.encode(power));
@@ -102,7 +102,7 @@ class Powers with ChangeNotifier {
   }
 
   //Pega o objeto Person inteiro do banco
-  Future<Power> getSinglePerson(String id) async {
+  Future<Power> getSinglePower(String id) async {
     var uri =
         Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/power/$id.json');
     final response = await http.get(uri);

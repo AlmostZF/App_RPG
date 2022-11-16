@@ -1,13 +1,13 @@
 class Power {
   final String id;
   final String nome;
-  final int tempoconjuracao;
-  final double alcance;
-  final double duracao;
-  final double mana;
-  final double dano;
+  final String tempoconjuracao;
+  final String alcance;
+  final String duracao;
+  final String mana;
+  final String dano;
   final String componente;
-  final int nivel;
+  final String nivel;
 
   const Power({
     required this.id,

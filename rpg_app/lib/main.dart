@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/controller/power_controller.dart';
+import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/style/colors.dart';
+import 'package:rpg_app/view/modal_Item.dart';
+import 'package:rpg_app/view/modal_poder.dart';
 import 'package:rpg_app/view/rooms_screen.dart';
 import 'package:rpg_app/view/homePage.dart';
 import 'package:rpg_app/view/persons_screen.dart';
@@ -22,6 +26,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (ctx) => Persons(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Powers(),
         )
       ],
       child: MaterialApp(
@@ -35,7 +42,18 @@ class MyApp extends StatelessWidget {
           AppRoutes.persomForm: (_) => const RegisterScreen(),
           AppRoutes.personScreen: (_) => const PersonScreen(),
           AppRoutes.roomsScreen: (_) => const RoomsScreen(),
-          AppRoutes.roomForm: (_) => const RegisterRoomScreen()
+          AppRoutes.roomForm: (_) => const RegisterRoomScreen(),
+          AppRoutes.modalForm: (_) => ModalPoder(Power(
+                alcance: "",
+                componente: "",
+                dano: "",
+                duracao: "",
+                id: "",
+                mana: "",
+                nivel: "",
+                nome: "",
+                tempoconjuracao: "",
+              )),
         },
       ),
     );

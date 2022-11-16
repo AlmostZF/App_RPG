@@ -5,4 +5,5 @@ class AppRoutes {
   static const personScreen = "/persons-screen";
   static const roomsScreen = "/rooms-screen";
   static const roomForm = "/room-form";
+  static const modalForm = "/modal-form";
 }

@@ -2,17 +2,23 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
+import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
+import 'package:rpg_app/controller/power_controller.dart';
+import 'package:rpg_app/model/power_model.dart';
+import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
 import 'package:rpg_app/view/invetory_screen.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/view/modal_poder.dart';
+import 'package:rpg_app/view/power_circle.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:rpg_app/model/carousel_model.dart';
 
 class BattleScreen extends StatefulWidget {
   final Person person;
   const BattleScreen(this.person);
+
   @override
   State<BattleScreen> createState() => _BattleScreenState(person);
 }
@@ -26,6 +32,8 @@ class _BattleScreenState extends State<BattleScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Powers powers = Provider.of(context);
+
     Size size = MediaQuery.of(context).size;
 
     int maxMana = int.parse(person.mana);
@@ -235,16 +243,16 @@ class _BattleScreenState extends State<BattleScreen> {
                 //color: Colors.amber,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: carousel.carouselItens.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      if (index == 0) {
-                        return SizedBox(width: size.width * 0.01);
-                      }
+                    itemCount: powers.count,
+                    itemBuilder: (BuildContext ctx, int i) {
+                      // if (i == 0) {
+                      //   return SizedBox(width: size.width * 0.01);
+                      // }
                       return Container(
                           margin: EdgeInsets.all(size.width * 0.02),
                           width: size.width * 0.182,
                           height: size.height * 0.182,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: secondColor,
                               boxShadow: [
@@ -254,30 +262,34 @@ class _BattleScreenState extends State<BattleScreen> {
                                   blurRadius: 4.0,
                                 )
                               ]),
-                          child: InkWell(
-                            onTap: index == 1
-                                ? () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            const ModalPoder())))
-                                : null,
-                            //Utilizar quando fizermos o CRUD
-                            // () => Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: ((context) =>
-                            //             const Invetory()))),
-                            child: CircleAvatar(
-                              child: ClipOval(
-                                child: Image.network(
-                                  carousel.carouselItens[index],
-                                  height: size.width * 0.182,
-                                  width: size.height * 0.182,
-                                ),
-                              ),
-                            ),
+                          child: PowerCircle(
+                            powers.byIndex(i),
                           ));
+
+                      // child: InkWell(
+                      //   onTap: i == 0
+                      //       ? () => Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: ((ctx) => ModalPoder(Power(
+                      //                     alcance: "A",
+                      //                     componente: "",
+                      //                     dano: "",
+                      //                     duracao: "",
+                      //                     id: "",
+                      //                     mana: "",
+                      //                     nivel: "",
+                      //                     nome: "",
+                      //                     tempoconjuracao: "",
+                      //                   )))))
+                      //       : () => Navigator.of(context).pushNamed(
+                      //             AppRoutes.modalForm,
+                      //             arguments: power,
+                      //           ),
+                      //   child: PowerCircle(
+                      //     powers.byIndex(i),
+                      //   ),
+                      // ));
                     }),
               ),
               // END CARROSEL

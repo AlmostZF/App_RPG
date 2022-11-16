@@ -1,16 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rpg_app/controller/power_controller.dart';
+import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/style/colors.dart';
 
-class ModalPoder extends StatelessWidget {
-  const ModalPoder({Key? key}) : super(key: key);
+class ModalPoder extends StatefulWidget {
+  final Power power;
+  const ModalPoder(this.power);
+
+  @override
+  State<ModalPoder> createState() => _ModalPageState(power);
+}
+
+class _ModalPageState extends State<ModalPoder> {
+  final _form = GlobalKey<FormState>();
+  final Map<String, String> _formData = {};
+
+  final Power power;
+  _ModalPageState(this.power);
+
+  void _loadFormData(Power power) {
+    if (power != null) {
+      id:
+      _formData['id'] = power.id;
+      nome:
+      _formData['nome'] = power.nome;
+      tempoconjuracao:
+      _formData['tempoconjuracao'] = power.tempoconjuracao;
+      alcance:
+      _formData['alcance'] = power.alcance;
+      duracao:
+      _formData['duracao'] = power.duracao;
+      mana:
+      _formData['mana'] = power.mana;
+      dano:
+      _formData['dano'] = power.dano;
+      componente:
+      _formData['componente'] = power.componente;
+      nivel:
+      _formData['nivel'] = power.nivel;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    try {
+      final power = ModalRoute.of(context)?.settings.arguments as Power;
+      _loadFormData(power);
+    } catch (e) {
+      print(e);
+    }
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: defaultColor,
       body: SingleChildScrollView(
+        key: _form,
         child: Padding(
           padding: EdgeInsets.only(top: size.width * 0.15),
           child: Column(
@@ -31,7 +76,10 @@ class ModalPoder extends StatelessWidget {
                     child: SizedBox(
                       width: size.width * 0.46,
                       height: size.height * 0.06,
-                      child: const TextField(
+                      child: TextFormField(
+                        initialValue: _formData['nome'],
+                        onSaved: (value) =>
+                            _formData['nome'] = value.toString(),
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: "Nome do Poder"),
@@ -61,7 +109,10 @@ class ModalPoder extends StatelessWidget {
                 child: SizedBox(
                   width: size.width * 0.7,
                   height: size.height * 0.06,
-                  child: const TextField(
+                  child: TextFormField(
+                    initialValue: _formData['tempoconjuracao'],
+                    onSaved: (value) =>
+                        _formData['tempoconjuracao'] = value.toString(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "Tempo de Conjuração"),
@@ -73,7 +124,9 @@ class ModalPoder extends StatelessWidget {
                 child: SizedBox(
                   width: size.width * 0.7,
                   height: size.height * 0.06,
-                  child: const TextField(
+                  child: TextFormField(
+                    initialValue: _formData['alcance'],
+                    onSaved: (value) => _formData['alcance'] = value.toString(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: "Alcance"),
                   ),
@@ -84,7 +137,9 @@ class ModalPoder extends StatelessWidget {
                 child: SizedBox(
                   width: size.width * 0.7,
                   height: size.height * 0.06,
-                  child: const TextField(
+                  child: TextFormField(
+                    initialValue: _formData['duracao'],
+                    onSaved: (value) => _formData['duracao'] = value.toString(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: "Duração"),
                   ),
@@ -95,7 +150,9 @@ class ModalPoder extends StatelessWidget {
                 child: SizedBox(
                   width: size.width * 0.7,
                   height: size.height * 0.06,
-                  child: const TextField(
+                  child: TextFormField(
+                    initialValue: _formData['mana'],
+                    onSaved: (value) => _formData['mana'] = value.toString(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: "Mana"),
                   ),
@@ -106,7 +163,9 @@ class ModalPoder extends StatelessWidget {
                 child: SizedBox(
                   width: size.width * 0.7,
                   height: size.height * 0.06,
-                  child: const TextField(
+                  child: TextFormField(
+                    initialValue: _formData['dano'],
+                    onSaved: (value) => _formData['dano'] = value.toString(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: "Dano"),
                   ),
@@ -117,7 +176,10 @@ class ModalPoder extends StatelessWidget {
                 child: SizedBox(
                   width: size.width * 0.7,
                   height: size.height * 0.06,
-                  child: const TextField(
+                  child: TextFormField(
+                    initialValue: _formData['componente'],
+                    onSaved: (value) =>
+                        _formData['componente'] = value.toString(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: "Componente"),
                   ),
@@ -128,7 +190,9 @@ class ModalPoder extends StatelessWidget {
                 child: SizedBox(
                   width: size.width * 0.7,
                   height: size.height * 0.06,
-                  child: const TextField(
+                  child: TextFormField(
+                    initialValue: _formData['nivel'],
+                    onSaved: (value) => _formData['nivel'] = value.toString(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: "Nivel"),
                   ),
@@ -145,7 +209,22 @@ class ModalPoder extends StatelessWidget {
                               backgroundColor:
                                   MaterialStateProperty.all(secondColor)),
                           onPressed: () {
-                            //Navigator.of(context).pushNamed(AppRoutes.battleScreen);
+                            _form.currentState?.save();
+                            Provider.of<Powers>(context, listen: false).put(
+                              Power(
+                                id: _formData['id'].toString(),
+                                nome: _formData['nome'].toString(),
+                                tempoconjuracao:
+                                    _formData['tempoconjuracao'].toString(),
+                                alcance: _formData['alcance'].toString(),
+                                duracao: _formData['duracao'].toString(),
+                                mana: _formData['mana'].toString(),
+                                dano: _formData['dano'].toString(),
+                                componente: _formData['componente'].toString(),
+                                nivel: _formData['nivel'].toString(),
+                              ),
+                            );
+                            Navigator.of(context).pop();
                           },
                           child: const Text("Criar",
                               style: TextStyle(
