@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:rpg_app/controller/fake_power_controller.dart';
 import 'package:rpg_app/model/power_model.dart';
 
 class Powers with ChangeNotifier {
@@ -11,7 +12,7 @@ class Powers with ChangeNotifier {
     getPowers();
   }
 
-  Map<String, Power> _itemsPower = {};
+  Map<String, Power> _itemsPower = {...FAKE_POWER};
 
   List<Power> get all {
     return [..._itemsPower.values];

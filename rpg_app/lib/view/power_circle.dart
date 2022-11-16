@@ -17,7 +17,7 @@ class PowerCircle extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        power.id == "16645214"
+        power.id == "1"
             ? Navigator.of(context).pushNamed(AppRoutes.modalForm)
             : Navigator.of(context).pushNamed(
                 AppRoutes.modalForm,
