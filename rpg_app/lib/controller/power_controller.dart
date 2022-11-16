@@ -85,6 +85,8 @@ class Powers with ChangeNotifier {
 
   //Adiciona no banco ou atualiza
   Future<String> postSinglePower(Power power, String id) async {
+    print(power.id);
+    print(id);
     var uri =
         Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/power/$id.json');
     final response = await http.put(uri, body: json.encode(power));

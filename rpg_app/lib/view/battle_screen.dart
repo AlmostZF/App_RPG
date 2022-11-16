@@ -244,11 +244,11 @@ class _BattleScreenState extends State<BattleScreen> {
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: powers.count,
-                    itemBuilder: (BuildContext ctx, int i) {
-                      // if (i == 0) {
-                      //   return SizedBox(width: size.width * 0.01);
-                      // }
-                      return Container(
+                    itemBuilder: (ctx, i) =>
+                        // if (i == 0) {
+                        //   return SizedBox(width: size.width * 0.01);
+                        // }
+                        Container(
                           margin: EdgeInsets.all(size.width * 0.02),
                           width: size.width * 0.182,
                           height: size.height * 0.182,
@@ -264,33 +264,34 @@ class _BattleScreenState extends State<BattleScreen> {
                               ]),
                           child: PowerCircle(
                             powers.byIndex(i),
-                          ));
+                          ),
+                        )
 
-                      // child: InkWell(
-                      //   onTap: i == 0
-                      //       ? () => Navigator.push(
-                      //           context,
-                      //           MaterialPageRoute(
-                      //               builder: ((ctx) => ModalPoder(Power(
-                      //                     alcance: "A",
-                      //                     componente: "",
-                      //                     dano: "",
-                      //                     duracao: "",
-                      //                     id: "",
-                      //                     mana: "",
-                      //                     nivel: "",
-                      //                     nome: "",
-                      //                     tempoconjuracao: "",
-                      //                   )))))
-                      //       : () => Navigator.of(context).pushNamed(
-                      //             AppRoutes.modalForm,
-                      //             arguments: power,
-                      //           ),
-                      //   child: PowerCircle(
-                      //     powers.byIndex(i),
-                      //   ),
-                      // ));
-                    }),
+                    // child: InkWell(
+                    //   onTap: i == 0
+                    //       ? () => Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: ((ctx) => ModalPoder(Power(
+                    //                     alcance: "A",
+                    //                     componente: "",
+                    //                     dano: "",
+                    //                     duracao: "",
+                    //                     id: "",
+                    //                     mana: "",
+                    //                     nivel: "",
+                    //                     nome: "",
+                    //                     tempoconjuracao: "",
+                    //                   )))))
+                    //       : () => Navigator.of(context).pushNamed(
+                    //             AppRoutes.modalForm,
+                    //             arguments: power,
+                    //           ),
+                    //   child: PowerCircle(
+                    //     powers.byIndex(i),
+                    //   ),
+                    // ));
+                    ),
               ),
               // END CARROSEL
               // START SLIDER VIDA

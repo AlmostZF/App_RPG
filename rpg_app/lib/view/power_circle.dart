@@ -17,20 +17,12 @@ class PowerCircle extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ModalPoder(Power(
-                      alcance: "AAAAAAAAA",
-                      componente: "",
-                      dano: "",
-                      duracao: "",
-                      id: "",
-                      mana: "",
-                      nivel: "",
-                      nome: "",
-                      tempoconjuracao: "",
-                    ))));
+        power.id == "16645214"
+            ? Navigator.of(context).pushNamed(AppRoutes.modalForm)
+            : Navigator.of(context).pushNamed(
+                AppRoutes.modalForm,
+                arguments: power,
+              );
       },
       child: CircleAvatar(
         child: ClipOval(

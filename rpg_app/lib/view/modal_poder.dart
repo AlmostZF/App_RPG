@@ -210,6 +210,7 @@ class _ModalPageState extends State<ModalPoder> {
                                   MaterialStateProperty.all(secondColor)),
                           onPressed: () {
                             _form.currentState?.save();
+                            print("a");
                             Provider.of<Powers>(context, listen: false).put(
                               Power(
                                 id: _formData['id'].toString(),
