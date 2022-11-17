@@ -9,7 +9,6 @@ import 'package:rpg_app/model/person_model.dart';
 class Persons with ChangeNotifier {
   Persons() {
     getPersons();
-    print(hasPerson("31333154"));
   }
 
   Map<String, Person> _items = {};

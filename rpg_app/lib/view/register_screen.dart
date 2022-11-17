@@ -84,10 +84,10 @@ class _RegisterPageState extends State<RegisterScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
-            onPressed: () {
+            onPressed: () async {
               _form.currentState?.save();
               storage.uploadFile(path, fileName);
-
+              dynamic download = await storage.downloadURL(fileName);
               Provider.of<Persons>(context, listen: false).put(
                 Person(
                   id: _formData['id'].toString(),
@@ -106,7 +106,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   carisma: _formData['carisma'].toString(),
                   vida: _formData['vida'].toString(),
                   mana: _formData['mana'].toString(),
-                  avatarUrl: _formData['avatarUrl'].toString(),
+                  avatarUrl: download.toString(),
                 ),
               );
               Navigator.of(context).pop();
@@ -283,15 +283,6 @@ class _RegisterPageState extends State<RegisterScreen> {
                     ),
                   ),
                 ],
-              ),
-              TextFormField(
-                style: const TextStyle(color: otherColor),
-                initialValue: _formData['avatarUrl'],
-                decoration: const InputDecoration(
-                  hintText: "Avatar URL",
-                ),
-                onSaved: (value) =>
-                    _formData['avatarUrl'] = _formData['avatarUrl'].toString(),
               ),
               TextFormField(
                 style: const TextStyle(color: otherColor),
@@ -537,7 +528,6 @@ class _RegisterPageState extends State<RegisterScreen> {
           isActive: _currentstep >= 3,
           state: _currentstep == 3 ? StepState.editing : StepState.complete),
     ];
-    print(_formData);
     return _steps;
   }
 }
