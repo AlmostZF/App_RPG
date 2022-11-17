@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/style/colors.dart';
@@ -36,7 +37,9 @@ class PersomCard extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => BattleScreen(person)));
+                      builder: (context) => BattleScreen(
+                            person,
+                          )));
             },
             child: ListTile(
               leading: avatar,

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:firebase_database/firebase_database.dart';
 import 'package:http/http.dart' as http;
 import 'dart:math';
 
@@ -10,7 +9,6 @@ import 'package:rpg_app/model/person_model.dart';
 class Persons with ChangeNotifier {
   Persons() {
     getPersons();
-    print(hasPerson("31333154"));
   }
 
   Map<String, Person> _items = {};

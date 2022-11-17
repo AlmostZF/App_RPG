@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "174064002370",
+    "firebase_url": "https://stdrpg-default-rtdb.firebaseio.com",
+    "project_id": "stdrpg",
+    "storage_bucket": "stdrpg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174064002370:android:62114ce375d4d6d78894db",
+        "android_client_info": {
+          "package_name": "com.example.rpg_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174064002370-rp24me2vqecpl29sveknabnlja4svl8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQa3oG2heZTixV-549HugdNBkGmSgrPkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174064002370-rp24me2vqecpl29sveknabnlja4svl8e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "174064002370-fbtdmqpggi86rbridiooo303tlo4ktbv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.rpgApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
