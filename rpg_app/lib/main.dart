@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/controller/power_controller.dart';
@@ -13,7 +14,9 @@ import 'package:rpg_app/view/persons_screen.dart';
 import 'package:rpg_app/view/register_room_screen.dart';
 import 'package:rpg_app/view/register_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

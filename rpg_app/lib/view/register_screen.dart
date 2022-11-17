@@ -1,8 +1,10 @@
 import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/controller/service/storage_service.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/style/colors.dart';
 
@@ -14,8 +16,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterScreen> {
-  ImagePicker imagePicker = ImagePicker();
-  File? imagemSelecionada;
+  final Storage storage = Storage();
+  File? imagemFinal;
+  String path = "";
+  String fileName = "";
 
   int _currentstep = 0;
   StepperType stepperType = StepperType.vertical;
@@ -64,6 +68,8 @@ class _RegisterPageState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Storage storage = Storage();
+
     try {
       final person = ModalRoute.of(context)?.settings.arguments as Person;
       _loadFormData(person);
@@ -80,6 +86,7 @@ class _RegisterPageState extends State<RegisterScreen> {
             icon: const Icon(Icons.save),
             onPressed: () {
               _form.currentState?.save();
+              storage.uploadFile(path, fileName);
 
               Provider.of<Persons>(context, listen: false).put(
                 Person(
@@ -150,14 +157,25 @@ class _RegisterPageState extends State<RegisterScreen> {
   }
 
   pegarImagemGaleria() async {
-    final PickedFile? imagemTemporaria =
-        // ignore: deprecated_member_use
-        await imagePicker.getImage(source: ImageSource.gallery);
-    if (imagemTemporaria != null) {
-      setState(() {
-        imagemSelecionada = File(imagemTemporaria.path);
-      });
+    final imagem = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.custom,
+      allowedExtensions: ['png', 'jpg'],
+    );
+
+    if (imagem == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Nenhum arquivo selecionado")));
+      return null;
     }
+
+    setState(() {
+      path = imagem.files.single.path!;
+      fileName = imagem.files.single.name;
+      imagemFinal = File(path);
+    });
+
+    //convert bytes to base64 string
   }
 
   List<Step> _mySteps() {
@@ -177,21 +195,20 @@ class _RegisterPageState extends State<RegisterScreen> {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle, color: Colors.grey.shade200),
                     child: Center(
-                      child: imagemSelecionada == null
-                          ? GestureDetector(
-                              onTap: () {
-                                pegarImagemGaleria();
-                              },
-                              child: const CircleAvatar(
-                                child: Icon(Icons.add_photo_alternate_outlined),
-                                radius: 150.0,
-                              ),
-                            )
-                          : CircleAvatar(
-                              backgroundImage: FileImage(imagemSelecionada!),
-                              radius: 150.0,
-                            ),
-                    ),
+                        child: imagemFinal == null
+                            ? GestureDetector(
+                                onTap: () {
+                                  pegarImagemGaleria();
+                                },
+                                child: CircleAvatar(
+                                  child:
+                                      Icon(Icons.add_photo_alternate_outlined),
+                                  radius: 150.0,
+                                ),
+                              )
+                            : CircleAvatar(
+                                backgroundImage: FileImage(imagemFinal!),
+                                radius: 150.0)),
                   ),
                   const SizedBox(
                     height: 15,
@@ -273,7 +290,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                 decoration: const InputDecoration(
                   hintText: "Avatar URL",
                 ),
-                onSaved: (value) => _formData['avatarUrl'] = value.toString(),
+                onSaved: (value) =>
+                    _formData['avatarUrl'] = _formData['avatarUrl'].toString(),
               ),
               TextFormField(
                 style: const TextStyle(color: otherColor),
