@@ -19,16 +19,13 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Center(
-              child: Container(
-                height: size.width * .3,
-                width: size.width * .3,
-                decoration: const BoxDecoration(color: secondColor),
+              child: SizedBox(
+                height: size.width * .7,
+                width: size.width * .7,
                 child: const Center(
-                  child: Text(
-                    "LOGO",
-                    style: TextStyle(color: otherColor, fontSize: 40),
-                  ),
-                ),
+                    child: Image(
+                  image: AssetImage('asset/images/logo.png'),
+                )),
               ),
             ),
             Padding(
