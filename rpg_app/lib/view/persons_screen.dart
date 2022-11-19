@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rpg_app/controller/service/person-service.dart';
 import 'package:rpg_app/model/person_model.dart';
+import 'package:rpg_app/routes/app_routes.dart';
+import 'package:rpg_app/style/colors.dart';
+import 'package:rpg_app/view/person_card.dart';
 
 class PersonScreen extends StatefulWidget {
   const PersonScreen({Key? key}) : super(key: key);
@@ -11,6 +14,7 @@ class PersonScreen extends StatefulWidget {
 
 class _PersonScreenState extends State<PersonScreen> {
   late Future<List<Person>> _futurePerson;
+
   PersonService _personService = new PersonService();
 
   @override
@@ -23,34 +27,39 @@ class _PersonScreenState extends State<PersonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.black,
-        child: Center(
-            child: FutureBuilder<List<Person>>(
-                future: _futurePerson,
-                builder: (context, snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                      return Text('none');
-                    case ConnectionState.waiting:
-                      return Text('Aguarde ...',
-                          style: TextStyle(color: Colors.white, fontSize: 24));
-                    default:
-                      return ListView.builder(
-                          itemCount: snapshot.data?.length,
-                          itemBuilder: (context, index) {
-                            return new Column(
-                              children: <Widget>[
-                                ListTile(
-                                  title: Text('${snapshot.data?[index].nome}',
-                                      style: TextStyle(color: Colors.white)),
-                                )
-                              ],
-                            );
-                          });
-                  }
-                })),
+      appBar: AppBar(
+        backgroundColor: secondColor,
+        foregroundColor: colorFist,
+        title: const Text(
+          "Meus Personagens",
+        ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: secondColor,
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.persomForm);
+        },
+        child: const Icon(
+          Icons.add,
+          color: defaultColor,
+        ),
+      ),
+      body: Center(
+          child: FutureBuilder<List<Person>>(
+              future: _futurePerson,
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                    return Text('none');
+                  case ConnectionState.waiting:
+                    return CircularProgressIndicator();
+                  default:
+                    return ListView.builder(
+                      itemCount: snapshot.data?.length,
+                      itemBuilder: (ctx, i) => PersomCard(snapshot.data![i]),
+                    );
+                }
+              })),
     );
   }
 }

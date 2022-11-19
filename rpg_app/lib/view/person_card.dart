@@ -13,7 +13,7 @@ class PersomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final avatar = person.avatarUrl == null || person.avatarUrl.isEmpty
+    final avatar = person.avatarUrl.isEmpty
         ? const CircleAvatar(
             child: Icon(
               Icons.person,
@@ -50,7 +50,7 @@ class PersomCard extends StatelessWidget {
               textColor: Colors.white,
               subtitle: Text(
                   "Nível: ${person.nivel} | ${person.raca}\n${person.classe}"),
-              trailing: Container(
+              trailing: SizedBox(
                 width: 100,
                 child: Row(
                   children: [

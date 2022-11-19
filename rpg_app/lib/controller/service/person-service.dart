@@ -14,26 +14,36 @@ class PersonService {
 
   Future<List<Person>> fetchPersons() async {
     var uri =
-        Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/person/json');
+        Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/person/.json');
     final response = await http.get(uri);
+    Map<String, dynamic> _list = json.decode(response.body);
 
-    // List<dynamic> _list = json.decode(response.body);
-    print(response.body);
-    List<dynamic> _list = json.decode(response.body) as List<dynamic>;
-    List<Person> _listPerson = [];
+    List<Person> _listJogos = [];
 
-    // _list.forEach((person) {
-    //   Person p = Person.fromJson(person);
-
-    //   _listPerson.add(p);
-    // });
-
-    _list.forEach((person) {
-      Person j = Person.fromJson(person);
-
-      _listPerson.add(j);
+    _list.forEach((id, data) {
+      _listJogos.add(
+        Person(
+          avatarUrl: data["avatarUrl"],
+          carisma: data["carisma"],
+          classe: data["classe"],
+          constituicao: data["constituicao"],
+          destreza: data["destreza"],
+          forca: data["forca"],
+          historia: data["historia"],
+          id: data["id"],
+          ideais: data["ideais"],
+          inteligencia: data["inteligencia"],
+          jogador: data["jogador"],
+          mana: data["mana"],
+          nivel: data["nivel"],
+          nome: data["nome"],
+          raca: data["raca"],
+          sabedoria: data["sabedoria"],
+          vida: data["vida"],
+        ),
+      );
     });
 
-    return _listPerson;
+    return _listJogos;
   }
 }

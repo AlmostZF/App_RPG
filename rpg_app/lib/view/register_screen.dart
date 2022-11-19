@@ -86,8 +86,11 @@ class _RegisterPageState extends State<RegisterScreen> {
             icon: const Icon(Icons.save),
             onPressed: () async {
               _form.currentState?.save();
+
               await storage.uploadFile(path, fileName);
+
               dynamic download = storage.downloadURL(fileName);
+
               Provider.of<Persons>(context, listen: false).put(
                 Person(
                   id: _formData['id'].toString(),
