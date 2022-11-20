@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_app/controller/service/person-service.dart';
+import 'package:rpg_app/controller/service/person_service.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
