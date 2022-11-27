@@ -54,250 +54,271 @@ class _ModalPageState extends State<ModalPoder> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: defaultColor,
+      appBar: AppBar(
+        title: isEdit
+            ? const Text(
+                'Editar poder',
+              )
+            : const Text('Adicionar poder'),
+        backgroundColor: secondColor,
+        foregroundColor: colorFist,
+      ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(top: size.width * 0.15),
-          child: Form(
-            key: _form,
-            child: Column(
-              children: [
-                isEdit
-                    ? const Text('Editar poder',
-                        style: TextStyle(
-                            color: otherColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20))
-                    : const Text('Adicionar poder',
-                        style: TextStyle(
-                            color: otherColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20)),
-                Padding(
+        child: Form(
+          key: _form,
+          child: Column(
+            children: [
+              Padding(
+                  padding: EdgeInsets.only(
+                      right: size.width * 0.3, top: size.width * 0.03)),
+              Stack(
+                children: [
+                  Padding(
                     padding: EdgeInsets.only(
-                        right: size.width * 0.3, top: size.width * 0.03)),
-                Stack(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          right: size.width * 0.2, top: size.width * 0.03),
-                      child: SizedBox(
-                        width: size.width * 0.46,
-                        height: size.height * 0.06,
-                        child: TextFormField(
-                          style: const TextStyle(
-                            color: otherColor,
-                          ),
-                          initialValue: _formData['nome'],
-                          onSaved: (value) =>
-                              _formData['nome'] = value.toString(),
-                          decoration: const InputDecoration(
-                              border: const OutlineInputBorder(),
-                              labelText: "Nome do Poder"),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: size.width * 0.5,
-                        bottom: size.width * 0.02,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Container(
-                          width: size.width * 0.2,
-                          height: size.height * 0.1,
+                        right: size.width * 0.2, top: size.width * 0.03),
+                    child: SizedBox(
+                      width: size.width * 0.46,
+                      height: size.height * 0.06,
+                      child: TextFormField(
+                        style: const TextStyle(
                           color: otherColor,
                         ),
+                        initialValue: _formData['nome'],
+                        onSaved: (value) =>
+                            _formData['nome'] = value.toString(),
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: defaultColor),
+                            ),
+                            labelText: "Nome do Poder"),
                       ),
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: size.height * 0.03,
                   ),
-                  child: SizedBox(
-                    width: size.width * 0.7,
-                    height: size.height * 0.06,
-                    child: TextFormField(
-                      style: const TextStyle(
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: size.width * 0.5,
+                      bottom: size.width * 0.02,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Container(
+                        width: size.width * 0.2,
+                        height: size.height * 0.1,
                         color: otherColor,
                       ),
-                      initialValue: _formData['tempoconjuracao'],
-                      onSaved: (value) =>
-                          _formData['tempoconjuracao'] = value.toString(),
-                      decoration: const InputDecoration(
-                          border: const OutlineInputBorder(),
-                          labelText: "Tempo de Conjuração"),
                     ),
                   ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: size.height * 0.03,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: size.height * 0.03),
-                  child: SizedBox(
-                    width: size.width * 0.7,
-                    height: size.height * 0.06,
-                    child: TextFormField(
-                      style: const TextStyle(
-                        color: otherColor,
+                child: SizedBox(
+                  width: size.width * 0.7,
+                  height: size.height * 0.06,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: otherColor,
+                    ),
+                    initialValue: _formData['tempoconjuracao'],
+                    onSaved: (value) =>
+                        _formData['tempoconjuracao'] = value.toString(),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ),
+                        labelText: "Tempo de Conjuração"),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: size.height * 0.03),
+                child: SizedBox(
+                  width: size.width * 0.7,
+                  height: size.height * 0.06,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: otherColor,
+                    ),
+                    initialValue: _formData['alcance'],
+                    onSaved: (value) => _formData['alcance'] = value.toString(),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ),
+                        labelText: "Alcance"),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: size.height * 0.03),
+                child: SizedBox(
+                  width: size.width * 0.7,
+                  height: size.height * 0.06,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: otherColor,
+                    ),
+                    initialValue: _formData['duracao'],
+                    onSaved: (value) => _formData['duracao'] = value.toString(),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ),
+                        labelText: "Duração"),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: size.height * 0.03),
+                child: SizedBox(
+                  width: size.width * 0.7,
+                  height: size.height * 0.06,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: otherColor,
+                    ),
+                    initialValue: _formData['mana'],
+                    onSaved: (value) => _formData['mana'] = value.toString(),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ),
+                        labelText: "Mana"),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: size.height * 0.03),
+                child: SizedBox(
+                  width: size.width * 0.7,
+                  height: size.height * 0.06,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: otherColor,
+                    ),
+                    initialValue: _formData['dano'],
+                    onSaved: (value) => _formData['dano'] = value.toString(),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ),
+                        labelText: "Dano"),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: size.height * 0.03),
+                child: SizedBox(
+                  width: size.width * 0.7,
+                  height: size.height * 0.06,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: otherColor,
+                    ),
+                    initialValue: _formData['componente'],
+                    onSaved: (value) =>
+                        _formData['componente'] = value.toString(),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ),
+                        labelText: "Componente"),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: size.height * 0.03),
+                child: SizedBox(
+                  width: size.width * 0.7,
+                  height: size.height * 0.06,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: otherColor,
+                    ),
+                    initialValue: _formData['nivel'],
+                    onSaved: (value) => _formData['nivel'] = value.toString(),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ),
+                        labelText: "Nivel"),
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: size.height * 0.1),
+                    child: SizedBox(
+                      width: size.width * 0.25,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(secondColor)),
+                        onPressed: () {
+                          _form.currentState?.save();
+                          Provider.of<Powers>(context, listen: false).put(
+                            Power(
+                              id: _formData['id'].toString(),
+                              nome: _formData['nome'].toString(),
+                              tempoconjuracao:
+                                  _formData['tempoconjuracao'].toString(),
+                              alcance: _formData['alcance'].toString(),
+                              duracao: _formData['duracao'].toString(),
+                              mana: _formData['mana'].toString(),
+                              dano: _formData['dano'].toString(),
+                              componente: _formData['componente'].toString(),
+                              nivel: _formData['nivel'].toString(),
+                            ),
+                          );
+                          Navigator.of(context).pop();
+                        },
+                        child: isEdit
+                            ? const Text(
+                                "Salvar",
+                                style: TextStyle(
+                                  color: colorFist,
+                                ),
+                              )
+                            : const Text(
+                                "Criar",
+                                style: TextStyle(
+                                  color: colorFist,
+                                ),
+                              ),
                       ),
-                      initialValue: _formData['alcance'],
-                      onSaved: (value) =>
-                          _formData['alcance'] = value.toString(),
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(), labelText: "Alcance"),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: size.height * 0.03),
-                  child: SizedBox(
-                    width: size.width * 0.7,
-                    height: size.height * 0.06,
-                    child: TextFormField(
-                      style: const TextStyle(
-                        color: otherColor,
-                      ),
-                      initialValue: _formData['duracao'],
-                      onSaved: (value) =>
-                          _formData['duracao'] = value.toString(),
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(), labelText: "Duração"),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: size.height * 0.03),
-                  child: SizedBox(
-                    width: size.width * 0.7,
-                    height: size.height * 0.06,
-                    child: TextFormField(
-                      style: const TextStyle(
-                        color: otherColor,
-                      ),
-                      initialValue: _formData['mana'],
-                      onSaved: (value) => _formData['mana'] = value.toString(),
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(), labelText: "Mana"),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: size.height * 0.03),
-                  child: SizedBox(
-                    width: size.width * 0.7,
-                    height: size.height * 0.06,
-                    child: TextFormField(
-                      style: const TextStyle(
-                        color: otherColor,
-                      ),
-                      initialValue: _formData['dano'],
-                      onSaved: (value) => _formData['dano'] = value.toString(),
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(), labelText: "Dano"),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: size.height * 0.03),
-                  child: SizedBox(
-                    width: size.width * 0.7,
-                    height: size.height * 0.06,
-                    child: TextFormField(
-                      style: const TextStyle(
-                        color: otherColor,
-                      ),
-                      initialValue: _formData['componente'],
-                      onSaved: (value) =>
-                          _formData['componente'] = value.toString(),
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Componente"),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: size.height * 0.03),
-                  child: SizedBox(
-                    width: size.width * 0.7,
-                    height: size.height * 0.06,
-                    child: TextFormField(
-                      style: const TextStyle(
-                        color: otherColor,
-                      ),
-                      initialValue: _formData['nivel'],
-                      onSaved: (value) => _formData['nivel'] = value.toString(),
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(), labelText: "Nivel"),
-                    ),
-                  ),
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: size.height * 0.1),
-                      child: SizedBox(
-                        width: size.width * 0.25,
-                        child: ElevatedButton(
+                  Padding(
+                    padding: EdgeInsets.only(left: size.height * 0.05),
+                    child: SizedBox(
+                      width: size.width * 0.25,
+                      child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(secondColor)),
                           onPressed: () {
-                            _form.currentState?.save();
-                            Provider.of<Powers>(context, listen: false).put(
-                              Power(
-                                id: _formData['id'].toString(),
-                                nome: _formData['nome'].toString(),
-                                tempoconjuracao:
-                                    _formData['tempoconjuracao'].toString(),
-                                alcance: _formData['alcance'].toString(),
-                                duracao: _formData['duracao'].toString(),
-                                mana: _formData['mana'].toString(),
-                                dano: _formData['dano'].toString(),
-                                componente: _formData['componente'].toString(),
-                                nivel: _formData['nivel'].toString(),
-                              ),
-                            );
                             Navigator.of(context).pop();
                           },
-                          child: isEdit
-                              ? const Text(
-                                  "Salvar",
-                                  style: TextStyle(
-                                    color: colorFist,
-                                  ),
-                                )
-                              : const Text(
-                                  "Criar",
-                                  style: TextStyle(
-                                    color: colorFist,
-                                  ),
-                                ),
-                        ),
-                      ),
+                          child: const Text("Cancelar",
+                              style: TextStyle(
+                                color: colorFist,
+                              ))),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: size.height * 0.05),
-                      child: SizedBox(
-                        width: size.width * 0.25,
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(secondColor)),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text("Cancelar",
-                                style: TextStyle(
-                                  color: colorFist,
-                                ))),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),

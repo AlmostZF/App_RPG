@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/controller/service/storage_service.dart';
@@ -326,6 +327,10 @@ class _RegisterPageState extends State<RegisterScreen> {
                       child: TextFormField(
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['nivel'],
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
@@ -384,6 +389,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                       child: TextFormField(
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['forca'],
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
@@ -401,6 +407,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                       child: TextFormField(
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['destreza'],
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
@@ -421,6 +428,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                       child: TextFormField(
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['constituicao'],
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
@@ -438,6 +446,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                       child: TextFormField(
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['inteligencia'],
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
@@ -458,6 +467,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                       child: TextFormField(
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['sabedoria'],
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
@@ -475,6 +485,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                       child: TextFormField(
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['carisma'],
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
@@ -496,41 +507,48 @@ class _RegisterPageState extends State<RegisterScreen> {
             _currentstep == 2 ? "Pontos" : "",
             style: const TextStyle(color: otherColor),
           ),
-          content: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['vida'],
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: defaultColor)),
-                        labelText: "Vida",
-                      ),
-                      onSaved: (value) => _formData['vida'] = value.toString(),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['mana'],
-                      decoration: const InputDecoration(
+          content: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['vida'],
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: defaultColor)),
-                          labelText: "Mana"),
-                      onSaved: (value) => _formData['mana'] = value.toString(),
+                          labelText: "Vida",
+                        ),
+                        onSaved: (value) =>
+                            _formData['vida'] = value.toString(),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['mana'],
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Mana"),
+                        onSaved: (value) =>
+                            _formData['mana'] = value.toString(),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           isActive: _currentstep >= 2,
           state: _currentstep == 2 ? StepState.editing : StepState.complete),
