@@ -286,7 +286,7 @@ class _ModalPageState extends State<ModalPoder> {
                                 backgroundColor:
                                     MaterialStateProperty.all(secondColor)),
                             onPressed: () {
-                              //Navigator.of(context).pushNamed(AppRoutes.battleScreen);
+                              Navigator.of(context).pop();
                             },
                             child: const Text("Cancelar",
                                 style: TextStyle(
