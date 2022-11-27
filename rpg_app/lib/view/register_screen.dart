@@ -89,7 +89,7 @@ class _RegisterPageState extends State<RegisterScreen> {
 
               await storage.uploadFile(path, fileName);
 
-              dynamic download = storage.downloadURL(fileName);
+              dynamic download = await storage.downloadURL(fileName);
 
               Provider.of<Persons>(context, listen: false).put(
                 Person(
