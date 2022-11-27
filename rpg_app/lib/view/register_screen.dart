@@ -82,42 +82,6 @@ class _RegisterPageState extends State<RegisterScreen> {
         title: const Text("Cadastrar personagem"),
         backgroundColor: secondColor,
         foregroundColor: colorFist,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: () async {
-              _form.currentState?.save();
-
-              await storage.uploadFile(path, fileName);
-
-              dynamic download = await storage.downloadURL(fileName);
-
-              Provider.of<Persons>(context, listen: false).put(
-                Person(
-                  id: _formData['id'].toString(),
-                  nome: _formData['nome'].toString(),
-                  jogador: _formData['jogador'].toString(),
-                  raca: _formData['raca'].toString(),
-                  classe: _formData['classe'].toString(),
-                  nivel: _formData['nivel'].toString(),
-                  historia: _formData['historia'].toString(),
-                  ideais: _formData['ideais'].toString(),
-                  forca: _formData['forca'].toString(),
-                  destreza: _formData['destreza'].toString(),
-                  constituicao: _formData['constituicao'].toString(),
-                  inteligencia: _formData['inteligencia'].toString(),
-                  sabedoria: _formData['sabedoria'].toString(),
-                  carisma: _formData['carisma'].toString(),
-                  vida: _formData['vida'].toString(),
-                  mana: _formData['mana'].toString(),
-                  avatarUrl: download.toString(),
-                ),
-              );
-
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
       ),
       body: Form(
         key: _form,
@@ -134,15 +98,38 @@ class _RegisterPageState extends State<RegisterScreen> {
                     _currentstep = step;
                   });
                 },
-                onStepContinue: () {
-                  setState(() {
-                    if (_currentstep < _mySteps().length - 1) {
+                onStepContinue: () async {
+                  if (_currentstep < _mySteps().length - 1) {
+                    setState(() {
                       _currentstep = _currentstep + 1;
-                    } else {
-                      // if everything is completed
-                      print('completed, check field');
-                    }
-                  });
+                    });
+                  } else {
+                    _form.currentState?.save();
+                    await storage.uploadFile(path, fileName);
+                    dynamic download = await storage.downloadURL(fileName);
+                    Provider.of<Persons>(context, listen: false).put(
+                      Person(
+                        id: _formData['id'].toString(),
+                        nome: _formData['nome'].toString(),
+                        jogador: _formData['jogador'].toString(),
+                        raca: _formData['raca'].toString(),
+                        classe: _formData['classe'].toString(),
+                        nivel: _formData['nivel'].toString(),
+                        historia: _formData['historia'].toString(),
+                        ideais: _formData['ideais'].toString(),
+                        forca: _formData['forca'].toString(),
+                        destreza: _formData['destreza'].toString(),
+                        constituicao: _formData['constituicao'].toString(),
+                        inteligencia: _formData['inteligencia'].toString(),
+                        sabedoria: _formData['sabedoria'].toString(),
+                        carisma: _formData['carisma'].toString(),
+                        vida: _formData['vida'].toString(),
+                        mana: _formData['mana'].toString(),
+                        avatarUrl: download.toString(),
+                      ),
+                    );
+                    Navigator.of(context).pop();
+                  }
                 },
                 onStepCancel: () {
                   setState(() {
@@ -554,53 +541,6 @@ class _RegisterPageState extends State<RegisterScreen> {
           ),
           content: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  style: const TextStyle(color: otherColor),
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: defaultColor)),
-                      labelText: "Nome"),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: TextFormField(
-                        style: const TextStyle(color: otherColor),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: defaultColor)),
-                          labelText: "Dano / Defesa",
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: TextFormField(
-                        style: const TextStyle(color: otherColor),
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: defaultColor)),
-                            labelText: "Bônus"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
