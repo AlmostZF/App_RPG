@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            primarySwatch: defaultColorMaterial,
+            primarySwatch: secondColorMaterial,
             scaffoldBackgroundColor: backgroundColor,
             hintColor: otherColor),
         routes: {

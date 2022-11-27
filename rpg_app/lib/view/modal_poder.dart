@@ -73,16 +73,6 @@ class _ModalPageState extends State<ModalPoder> {
                             color: otherColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 20)),
-                GestureDetector(
-                  child: const Icon(
-                    Icons.delete,
-                    color: secondColor,
-                  ),
-                  onTap: () {
-                    Provider.of<Powers>(context, listen: false).remove(power);
-                    Navigator.of(context).pop();
-                  },
-                ),
                 Padding(
                     padding: EdgeInsets.only(
                         right: size.width * 0.3, top: size.width * 0.03)),
@@ -95,6 +85,9 @@ class _ModalPageState extends State<ModalPoder> {
                         width: size.width * 0.46,
                         height: size.height * 0.06,
                         child: TextFormField(
+                          style: const TextStyle(
+                            color: otherColor,
+                          ),
                           initialValue: _formData['nome'],
                           onSaved: (value) =>
                               _formData['nome'] = value.toString(),
@@ -128,6 +121,9 @@ class _ModalPageState extends State<ModalPoder> {
                     width: size.width * 0.7,
                     height: size.height * 0.06,
                     child: TextFormField(
+                      style: const TextStyle(
+                        color: otherColor,
+                      ),
                       initialValue: _formData['tempoconjuracao'],
                       onSaved: (value) =>
                           _formData['tempoconjuracao'] = value.toString(),
@@ -143,6 +139,9 @@ class _ModalPageState extends State<ModalPoder> {
                     width: size.width * 0.7,
                     height: size.height * 0.06,
                     child: TextFormField(
+                      style: const TextStyle(
+                        color: otherColor,
+                      ),
                       initialValue: _formData['alcance'],
                       onSaved: (value) =>
                           _formData['alcance'] = value.toString(),
@@ -157,6 +156,9 @@ class _ModalPageState extends State<ModalPoder> {
                     width: size.width * 0.7,
                     height: size.height * 0.06,
                     child: TextFormField(
+                      style: const TextStyle(
+                        color: otherColor,
+                      ),
                       initialValue: _formData['duracao'],
                       onSaved: (value) =>
                           _formData['duracao'] = value.toString(),
@@ -171,6 +173,9 @@ class _ModalPageState extends State<ModalPoder> {
                     width: size.width * 0.7,
                     height: size.height * 0.06,
                     child: TextFormField(
+                      style: const TextStyle(
+                        color: otherColor,
+                      ),
                       initialValue: _formData['mana'],
                       onSaved: (value) => _formData['mana'] = value.toString(),
                       decoration: const InputDecoration(
@@ -184,6 +189,9 @@ class _ModalPageState extends State<ModalPoder> {
                     width: size.width * 0.7,
                     height: size.height * 0.06,
                     child: TextFormField(
+                      style: const TextStyle(
+                        color: otherColor,
+                      ),
                       initialValue: _formData['dano'],
                       onSaved: (value) => _formData['dano'] = value.toString(),
                       decoration: const InputDecoration(
@@ -197,6 +205,9 @@ class _ModalPageState extends State<ModalPoder> {
                     width: size.width * 0.7,
                     height: size.height * 0.06,
                     child: TextFormField(
+                      style: const TextStyle(
+                        color: otherColor,
+                      ),
                       initialValue: _formData['componente'],
                       onSaved: (value) =>
                           _formData['componente'] = value.toString(),
@@ -212,6 +223,9 @@ class _ModalPageState extends State<ModalPoder> {
                     width: size.width * 0.7,
                     height: size.height * 0.06,
                     child: TextFormField(
+                      style: const TextStyle(
+                        color: otherColor,
+                      ),
                       initialValue: _formData['nivel'],
                       onSaved: (value) => _formData['nivel'] = value.toString(),
                       decoration: const InputDecoration(

@@ -267,9 +267,9 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: secondColor),
+                            borderSide: BorderSide(color: defaultColor),
                           ),
-                          hintText: "Nome",
+                          labelText: "Nome",
                         ),
                         onSaved: (value) =>
                             _formData['nome'] = value.toString(),
@@ -286,8 +286,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondColor)),
-                            hintText: "Jogador"),
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Jogador"),
                         onSaved: (value) =>
                             _formData['jogador'] = value.toString(),
                       ),
@@ -307,8 +307,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: secondColor)),
-                          hintText: "Raça",
+                              borderSide: BorderSide(color: defaultColor)),
+                          labelText: "Raça",
                         ),
                         onSaved: (value) =>
                             _formData['raca'] = value.toString(),
@@ -325,8 +325,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondColor)),
-                            hintText: "Classe"),
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Classe"),
                         onSaved: (value) =>
                             _formData['classe'] = value.toString(),
                       ),
@@ -342,8 +342,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondColor)),
-                            hintText: "Nível"),
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Nível"),
                         onSaved: (value) =>
                             _formData['nivel'] = value.toString(),
                       ),
@@ -360,8 +360,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondColor)),
-                      hintText: "História"),
+                          borderSide: BorderSide(color: defaultColor)),
+                      labelText: "História"),
                   onSaved: (value) => _formData['historia'] = value.toString(),
                 ),
               ),
@@ -373,8 +373,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondColor)),
-                      hintText: "Ideais"),
+                          borderSide: BorderSide(color: defaultColor)),
+                      labelText: "Ideais"),
                   onSaved: (value) => _formData['ideais'] = value.toString(),
                 ),
               ),
@@ -400,8 +400,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: secondColor)),
-                          hintText: "Força",
+                              borderSide: BorderSide(color: defaultColor)),
+                          labelText: "Força",
                         ),
                         onSaved: (value) =>
                             _formData['forca'] = value.toString(),
@@ -417,8 +417,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondColor)),
-                            hintText: "Destreza"),
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Destreza"),
                         onSaved: (value) =>
                             _formData['destreza'] = value.toString(),
                       ),
@@ -437,8 +437,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: secondColor)),
-                          hintText: "Constituição",
+                              borderSide: BorderSide(color: defaultColor)),
+                          labelText: "Constituição",
                         ),
                         onSaved: (value) =>
                             _formData['constituicao'] = value.toString(),
@@ -454,8 +454,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondColor)),
-                            hintText: "Inteligência"),
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Inteligência"),
                         onSaved: (value) =>
                             _formData['inteligencia'] = value.toString(),
                       ),
@@ -474,8 +474,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: secondColor)),
-                          hintText: "Sabedoria",
+                              borderSide: BorderSide(color: defaultColor)),
+                          labelText: "Sabedoria",
                         ),
                         onSaved: (value) =>
                             _formData['sabedoria'] = value.toString(),
@@ -491,8 +491,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondColor)),
-                            hintText: "Carisma"),
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Carisma"),
                         onSaved: (value) =>
                             _formData['carisma'] = value.toString(),
                       ),
@@ -520,8 +520,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: secondColor)),
-                        hintText: "Vida",
+                            borderSide: BorderSide(color: defaultColor)),
+                        labelText: "Vida",
                       ),
                       onSaved: (value) => _formData['vida'] = value.toString(),
                     ),
@@ -536,8 +536,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: secondColor)),
-                          hintText: "Mana"),
+                              borderSide: BorderSide(color: defaultColor)),
+                          labelText: "Mana"),
                       onSaved: (value) => _formData['mana'] = value.toString(),
                     ),
                   ),
@@ -561,8 +561,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondColor)),
-                      hintText: "Nome"),
+                          borderSide: BorderSide(color: defaultColor)),
+                      labelText: "Nome"),
                 ),
               ),
               Padding(
@@ -576,8 +576,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: secondColor)),
-                          hintText: "Dano / Defesa",
+                              borderSide: BorderSide(color: defaultColor)),
+                          labelText: "Dano / Defesa",
                         ),
                       ),
                     ),
@@ -591,8 +591,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondColor)),
-                            hintText: "Bônus"),
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Bônus"),
                       ),
                     ),
                   ],
@@ -608,8 +608,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondColor)),
-                      hintText: "Nome"),
+                          borderSide: BorderSide(color: defaultColor)),
+                      labelText: "Nome"),
                 ),
               ),
               Padding(
@@ -623,8 +623,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: secondColor)),
-                          hintText: "Dano / Defesa",
+                              borderSide: BorderSide(color: defaultColor)),
+                          labelText: "Dano / Defesa",
                         ),
                       ),
                     ),
@@ -638,8 +638,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondColor)),
-                            hintText: "Bônus"),
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Bônus"),
                       ),
                     ),
                   ],
@@ -655,8 +655,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondColor)),
-                      hintText: "Nome"),
+                          borderSide: BorderSide(color: defaultColor)),
+                      labelText: "Nome"),
                 ),
               ),
               Padding(
@@ -670,8 +670,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: secondColor)),
-                          hintText: "Dano / Defesa",
+                              borderSide: BorderSide(color: defaultColor)),
+                          labelText: "Dano / Defesa",
                         ),
                       ),
                     ),
@@ -685,8 +685,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondColor)),
-                            hintText: "Bônus"),
+                                borderSide: BorderSide(color: defaultColor)),
+                            labelText: "Bônus"),
                       ),
                     ),
                   ],
