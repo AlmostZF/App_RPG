@@ -151,6 +151,39 @@ class _RegisterPageState extends State<RegisterScreen> {
                     }
                   });
                 },
+                controlsBuilder:
+                    (BuildContext context, ControlsDetails details) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: <Widget>[
+                        ElevatedButton(
+                          onPressed: details.onStepContinue,
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(secondColor),
+                              foregroundColor:
+                                  MaterialStateProperty.all<Color>(colorFist)),
+                          child: Text(_currentstep < _mySteps().length - 1
+                              ? "CONTINUAR"
+                              : "SALVAR"),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        ElevatedButton(
+                          onPressed: details.onStepCancel,
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(colorFist),
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                  secondColor)),
+                          child: const Text("CANCELAR"),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ],
@@ -218,87 +251,130 @@ class _RegisterPageState extends State<RegisterScreen> {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['nome'],
-                      decoration: const InputDecoration(
-                        hintText: "Nome",
-                        fillColor: otherColor,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: TextFormField(
+                        style: const TextStyle(
+                          color: otherColor,
+                        ),
+                        initialValue: _formData['nome'],
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: secondColor),
+                          ),
+                          hintText: "Nome",
+                        ),
+                        onSaved: (value) =>
+                            _formData['nome'] = value.toString(),
                       ),
-                      onSaved: (value) => _formData['nome'] = value.toString(),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['jogador'],
-                      decoration: const InputDecoration(hintText: "Jogador"),
-                      onSaved: (value) =>
-                          _formData['jogador'] = value.toString(),
+                    const SizedBox(
+                      width: 15,
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['raca'],
-                      decoration: const InputDecoration(
-                        hintText: "Raça",
+                    Expanded(
+                      flex: 3,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['jogador'],
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondColor)),
+                            hintText: "Jogador"),
+                        onSaved: (value) =>
+                            _formData['jogador'] = value.toString(),
                       ),
-                      onSaved: (value) => _formData['raca'] = value.toString(),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['classe'],
-                      decoration: const InputDecoration(hintText: "Classe"),
-                      onSaved: (value) =>
-                          _formData['classe'] = value.toString(),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['nivel'],
-                      decoration: const InputDecoration(hintText: "Nível"),
-                      onSaved: (value) => _formData['nivel'] = value.toString(),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              TextFormField(
-                style: const TextStyle(color: otherColor),
-                initialValue: _formData['historia'],
-                maxLines: 4,
-                decoration: const InputDecoration(hintText: "História"),
-                onSaved: (value) => _formData['historia'] = value.toString(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['raca'],
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: secondColor)),
+                          hintText: "Raça",
+                        ),
+                        onSaved: (value) =>
+                            _formData['raca'] = value.toString(),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['classe'],
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondColor)),
+                            hintText: "Classe"),
+                        onSaved: (value) =>
+                            _formData['classe'] = value.toString(),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['nivel'],
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondColor)),
+                            hintText: "Nível"),
+                        onSaved: (value) =>
+                            _formData['nivel'] = value.toString(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              TextFormField(
-                style: const TextStyle(color: otherColor),
-                initialValue: _formData['ideais'],
-                decoration: const InputDecoration(hintText: "Ideais"),
-                onSaved: (value) => _formData['ideais'] = value.toString(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: const TextStyle(color: otherColor),
+                  initialValue: _formData['historia'],
+                  maxLines: 4,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: secondColor)),
+                      hintText: "História"),
+                  onSaved: (value) => _formData['historia'] = value.toString(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: const TextStyle(color: otherColor),
+                  initialValue: _formData['ideais'],
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: secondColor)),
+                      hintText: "Ideais"),
+                  onSaved: (value) => _formData['ideais'] = value.toString(),
+                ),
               ),
             ],
           ),
@@ -311,86 +387,116 @@ class _RegisterPageState extends State<RegisterScreen> {
           ),
           content: Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['forca'],
-                      decoration: const InputDecoration(
-                        hintText: "Força",
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['forca'],
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: secondColor)),
+                          hintText: "Força",
+                        ),
+                        onSaved: (value) =>
+                            _formData['forca'] = value.toString(),
                       ),
-                      onSaved: (value) => _formData['forca'] = value.toString(),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['destreza'],
-                      decoration: const InputDecoration(hintText: "Destreza"),
-                      onSaved: (value) =>
-                          _formData['destreza'] = value.toString(),
+                    const SizedBox(
+                      width: 15,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['destreza'],
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondColor)),
+                            hintText: "Destreza"),
+                        onSaved: (value) =>
+                            _formData['destreza'] = value.toString(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['constituicao'],
-                      decoration: const InputDecoration(
-                        hintText: "Constituição",
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['constituicao'],
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: secondColor)),
+                          hintText: "Constituição",
+                        ),
+                        onSaved: (value) =>
+                            _formData['constituicao'] = value.toString(),
                       ),
-                      onSaved: (value) =>
-                          _formData['constituicao'] = value.toString(),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['inteligencia'],
-                      decoration:
-                          const InputDecoration(hintText: "Inteligência"),
-                      onSaved: (value) =>
-                          _formData['inteligencia'] = value.toString(),
+                    const SizedBox(
+                      width: 15,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['inteligencia'],
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondColor)),
+                            hintText: "Inteligência"),
+                        onSaved: (value) =>
+                            _formData['inteligencia'] = value.toString(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['sabedoria'],
-                      decoration: const InputDecoration(
-                        hintText: "Sabedoria",
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['sabedoria'],
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: secondColor)),
+                          hintText: "Sabedoria",
+                        ),
+                        onSaved: (value) =>
+                            _formData['sabedoria'] = value.toString(),
                       ),
-                      onSaved: (value) =>
-                          _formData['sabedoria'] = value.toString(),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      initialValue: _formData['carisma'],
-                      decoration: const InputDecoration(hintText: "Carisma"),
-                      onSaved: (value) =>
-                          _formData['carisma'] = value.toString(),
+                    const SizedBox(
+                      width: 15,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        initialValue: _formData['carisma'],
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondColor)),
+                            hintText: "Carisma"),
+                        onSaved: (value) =>
+                            _formData['carisma'] = value.toString(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -410,6 +516,9 @@ class _RegisterPageState extends State<RegisterScreen> {
                       style: const TextStyle(color: otherColor),
                       initialValue: _formData['vida'],
                       decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: secondColor)),
                         hintText: "Vida",
                       ),
                       onSaved: (value) => _formData['vida'] = value.toString(),
@@ -422,7 +531,11 @@ class _RegisterPageState extends State<RegisterScreen> {
                     child: TextFormField(
                       style: const TextStyle(color: otherColor),
                       initialValue: _formData['mana'],
-                      decoration: const InputDecoration(hintText: "Mana"),
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: secondColor)),
+                          hintText: "Mana"),
                       onSaved: (value) => _formData['mana'] = value.toString(),
                     ),
                   ),
@@ -439,92 +552,143 @@ class _RegisterPageState extends State<RegisterScreen> {
           ),
           content: Column(
             children: [
-              TextFormField(
-                style: const TextStyle(color: otherColor),
-                decoration: const InputDecoration(hintText: "Nome"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: const TextStyle(color: otherColor),
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: secondColor)),
+                      hintText: "Nome"),
+                ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      decoration: const InputDecoration(
-                        hintText: "Dano / Defesa",
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: secondColor)),
+                          hintText: "Dano / Defesa",
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      decoration: const InputDecoration(hintText: "Bônus"),
+                    const SizedBox(
+                      width: 15,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      flex: 2,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondColor)),
+                            hintText: "Bônus"),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 25,
               ),
-              TextFormField(
-                style: const TextStyle(color: otherColor),
-                decoration: const InputDecoration(hintText: "Nome"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: const TextStyle(color: otherColor),
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: secondColor)),
+                      hintText: "Nome"),
+                ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      decoration: const InputDecoration(
-                        hintText: "Dano / Defesa",
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: secondColor)),
+                          hintText: "Dano / Defesa",
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      decoration: const InputDecoration(hintText: "Bônus"),
+                    const SizedBox(
+                      width: 15,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      flex: 2,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondColor)),
+                            hintText: "Bônus"),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 25,
               ),
-              TextFormField(
-                style: const TextStyle(color: otherColor),
-                decoration: const InputDecoration(hintText: "Nome"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: const TextStyle(color: otherColor),
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: secondColor)),
+                      hintText: "Nome"),
+                ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      decoration: const InputDecoration(
-                        hintText: "Dano / Defesa",
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: secondColor)),
+                          hintText: "Dano / Defesa",
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: TextFormField(
-                      style: const TextStyle(color: otherColor),
-                      decoration: const InputDecoration(hintText: "Bônus"),
+                    const SizedBox(
+                      width: 15,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      flex: 2,
+                      child: TextFormField(
+                        style: const TextStyle(color: otherColor),
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondColor)),
+                            hintText: "Bônus"),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

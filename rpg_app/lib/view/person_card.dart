@@ -17,12 +17,12 @@ class PersomCard extends StatelessWidget {
         ? const CircleAvatar(
             child: Icon(
               Icons.person,
-              size: 25,
+              size: 27,
             ),
-            radius: 25,
+            radius: 27,
           )
         : CircleAvatar(
-            radius: 25,
+            radius: 27,
             backgroundImage: NetworkImage(person.avatarUrl),
           );
     return Padding(

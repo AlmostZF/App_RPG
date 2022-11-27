@@ -15,7 +15,7 @@ class ModalPoder extends StatefulWidget {
 class _ModalPageState extends State<ModalPoder> {
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
-
+  bool isEdit = false;
   final Power power;
   _ModalPageState(this.power);
 
@@ -46,6 +46,7 @@ class _ModalPageState extends State<ModalPoder> {
   Widget build(BuildContext context) {
     try {
       final power = ModalRoute.of(context)?.settings.arguments as Power;
+      isEdit = true;
       _loadFormData(power);
     } catch (e) {
       print(e);
@@ -61,11 +62,27 @@ class _ModalPageState extends State<ModalPoder> {
             key: _form,
             child: Column(
               children: [
-                const Text('Adicionar poder',
-                    style: TextStyle(
-                        color: otherColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20)),
+                isEdit
+                    ? const Text('Editar poder',
+                        style: TextStyle(
+                            color: otherColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20))
+                    : const Text('Adicionar poder',
+                        style: TextStyle(
+                            color: otherColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20)),
+                GestureDetector(
+                  child: const Icon(
+                    Icons.delete,
+                    color: secondColor,
+                  ),
+                  onTap: () {
+                    Provider.of<Powers>(context, listen: false).remove(power);
+                    Navigator.of(context).pop();
+                  },
+                ),
                 Padding(
                     padding: EdgeInsets.only(
                         right: size.width * 0.3, top: size.width * 0.03)),
@@ -81,8 +98,8 @@ class _ModalPageState extends State<ModalPoder> {
                           initialValue: _formData['nome'],
                           onSaved: (value) =>
                               _formData['nome'] = value.toString(),
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                          decoration: const InputDecoration(
+                              border: const OutlineInputBorder(),
                               labelText: "Nome do Poder"),
                         ),
                       ),
@@ -114,8 +131,8 @@ class _ModalPageState extends State<ModalPoder> {
                       initialValue: _formData['tempoconjuracao'],
                       onSaved: (value) =>
                           _formData['tempoconjuracao'] = value.toString(),
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
+                      decoration: const InputDecoration(
+                          border: const OutlineInputBorder(),
                           labelText: "Tempo de Conjuração"),
                     ),
                   ),
@@ -129,7 +146,7 @@ class _ModalPageState extends State<ModalPoder> {
                       initialValue: _formData['alcance'],
                       onSaved: (value) =>
                           _formData['alcance'] = value.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border: OutlineInputBorder(), labelText: "Alcance"),
                     ),
                   ),
@@ -143,7 +160,7 @@ class _ModalPageState extends State<ModalPoder> {
                       initialValue: _formData['duracao'],
                       onSaved: (value) =>
                           _formData['duracao'] = value.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border: OutlineInputBorder(), labelText: "Duração"),
                     ),
                   ),
@@ -156,7 +173,7 @@ class _ModalPageState extends State<ModalPoder> {
                     child: TextFormField(
                       initialValue: _formData['mana'],
                       onSaved: (value) => _formData['mana'] = value.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border: OutlineInputBorder(), labelText: "Mana"),
                     ),
                   ),
@@ -169,7 +186,7 @@ class _ModalPageState extends State<ModalPoder> {
                     child: TextFormField(
                       initialValue: _formData['dano'],
                       onSaved: (value) => _formData['dano'] = value.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border: OutlineInputBorder(), labelText: "Dano"),
                     ),
                   ),
@@ -183,7 +200,7 @@ class _ModalPageState extends State<ModalPoder> {
                       initialValue: _formData['componente'],
                       onSaved: (value) =>
                           _formData['componente'] = value.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: "Componente"),
                     ),
@@ -197,7 +214,7 @@ class _ModalPageState extends State<ModalPoder> {
                     child: TextFormField(
                       initialValue: _formData['nivel'],
                       onSaved: (value) => _formData['nivel'] = value.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border: OutlineInputBorder(), labelText: "Nivel"),
                     ),
                   ),
@@ -209,32 +226,41 @@ class _ModalPageState extends State<ModalPoder> {
                       child: SizedBox(
                         width: size.width * 0.25,
                         child: ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(secondColor)),
-                            onPressed: () {
-                              _form.currentState?.save();
-                              Provider.of<Powers>(context, listen: false).put(
-                                Power(
-                                  id: _formData['id'].toString(),
-                                  nome: _formData['nome'].toString(),
-                                  tempoconjuracao:
-                                      _formData['tempoconjuracao'].toString(),
-                                  alcance: _formData['alcance'].toString(),
-                                  duracao: _formData['duracao'].toString(),
-                                  mana: _formData['mana'].toString(),
-                                  dano: _formData['dano'].toString(),
-                                  componente:
-                                      _formData['componente'].toString(),
-                                  nivel: _formData['nivel'].toString(),
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(secondColor)),
+                          onPressed: () {
+                            _form.currentState?.save();
+                            Provider.of<Powers>(context, listen: false).put(
+                              Power(
+                                id: _formData['id'].toString(),
+                                nome: _formData['nome'].toString(),
+                                tempoconjuracao:
+                                    _formData['tempoconjuracao'].toString(),
+                                alcance: _formData['alcance'].toString(),
+                                duracao: _formData['duracao'].toString(),
+                                mana: _formData['mana'].toString(),
+                                dano: _formData['dano'].toString(),
+                                componente: _formData['componente'].toString(),
+                                nivel: _formData['nivel'].toString(),
+                              ),
+                            );
+                            Navigator.of(context).pop();
+                          },
+                          child: isEdit
+                              ? const Text(
+                                  "Salvar",
+                                  style: TextStyle(
+                                    color: colorFist,
+                                  ),
+                                )
+                              : const Text(
+                                  "Criar",
+                                  style: TextStyle(
+                                    color: colorFist,
+                                  ),
                                 ),
-                              );
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text("Criar",
-                                style: TextStyle(
-                                  color: colorFist,
-                                ))),
+                        ),
                       ),
                     ),
                     Padding(
@@ -248,7 +274,7 @@ class _ModalPageState extends State<ModalPoder> {
                             onPressed: () {
                               //Navigator.of(context).pushNamed(AppRoutes.battleScreen);
                             },
-                            child: const Text("Limpar",
+                            child: const Text("Cancelar",
                                 style: TextStyle(
                                   color: colorFist,
                                 ))),
