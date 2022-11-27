@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/controller/service/storage_service.dart';
 import 'package:rpg_app/model/person_model.dart';
+import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -112,6 +113,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                   avatarUrl: download.toString(),
                 ),
               );
+
               Navigator.of(context).pop();
             },
           ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/controller/service/person_service.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
@@ -26,6 +28,8 @@ class _PersonScreenState extends State<PersonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Persons persons = Provider.of(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: secondColor,
@@ -55,8 +59,10 @@ class _PersonScreenState extends State<PersonScreen> {
                     return CircularProgressIndicator();
                   default:
                     return ListView.builder(
-                      itemCount: snapshot.data?.length,
-                      itemBuilder: (ctx, i) => PersomCard(snapshot.data![i]),
+                      itemCount: persons.count,
+                      itemBuilder: (ctx, i) => PersomCard(
+                        persons.byIndex(i),
+                      ),
                     );
                 }
               })),
