@@ -77,11 +77,9 @@ class PersomCard extends StatelessWidget {
                               ),
                               onPressed: () {
                                 _form.currentState?.save();
-
                                 _futureCampaign =
                                     _campaignService.fetchCampaign(
                                         _formData['idSala'].toString());
-
                                 _futureCampaign.then((value) =>
                                     (Provider.of<Campaigns>(context,
                                             listen: false)
@@ -94,13 +92,12 @@ class PersomCard extends StatelessWidget {
                                             value.pAtivos + " ${person.id} ,",
                                       ),
                                     )));
-
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => BattleScreen(
-                                //               person,
-                                //             )));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => BattleScreen(
+                                              person,
+                                            )));
                               },
                             ),
                             ElevatedButton(

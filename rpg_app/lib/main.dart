@@ -51,7 +51,12 @@ class MyApp extends StatelessWidget {
           AppRoutes.campaignForm: (_) => const RegisterCampaignScreen(),
           AppRoutes.personScreen: (_) => const PersonScreen(),
           AppRoutes.roomsScreen: (_) => const CampaignsScreen(),
-          AppRoutes.masterScreen: (_) => const MasterScreen(),
+          AppRoutes.masterScreen: (_) => MasterScreen(Campaign(
+                descricao: "",
+                id: "",
+                nome: "",
+                pAtivos: "",
+              )),
           AppRoutes.modalForm: (_) => ModalPoder(Power(
                 alcance: "",
                 componente: "",

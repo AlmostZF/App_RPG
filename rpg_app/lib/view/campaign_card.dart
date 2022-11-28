@@ -4,6 +4,7 @@ import 'package:rpg_app/controller/campaign_controller.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
+import 'package:rpg_app/view/master_screen.dart';
 
 class CampaignCard extends StatelessWidget {
   final Campaign campaign;
@@ -50,9 +51,12 @@ class CampaignCard extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushNamed(
-                          AppRoutes.masterScreen,
-                        );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MasterScreen(
+                                      campaign,
+                                    )));
                       },
                     )
                   ],
