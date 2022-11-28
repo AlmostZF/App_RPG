@@ -32,14 +32,63 @@ class PersomCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
-            splashColor: const Color(0xFFFFC62F),
+            splashColor: secondColor,
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => BattleScreen(
-                            person,
-                          )));
+              showDialog(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                        backgroundColor: defaultColor,
+                        title: Text(
+                          "Entrar com: ${person.nome}",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        content: TextFormField(
+                          style: const TextStyle(
+                            color: otherColor,
+                          ),
+                          //initialValue: _formData['nome'],
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: backgroundColor),
+                            ),
+                            labelText: "ID da sala",
+                          ),
+                          //onSaved: (value) =>
+                          //_formData['idSala'] = value.toString(),
+                        ),
+                        actions: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: secondColor,
+                            ),
+                            child: const Text(
+                              "Entrar",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => BattleScreen(
+                                            person,
+                                          )));
+                            },
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: secondColor,
+                            ),
+                            child: const Text(
+                              "Cancelar",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      ));
             },
             child: ListTile(
               leading: avatar,
@@ -65,7 +114,7 @@ class PersomCard extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      color: const Color(0xFFFFC62F),
+                      color: secondColor,
                       icon: const Icon(Icons.delete),
                       onPressed: () {
                         showDialog(
@@ -83,7 +132,7 @@ class PersomCard extends StatelessWidget {
                             actions: [
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(0xFFFFC62F),
+                                  primary: secondColor,
                                 ),
                                 child: const Text(
                                   "Não",
@@ -95,7 +144,7 @@ class PersomCard extends StatelessWidget {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(0xFFFFC62F),
+                                  primary: secondColor,
                                 ),
                                 child: const Text(
                                   "Sim",
