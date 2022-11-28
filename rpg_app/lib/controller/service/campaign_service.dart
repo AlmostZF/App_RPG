@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:rpg_app/model/campaign_model.dart';
 
 class CampaignService {
-  Future<Campaign> fetchCampaign(Campaign campaign) async {
+  Future<Campaign> fetchCampaign(String id) async {
     var uri = Uri.parse(
-        'https://stdrpg-default-rtdb.firebaseio.com/campaign/${campaign.id}.json');
+        'https://stdrpg-default-rtdb.firebaseio.com/campaign/${id}.json');
     final response = await http.get(uri);
 
     return Campaign.fromJson(json.decode(response.body));

@@ -41,7 +41,6 @@ class Campaigns with ChangeNotifier {
       );
     } else {
       final id = Random().nextInt(33333333).toString();
-
       final finalp = Campaign(
           id: id,
           nome: campaign.nome,

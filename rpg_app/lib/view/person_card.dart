@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/campaign_controller.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/controller/service/campaign_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
@@ -15,6 +16,8 @@ class PersomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CampaignService _campaignService = CampaignService();
+    late Future<Campaign> _futureCampaign;
     final _form = GlobalKey<FormState>();
     final Map<String, String> _formData = {};
 
@@ -73,16 +76,25 @@ class PersomCard extends StatelessWidget {
                                 style: TextStyle(color: Colors.black),
                               ),
                               onPressed: () {
-                                Provider.of<Campaigns>(context, listen: false)
-                                    .put(
-                                  Campaign(
-                                    id: "7566107",
-                                    nome: _formData['nome'].toString(),
-                                    descricao:
-                                        _formData['descricao'].toString(),
-                                    pAtivos: person.id,
-                                  ),
-                                );
+                                _form.currentState?.save();
+
+                                _futureCampaign =
+                                    _campaignService.fetchCampaign(
+                                        _formData['idSala'].toString());
+
+                                _futureCampaign.then((value) =>
+                                    (Provider.of<Campaigns>(context,
+                                            listen: false)
+                                        .put(
+                                      Campaign(
+                                        id: _formData['idSala'].toString(),
+                                        nome: value.nome,
+                                        descricao: value.descricao,
+                                        pAtivos:
+                                            value.pAtivos + " ${person.id} ,",
+                                      ),
+                                    )));
+
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(
