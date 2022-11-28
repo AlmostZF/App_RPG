@@ -93,7 +93,7 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
               id: _formData['id'].toString(),
               nome: _formData['nome'].toString(),
               descricao: _formData['descricao'].toString(),
-              pAtivos: _formData['pAtivos'].toString(),
+              pAtivos: "",
             ),
           );
           Navigator.of(context).pop();

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rpg_app/controller/campaign_controller.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/model/person_model.dart';
@@ -13,6 +15,9 @@ class PersomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _form = GlobalKey<FormState>();
+    final Map<String, String> _formData = {};
+
     final avatar = person.avatarUrl.isEmpty
         ? const CircleAvatar(
             child: Icon(
@@ -36,58 +41,70 @@ class PersomCard extends StatelessWidget {
             onTap: () {
               showDialog(
                   context: context,
-                  builder: (ctx) => AlertDialog(
-                        backgroundColor: defaultColor,
-                        title: Text(
-                          "Entrar na campanha com: ${person.nome}",
-                          style: TextStyle(color: otherColor),
+                  builder: (ctx) => Form(
+                        key: _form,
+                        child: AlertDialog(
+                          backgroundColor: defaultColor,
+                          title: Text(
+                            "Entrar na campanha com: ${person.nome}",
+                            style: TextStyle(color: otherColor),
+                          ),
+                          content: TextFormField(
+                            style: const TextStyle(
+                              color: otherColor,
+                            ),
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: backgroundColor),
+                              ),
+                              labelText: "ID da sala",
+                            ),
+                            onSaved: (value) =>
+                                _formData['idSala'] = value.toString(),
+                          ),
+                          actions: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: secondColor,
+                              ),
+                              child: const Text(
+                                "Entrar",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              onPressed: () {
+                                Provider.of<Campaigns>(context, listen: false)
+                                    .put(
+                                  Campaign(
+                                    id: "7566107",
+                                    nome: _formData['nome'].toString(),
+                                    descricao:
+                                        _formData['descricao'].toString(),
+                                    pAtivos: person.id,
+                                  ),
+                                );
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => BattleScreen(
+                                //               person,
+                                //             )));
+                              },
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: secondColor,
+                              ),
+                              child: const Text(
+                                "Cancelar",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
                         ),
-                        content: TextFormField(
-                          style: const TextStyle(
-                            color: otherColor,
-                          ),
-                          //initialValue: _formData['nome'],
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: backgroundColor),
-                            ),
-                            labelText: "ID da sala",
-                          ),
-                          //onSaved: (value) =>
-                          //_formData['idSala'] = value.toString(),
-                        ),
-                        actions: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: secondColor,
-                            ),
-                            child: const Text(
-                              "Entrar",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => BattleScreen(
-                                            person,
-                                          )));
-                            },
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: secondColor,
-                            ),
-                            child: const Text(
-                              "Cancelar",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
                       ));
             },
             child: ListTile(

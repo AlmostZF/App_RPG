@@ -15,7 +15,7 @@ class Campaign {
         id: json['id'],
         nome: json['nome'],
         descricao: json['descricao'],
-        pAtivos: json['p_ativos'],
+        pAtivos: json['pAtivos'],
       );
 
   Map<String, dynamic> toJson() {
@@ -23,7 +23,7 @@ class Campaign {
     data['id'] = id;
     data['nome'] = nome;
     data['descricao'] = descricao;
-    data['pativos'] = pAtivos;
+    data['pAtivos'] = pAtivos;
 
     return data;
   }
