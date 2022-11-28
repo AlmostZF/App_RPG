@@ -25,6 +25,8 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
       _formData['nome'] = campaing.nome;
       descricao:
       _formData['descricao'] = campaing.descricao;
+      pAtivos:
+      _formData['pAtivos'] = campaing.pAtivos;
     }
   }
 
@@ -86,15 +88,26 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
         backgroundColor: secondColor,
         onPressed: () {
           _form.currentState?.save();
-
           Provider.of<Campaigns>(context, listen: false).put(
             Campaign(
               id: _formData['id'].toString(),
               nome: _formData['nome'].toString(),
               descricao: _formData['descricao'].toString(),
+              pAtivos: _formData['pAtivos'].toString(),
             ),
           );
           Navigator.of(context).pop();
+          showDialog(
+              context: context,
+              builder: (ctx) => AlertDialog(
+                  backgroundColor: defaultColor,
+                  title: Text(
+                    "Campanha criada!",
+                    style: TextStyle(color: otherColor),
+                  ),
+                  content: Text(
+                      "O código da sala é: ${Provider.of<Campaigns>(context, listen: false).all.last.id}",
+                      style: TextStyle(color: otherColor))));
         },
         child: const Icon(
           Icons.save,

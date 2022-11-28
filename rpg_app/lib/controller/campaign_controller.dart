@@ -34,19 +34,19 @@ class Campaigns with ChangeNotifier {
       _itemsCampaign.update(
         campaign.id,
         (_) => Campaign(
-          id: campaign.id,
-          nome: campaign.nome,
-          descricao: campaign.descricao,
-        ),
+            id: campaign.id,
+            nome: campaign.nome,
+            descricao: campaign.descricao,
+            pAtivos: campaign.pAtivos),
       );
     } else {
       final id = Random().nextInt(33333333).toString();
 
       final finalp = Campaign(
-        id: id,
-        nome: campaign.nome,
-        descricao: campaign.descricao,
-      );
+          id: id,
+          nome: campaign.nome,
+          descricao: campaign.descricao,
+          pAtivos: campaign.pAtivos);
 
       postSingleCampaing(finalp, id);
 
@@ -98,6 +98,7 @@ class Campaigns with ChangeNotifier {
             id: data["id"],
             nome: data["nome"],
             descricao: data["descricao"],
+            pAtivos: data['pAtivos'],
           ),
         );
         notifyListeners();

@@ -7,4 +7,5 @@ class AppRoutes {
   static const roomsScreen = "/rooms-screen";
   static const roomForm = "/room-form";
   static const modalForm = "/modal-form";
+  static const masterScreen = "/master-screen";
 }

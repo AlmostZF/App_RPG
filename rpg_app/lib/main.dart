@@ -8,6 +8,7 @@ import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/style/colors.dart';
+import 'package:rpg_app/view/master_screen.dart';
 import 'package:rpg_app/view/modal_poder.dart';
 import 'package:rpg_app/view/campaigns_screen.dart';
 import 'package:rpg_app/view/homePage.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.campaignForm: (_) => const RegisterCampaignScreen(),
           AppRoutes.personScreen: (_) => const PersonScreen(),
           AppRoutes.roomsScreen: (_) => const CampaignsScreen(),
+          AppRoutes.masterScreen: (_) => const MasterScreen(),
           AppRoutes.modalForm: (_) => ModalPoder(Power(
                 alcance: "",
                 componente: "",

@@ -23,10 +23,10 @@ class CampaignService {
     _list.forEach((id, data) {
       _listCampaigns.add(
         Campaign(
-          id: data["id"],
-          nome: data["nome"],
-          descricao: data["descricao"],
-        ),
+            id: data["id"],
+            nome: data["nome"],
+            descricao: data["descricao"],
+            pAtivos: data["pAtivos"]),
       );
     });
 

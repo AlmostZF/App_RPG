@@ -39,8 +39,8 @@ class PersomCard extends StatelessWidget {
                   builder: (ctx) => AlertDialog(
                         backgroundColor: defaultColor,
                         title: Text(
-                          "Entrar com: ${person.nome}",
-                          style: TextStyle(color: Colors.white),
+                          "Entrar na campanha com: ${person.nome}",
+                          style: TextStyle(color: otherColor),
                         ),
                         content: TextFormField(
                           style: const TextStyle(

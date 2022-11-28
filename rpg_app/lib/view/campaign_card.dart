@@ -49,7 +49,11 @@ class CampaignCard extends StatelessWidget {
                         "Sim",
                         style: TextStyle(color: Colors.black),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                          AppRoutes.masterScreen,
+                        );
+                      },
                     )
                   ],
                 ),
