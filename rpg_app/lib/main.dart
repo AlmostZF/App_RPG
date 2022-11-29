@@ -1,16 +1,19 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:rpg_app/controller/campaign_controller.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/controller/power_controller.dart';
+import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/style/colors.dart';
+import 'package:rpg_app/view/master_screen.dart';
 import 'package:rpg_app/view/modal_poder.dart';
-import 'package:rpg_app/view/rooms_screen.dart';
+import 'package:rpg_app/view/campaigns_screen.dart';
 import 'package:rpg_app/view/homePage.dart';
 import 'package:rpg_app/view/persons_screen.dart';
-import 'package:rpg_app/view/register_room_screen.dart';
+import 'package:rpg_app/view/register_campaign_screen.dart';
 import 'package:rpg_app/view/register_screen.dart';
 import 'package:rpg_app/view/splash_screen.dart';
 
@@ -32,6 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (ctx) => Powers(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Campaigns(),
         )
       ],
       child: MaterialApp(
@@ -45,10 +51,18 @@ class MyApp extends StatelessWidget {
           AppRoutes.splashScreen: (_) => const SplashScreen(),
           AppRoutes.home: (_) => const HomePage(),
           AppRoutes.persomForm: (_) => const RegisterScreen(),
-          AppRoutes.personScreen: (_) => const PersonScreen(),
-          AppRoutes.roomsScreen: (_) => const RoomsScreen(),
-          AppRoutes.roomForm: (_) => const RegisterRoomScreen(),
-          AppRoutes.modalForm: (_) => const ModalPoder(Power(
+          AppRoutes.campaignForm: (_) => const RegisterCampaignScreen(),
+          AppRoutes.roomsScreen: (_) => const CampaignsScreen(),
+          AppRoutes.masterScreen: (_) => MasterScreen(Campaign(
+                descricao: "",
+                id: "",
+                nome: "",
+                pAtivos: "",
+              )),
+          AppRoutes.modalForm: (_) => ModalPoder(Power(
+          //AppRoutes.roomsScreen: (_) => const RoomsScreen(),
+          //AppRoutes.roomForm: (_) => const RegisterRoomScreen(),
+          //AppRoutes.modalForm: (_) => const ModalPoder(Power(
                 alcance: "",
                 componente: "",
                 dano: "",

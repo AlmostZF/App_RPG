@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:rpg_app/model/person_model.dart';
 
 class PersonService {
-  Future<Person> fetchPerson(Person person) async {
+  Future<Person> fetchPerson(String id) async {
     var uri = Uri.parse(
-        'https://stdrpg-default-rtdb.firebaseio.com/person/${person.id}.json');
+        'https://stdrpg-default-rtdb.firebaseio.com/person/${id}.json');
     final response = await http.get(uri);
 
     return Person.fromJson(json.decode(response.body));
@@ -18,10 +18,10 @@ class PersonService {
     final response = await http.get(uri);
     Map<String, dynamic> _list = json.decode(response.body);
 
-    List<Person> _listJogos = [];
+    List<Person> _listPersons = [];
 
     _list.forEach((id, data) {
-      _listJogos.add(
+      _listPersons.add(
         Person(
           avatarUrl: data["avatarUrl"],
           carisma: data["carisma"],
@@ -44,6 +44,6 @@ class PersonService {
       );
     });
 
-    return _listJogos;
+    return _listPersons;
   }
 }

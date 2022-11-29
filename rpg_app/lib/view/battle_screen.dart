@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
+import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/controller/power_controller.dart';
 import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
@@ -19,7 +20,6 @@ class BattleScreen extends StatefulWidget {
   final Person person;
   const BattleScreen(this.person);
 
-  @override
   State<BattleScreen> createState() => _BattleScreenState(person);
 }
 

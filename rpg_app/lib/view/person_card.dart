@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rpg_app/controller/campaign_controller.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/controller/service/campaign_service.dart';
+import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/model/person_model.dart';
@@ -13,6 +16,11 @@ class PersomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CampaignService _campaignService = CampaignService();
+    late Future<Campaign> _futureCampaign;
+    final _form = GlobalKey<FormState>();
+    final Map<String, String> _formData = {};
+
     final avatar = person.avatarUrl.isEmpty
         ? const CircleAvatar(
             child: Icon(
@@ -32,14 +40,85 @@ class PersomCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
-            splashColor: const Color(0xFFFFC62F),
+            splashColor: secondColor,
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => BattleScreen(
-                            person,
-                          )));
+              showDialog(
+                  context: context,
+                  builder: (ctx) => Form(
+                        key: _form,
+                        child: AlertDialog(
+                          backgroundColor: defaultColor,
+                          title: Text(
+                            "Entrar na campanha com: ${person.nome}",
+                            style: TextStyle(color: otherColor),
+                          ),
+                          content: TextFormField(
+                            style: const TextStyle(
+                              color: otherColor,
+                            ),
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: backgroundColor),
+                              ),
+                              labelText: "ID da sala",
+                            ),
+                            onSaved: (value) =>
+                                _formData['idSala'] = value.toString(),
+                          ),
+                          actions: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: secondColor,
+                              ),
+                              child: const Text(
+                                "Entrar",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              onPressed: () {
+                                _form.currentState?.save();
+                                _futureCampaign =
+                                    _campaignService.fetchCampaign(
+                                        _formData['idSala'].toString());
+                                _futureCampaign.then((value) => (Provider.of<
+                                        Campaigns>(context, listen: false)
+                                    .put(value.pAtivos == ""
+                                        ? Campaign(
+                                            id: _formData['idSala'].toString(),
+                                            nome: value.nome,
+                                            descricao: value.descricao,
+                                            pAtivos: "${person.id},",
+                                          )
+                                        : Campaign(
+                                            id: _formData['idSala'].toString(),
+                                            nome: value.nome,
+                                            descricao: value.descricao,
+                                            pAtivos:
+                                                "${value.pAtivos}${person.id},",
+                                          ))));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => BattleScreen(
+                                              person,
+                                            )));
+                              },
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: secondColor,
+                              ),
+                              child: const Text(
+                                "Cancelar",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        ),
+                      ));
             },
             child: ListTile(
               leading: avatar,
@@ -65,7 +144,7 @@ class PersomCard extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      color: const Color(0xFFFFC62F),
+                      color: secondColor,
                       icon: const Icon(Icons.delete),
                       onPressed: () {
                         showDialog(
@@ -83,7 +162,7 @@ class PersomCard extends StatelessWidget {
                             actions: [
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(0xFFFFC62F),
+                                  primary: secondColor,
                                 ),
                                 child: const Text(
                                   "Não",
@@ -95,7 +174,7 @@ class PersomCard extends StatelessWidget {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: const Color(0xFFFFC62F),
+                                  primary: secondColor,
                                 ),
                                 child: const Text(
                                   "Sim",
