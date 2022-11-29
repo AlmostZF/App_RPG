@@ -7,8 +7,8 @@ const defaultColor = Color(0xFF432986);
 const otherColor = Color(0xFFFFFFFF);
 
 MaterialColor defaultColorMaterial = MaterialColor(
-  Color.fromRGBO(67, 41, 134, 1).value,
-  <int, Color>{
+ const Color.fromRGBO(67, 41, 134, 1).value,
+ const <int, Color>{
     50: Color.fromRGBO(67, 41, 134, 0.1),
     100: Color.fromRGBO(67, 41, 134, 0.2),
     200: Color.fromRGBO(67, 41, 134, 0.3),
@@ -22,8 +22,8 @@ MaterialColor defaultColorMaterial = MaterialColor(
   },
 );
 MaterialColor secondColorMaterial = MaterialColor(
-  Color.fromARGB(255, 255, 198, 47).value,
-  <int, Color>{
+ const Color.fromARGB(255, 255, 198, 47).value,
+  const <int, Color>{
     50: Color.fromRGBO(67, 41, 134, 0.1),
     100: Color.fromRGBO(67, 41, 134, 0.2),
     200: Color.fromRGBO(67, 41, 134, 0.3),
