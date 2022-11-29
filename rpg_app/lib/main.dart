@@ -24,7 +24,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -51,13 +50,13 @@ class MyApp extends StatelessWidget {
           AppRoutes.campaignForm: (_) => const RegisterCampaignScreen(),
           AppRoutes.personScreen: (_) => const PersonScreen(),
           AppRoutes.roomsScreen: (_) => const CampaignsScreen(),
-          AppRoutes.masterScreen: (_) => MasterScreen(Campaign(
+          AppRoutes.masterScreen: (_) => const MasterScreen(Campaign(
                 descricao: "",
                 id: "",
                 nome: "",
                 pAtivos: "",
               )),
-          AppRoutes.modalForm: (_) => ModalPoder(Power(
+          AppRoutes.modalForm: (_) => const ModalPoder(Power(
                 alcance: "",
                 componente: "",
                 dano: "",

@@ -5,7 +5,7 @@ import 'package:rpg_app/controller/service/person_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/style/colors.dart';
-import 'package:rpg_app/view/person_card.dart';
+import 'package:rpg_app/view/active_person_card.dart';
 
 class MasterScreen extends StatefulWidget {
   final Campaign campaign;
@@ -50,24 +50,10 @@ class _MasterScreenState extends State<MasterScreen> {
     final Persons persons = Provider.of(context);
     String pAtivos = campaign.pAtivos;
     List<String> ativosList = pAtivos.split(",");
-
     return Scaffold(
         appBar: AppBar(
           foregroundColor: colorFist,
           title: Text("Em batalha"),
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.refresh,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                setState(() {
-                  Persons().all;
-                });
-              },
-            )
-          ],
         ),
         body: Center(
             child: FutureBuilder<List<Person>>(
@@ -83,10 +69,8 @@ class _MasterScreenState extends State<MasterScreen> {
                         itemCount: persons.count,
                         itemBuilder: (ctx, i) =>
                             ativosList.contains(persons.byIndex(i).id)
-                                ? Text(
-                                    persons.byIndex(i).nome,
-                                    style: const TextStyle(
-                                        color: otherColor, fontSize: 30),
+                                ? ActivePersonCard(
+                                    persons.byIndex(i),
                                   )
                                 : Container(),
                       );

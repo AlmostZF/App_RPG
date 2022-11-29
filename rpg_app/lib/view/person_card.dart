@@ -96,6 +96,7 @@ class PersomCard extends StatelessWidget {
                                             pAtivos:
                                                 "${value.pAtivos}${person.id},",
                                           ))));
+
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
