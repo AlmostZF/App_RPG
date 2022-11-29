@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rpg_app/controller/service/person_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/model/person_model.dart';
-import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
 
 class MasterScreen extends StatefulWidget {
@@ -41,17 +40,18 @@ class _MasterScreenState extends State<MasterScreen>
     //_tabController = TabController(length: ativosList.length, vsync: this);
   }
 
-  PersonService _personService = PersonService();
-  late Future<Person> _futurePerson;
-
   @override
   Widget build(BuildContext context) {
+    PersonService _personService = PersonService();
+    late Future<Person> _futurePerson;
+
     String pAtivos = campaign.pAtivos;
     List<String> ativosList = pAtivos.split(",");
 
-    ativosList.forEach(
-      (element) => _futurePerson = _personService.fetchPerson(element),
-    );
+    ativosList.forEach((id) {
+      _futurePerson = _personService.fetchPerson(id);
+      _futurePerson.then((value) => print("${value.nome.toString()}"));
+    });
 
     return Scaffold(
       appBar: AppBar(

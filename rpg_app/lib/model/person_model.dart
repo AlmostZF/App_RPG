@@ -17,7 +17,7 @@ class Person {
   final String mana;
   final String avatarUrl;
 
-  Person({
+  const Person({
     required this.id,
     required this.nome,
     required this.jogador,
@@ -37,60 +37,26 @@ class Person {
     required this.avatarUrl,
   });
 
-  factory Person.fromJson(Map<String, dynamic> json) {
-    id:
-    json['id'];
-    nome:
-    json['nome'];
-    jogador:
-    json['jogador'];
-    raca:
-    json['raca'];
-    classe:
-    json['classe'];
-    nivel:
-    json['nivel'];
-    historia:
-    json['historia'];
-    ideais:
-    json['ideais'];
-    forca:
-    json['forca'];
-    destreza:
-    json['destreza'];
-    constituicao:
-    json['constituicao'];
-    inteligencia:
-    json['inteligencia'];
-    sabedoria:
-    json['sabedoria'];
-    carisma:
-    json['carisma'];
-    vida:
-    json['vida'];
-    mana:
-    json['mana'];
-    avatarUrl:
-    json['avatarUrl'];
-    return Person(
-        id: "",
-        nome: "",
-        jogador: "",
-        raca: "",
-        classe: "",
-        nivel: "",
-        historia: "",
-        ideais: "",
-        forca: "",
-        destreza: "",
-        constituicao: "",
-        inteligencia: "",
-        sabedoria: "",
-        carisma: "",
-        vida: "",
-        mana: "",
-        avatarUrl: "");
-  }
+  factory Person.fromJson(Map<String, dynamic> json) => Person(
+        id: json['id'],
+        nome: json['nome'],
+        jogador: json['jogador'],
+        raca: json['raca'],
+        classe: json['classe'],
+        nivel: json['nivel'],
+        historia: json['historia'],
+        ideais: json['ideais'],
+        forca: json['forca'],
+        destreza: json['destreza'],
+        constituicao: json['constituicao'],
+        inteligencia: json['inteligencia'],
+        sabedoria: json['sabedoria'],
+        carisma: json['carisma'],
+        vida: json['vida'],
+        mana: json['mana'],
+        avatarUrl: json['avatarUrl'],
+      );
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
