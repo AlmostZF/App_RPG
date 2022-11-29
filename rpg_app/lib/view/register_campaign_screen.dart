@@ -88,14 +88,19 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
         backgroundColor: secondColor,
         onPressed: () {
           _form.currentState?.save();
-          Provider.of<Campaigns>(context, listen: false).put(
-            Campaign(
-              id: _formData['id'].toString(),
-              nome: _formData['nome'].toString(),
-              descricao: _formData['descricao'].toString(),
-              pAtivos: "",
-            ),
-          );
+          Provider.of<Campaigns>(context, listen: false).put(isEdit
+              ? Campaign(
+                  id: _formData['id'].toString(),
+                  nome: _formData['nome'].toString(),
+                  descricao: _formData['descricao'].toString(),
+                  pAtivos: _formData['pAtivos'].toString(),
+                )
+              : Campaign(
+                  id: _formData['id'].toString(),
+                  nome: _formData['nome'].toString(),
+                  descricao: _formData['descricao'].toString(),
+                  pAtivos: "",
+                ));
           Navigator.of(context).pop();
           showDialog(
               context: context,
