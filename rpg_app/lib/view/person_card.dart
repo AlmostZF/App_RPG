@@ -80,18 +80,22 @@ class PersomCard extends StatelessWidget {
                                 _futureCampaign =
                                     _campaignService.fetchCampaign(
                                         _formData['idSala'].toString());
-                                _futureCampaign.then((value) =>
-                                    (Provider.of<Campaigns>(context,
-                                            listen: false)
-                                        .put(
-                                      Campaign(
-                                        id: _formData['idSala'].toString(),
-                                        nome: value.nome,
-                                        descricao: value.descricao,
-                                        pAtivos:
-                                            value.pAtivos + " ${person.id} ,",
-                                      ),
-                                    )));
+                                _futureCampaign.then((value) => (Provider.of<
+                                        Campaigns>(context, listen: false)
+                                    .put(value.pAtivos == ""
+                                        ? Campaign(
+                                            id: _formData['idSala'].toString(),
+                                            nome: value.nome,
+                                            descricao: value.descricao,
+                                            pAtivos: "${person.id},",
+                                          )
+                                        : Campaign(
+                                            id: _formData['idSala'].toString(),
+                                            nome: value.nome,
+                                            descricao: value.descricao,
+                                            pAtivos:
+                                                "${value.pAtivos}${person.id}",
+                                          ))));
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(

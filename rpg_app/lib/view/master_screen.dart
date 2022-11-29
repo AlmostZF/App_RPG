@@ -42,7 +42,8 @@ class _MasterScreenState extends State<MasterScreen>
   @override
   Widget build(BuildContext context) {
     String pAtivos = "${campaign.pAtivos}";
-    List<String> ativosList = pAtivos.split(" , ");
+    List<String> ativosList = pAtivos.split(",");
+    print(ativosList[0]);
     try {
       final campaing = ModalRoute.of(context)?.settings.arguments as Campaign;
       _loadFormData(campaing);
