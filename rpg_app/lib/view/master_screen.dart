@@ -17,6 +17,8 @@ class MasterScreen extends StatefulWidget {
 class _MasterScreenState extends State<MasterScreen> {
   late Future<List<Person>> _futurePerson;
 
+  PersonService _personService = new PersonService();
+
   final Campaign campaign;
   _MasterScreenState(this.campaign);
 
@@ -37,6 +39,13 @@ class _MasterScreenState extends State<MasterScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    _futurePerson = _personService.fetchPersons();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final Persons persons = Provider.of(context);
     String pAtivos = campaign.pAtivos;
@@ -46,6 +55,19 @@ class _MasterScreenState extends State<MasterScreen> {
         appBar: AppBar(
           foregroundColor: colorFist,
           title: Text("Em batalha"),
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.refresh,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                setState(() {
+                  Persons().all;
+                });
+              },
+            )
+          ],
         ),
         body: Center(
             child: FutureBuilder<List<Person>>(

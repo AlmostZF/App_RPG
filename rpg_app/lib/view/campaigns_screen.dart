@@ -22,7 +22,6 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
   @override
   void initState() {
     super.initState();
-
     _futureCampaign = _campaignService.fetchCampaigns();
   }
 
