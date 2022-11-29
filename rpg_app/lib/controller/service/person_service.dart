@@ -4,11 +4,10 @@ import 'dart:convert';
 import 'package:rpg_app/model/person_model.dart';
 
 class PersonService {
-  Future<Person> fetchPerson(Person person) async {
-    var uri = Uri.parse(
-        'https://stdrpg-default-rtdb.firebaseio.com/person/${person.id}.json');
+  Future<Person> fetchPerson(String id) async {
+    var uri =
+        Uri.parse('https://stdrpg-default-rtdb.firebaseio.com/person/$id.json');
     final response = await http.get(uri);
-
     return Person.fromJson(json.decode(response.body));
   }
 

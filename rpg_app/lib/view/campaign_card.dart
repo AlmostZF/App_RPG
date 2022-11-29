@@ -35,18 +35,6 @@ class CampaignCard extends StatelessWidget {
                         primary: secondColor,
                       ),
                       child: const Text(
-                        "Cancelar",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: secondColor,
-                      ),
-                      child: const Text(
                         "Sim",
                         style: TextStyle(color: Colors.black),
                       ),
@@ -58,7 +46,19 @@ class CampaignCard extends StatelessWidget {
                                       campaign,
                                     )));
                       },
-                    )
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: secondColor,
+                      ),
+                      child: const Text(
+                        "Cancelar",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
                   ],
                 ),
               );

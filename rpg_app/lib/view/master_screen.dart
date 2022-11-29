@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_app/controller/service/person_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
+import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
 
@@ -39,19 +41,18 @@ class _MasterScreenState extends State<MasterScreen>
     //_tabController = TabController(length: ativosList.length, vsync: this);
   }
 
+  PersonService _personService = PersonService();
+  late Future<Person> _futurePerson;
+
   @override
   Widget build(BuildContext context) {
-    String pAtivos = "${campaign.pAtivos}";
+    String pAtivos = campaign.pAtivos;
     List<String> ativosList = pAtivos.split(",");
-    print(ativosList[0]);
-    try {
-      final campaing = ModalRoute.of(context)?.settings.arguments as Campaign;
-      _loadFormData(campaing);
-    } catch (e) {
-      print(e);
-    }
 
-    Size size = MediaQuery.of(context).size;
+    ativosList.forEach(
+      (element) => _futurePerson = _personService.fetchPerson(element),
+    );
+
     return Scaffold(
       appBar: AppBar(
         foregroundColor: colorFist,
