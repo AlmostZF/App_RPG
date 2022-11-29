@@ -48,18 +48,19 @@ class MyApp extends StatelessWidget {
             hintColor: otherColor),
             initialRoute: AppRoutes.splashScreen,
         routes: {
+          AppRoutes.personScreen: (_) => const PersonScreen(),
           AppRoutes.splashScreen: (_) => const SplashScreen(),
           AppRoutes.home: (_) => const HomePage(),
           AppRoutes.persomForm: (_) => const RegisterScreen(),
           AppRoutes.campaignForm: (_) => const RegisterCampaignScreen(),
           AppRoutes.roomsScreen: (_) => const CampaignsScreen(),
-          AppRoutes.masterScreen: (_) => MasterScreen(Campaign(
+          AppRoutes.masterScreen: (_) => const MasterScreen(Campaign(
                 descricao: "",
                 id: "",
                 nome: "",
                 pAtivos: "",
               )),
-          AppRoutes.modalForm: (_) => ModalPoder(Power(
+          AppRoutes.modalForm: (_) => const ModalPoder(Power(
           //AppRoutes.roomsScreen: (_) => const RoomsScreen(),
           //AppRoutes.roomForm: (_) => const RegisterRoomScreen(),
           //AppRoutes.modalForm: (_) => const ModalPoder(Power(

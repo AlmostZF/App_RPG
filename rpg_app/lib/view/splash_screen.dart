@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(
-      const Duration(seconds: 40), 
+      const Duration(seconds: 4), 
       () => getRoute());
   }
 
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: backgroundColor,
-      body:  Center(
+      body: Center(
               child: SizedBox(
                 width: size.width *.6,
                 height: size.height *.6,
