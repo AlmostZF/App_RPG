@@ -18,10 +18,10 @@ class PersonService {
     final response = await http.get(uri);
     Map<String, dynamic> _list = json.decode(response.body);
 
-    List<Person> _listJogos = [];
+    List<Person> _listPersons = [];
 
     _list.forEach((id, data) {
-      _listJogos.add(
+      _listPersons.add(
         Person(
           avatarUrl: data["avatarUrl"],
           carisma: data["carisma"],
@@ -44,6 +44,6 @@ class PersonService {
       );
     });
 
-    return _listJogos;
+    return _listPersons;
   }
 }

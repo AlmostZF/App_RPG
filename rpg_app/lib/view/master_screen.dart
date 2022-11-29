@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/controller/service/person_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/style/colors.dart';
+import 'package:rpg_app/view/person_card.dart';
 
 class MasterScreen extends StatefulWidget {
   final Campaign campaign;
@@ -11,12 +14,12 @@ class MasterScreen extends StatefulWidget {
   State<MasterScreen> createState() => _MasterScreenState(campaign);
 }
 
-class _MasterScreenState extends State<MasterScreen>
-    with TickerProviderStateMixin {
+class _MasterScreenState extends State<MasterScreen> {
+  late Future<List<Person>> _futurePerson;
+
   final Campaign campaign;
   _MasterScreenState(this.campaign);
 
-  late TabController _tabController;
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
 
@@ -34,53 +37,38 @@ class _MasterScreenState extends State<MasterScreen>
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    //_tabController = TabController(length: ativosList.length, vsync: this);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    PersonService _personService = PersonService();
-    late Future<Person> _futurePerson;
-
+    final Persons persons = Provider.of(context);
     String pAtivos = campaign.pAtivos;
     List<String> ativosList = pAtivos.split(",");
 
-    ativosList.forEach((id) {
-      _futurePerson = _personService.fetchPerson(id);
-      _futurePerson.then((value) => print("${value.nome.toString()}"));
-    });
-
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: colorFist,
-        title: Text("Em batalha"),
-        // bottom: TabBar(
-        //   controller: _tabController,
-        //   tabs: <Widget>[
-        //     Tab(
-        //       text: "p1",
-        //     ),
-        //     Tab(
-        //       text: "p2",
-        //     ),
-        //     Tab(
-        //       text: "p3",
-        //     ),
-        //   ],
-        // ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-            itemCount: ativosList.length,
-            itemBuilder: (ctx, i) => Text(
-                  "ID: ${ativosList[i]}",
-                  style: TextStyle(color: Colors.white, fontSize: 30),
-                )),
-      ),
-    );
+        appBar: AppBar(
+          foregroundColor: colorFist,
+          title: Text("Em batalha"),
+        ),
+        body: Center(
+            child: FutureBuilder<List<Person>>(
+                future: _futurePerson,
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.none:
+                      return Text('none');
+                    case ConnectionState.waiting:
+                      return CircularProgressIndicator();
+                    default:
+                      return ListView.builder(
+                        itemCount: persons.count,
+                        itemBuilder: (ctx, i) =>
+                            ativosList.contains(persons.byIndex(i).id)
+                                ? Text(
+                                    persons.byIndex(i).nome,
+                                    style: const TextStyle(
+                                        color: otherColor, fontSize: 30),
+                                  )
+                                : Container(),
+                      );
+                  }
+                })));
   }
 }

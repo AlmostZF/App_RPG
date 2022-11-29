@@ -94,7 +94,7 @@ class PersomCard extends StatelessWidget {
                                             nome: value.nome,
                                             descricao: value.descricao,
                                             pAtivos:
-                                                "${value.pAtivos}${person.id}",
+                                                "${value.pAtivos}${person.id},",
                                           ))));
                                 Navigator.push(
                                     context,
