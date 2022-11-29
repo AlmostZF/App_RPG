@@ -15,6 +15,7 @@ import 'package:rpg_app/view/homePage.dart';
 import 'package:rpg_app/view/persons_screen.dart';
 import 'package:rpg_app/view/register_campaign_screen.dart';
 import 'package:rpg_app/view/register_screen.dart';
+import 'package:rpg_app/view/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,11 +46,12 @@ class MyApp extends StatelessWidget {
             primarySwatch: secondColorMaterial,
             scaffoldBackgroundColor: backgroundColor,
             hintColor: otherColor),
+            initialRoute: AppRoutes.splashScreen,
         routes: {
+          AppRoutes.splashScreen: (_) => const SplashScreen(),
           AppRoutes.home: (_) => const HomePage(),
           AppRoutes.persomForm: (_) => const RegisterScreen(),
           AppRoutes.campaignForm: (_) => const RegisterCampaignScreen(),
-          AppRoutes.personScreen: (_) => const PersonScreen(),
           AppRoutes.roomsScreen: (_) => const CampaignsScreen(),
           AppRoutes.masterScreen: (_) => MasterScreen(Campaign(
                 descricao: "",
@@ -58,6 +60,9 @@ class MyApp extends StatelessWidget {
                 pAtivos: "",
               )),
           AppRoutes.modalForm: (_) => ModalPoder(Power(
+          //AppRoutes.roomsScreen: (_) => const RoomsScreen(),
+          //AppRoutes.roomForm: (_) => const RegisterRoomScreen(),
+          //AppRoutes.modalForm: (_) => const ModalPoder(Power(
                 alcance: "",
                 componente: "",
                 dano: "",

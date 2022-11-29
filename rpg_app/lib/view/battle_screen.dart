@@ -214,16 +214,27 @@ class _BattleScreenState extends State<BattleScreen> {
                               Icons.star,
                               color: secondColor,
                             ),
-                            GestureDetector(
-                              child: const Icon(
-                                Icons.backpack,
-                                color: otherColor,
+                            Padding(
+                              padding: EdgeInsets.only(left: size.width*.02),
+                              child: SizedBox(
+                                width: size.width*.3,
+                                height: size.width*.15,
+                                child: CircleAvatar(
+                                  backgroundColor: secondColor,
+                                  child: GestureDetector(
+                                      child: Icon(
+                                        Icons.post_add_sharp,
+                                        color: colorFist,
+                                        size: size.width * .1,
+                                      ),
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                const Invetory()))),
+                                  ),
+                                ),
                               ),
-                              onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) =>
-                                          const Invetory()))),
                             )
                           ],
                         ),
@@ -252,14 +263,14 @@ class _BattleScreenState extends State<BattleScreen> {
                           margin: EdgeInsets.all(size.width * 0.02),
                           width: size.width * 0.182,
                           height: size.height * 0.182,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: secondColor,
                               boxShadow: [
                                 BoxShadow(
                                   color: secondColor,
                                   offset: Offset(0, 0),
-                                  blurRadius: 4.0,
+                                  blurRadius: 3.0,
                                 )
                               ]),
                           child: PowerCircle(
@@ -324,7 +335,7 @@ class _BattleScreenState extends State<BattleScreen> {
                               GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      battleController.valueVida--;
+                                      valueVida--;
                                     });
                                   },
                                   child: const Icon(
@@ -334,15 +345,15 @@ class _BattleScreenState extends State<BattleScreen> {
                               SfSlider(
                                 activeColor: Colors.red,
                                 min: 0.0,
-                                max: battleController.maxVida,
-                                value: battleController.valueVida,
+                                max: maxVida,
+                                value: valueVida,
                                 showTicks: false,
                                 showLabels: false,
                                 enableTooltip: true,
                                 minorTicksPerInterval: 1,
                                 onChanged: (dynamic value) {
                                   setState(() {
-                                    battleController.valueVida = value;
+                                   maxVida = value;
                                   });
                                 },
                                 thumbIcon: const Icon(
@@ -355,7 +366,7 @@ class _BattleScreenState extends State<BattleScreen> {
                               GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      battleController.valueVida++;
+                                      valueVida++;
                                     });
                                   },
                                   child: const Icon(

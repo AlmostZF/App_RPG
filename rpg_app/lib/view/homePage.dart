@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: size.width * .7),
+        padding: EdgeInsets.only(top: size.width * .6),
         child: Column(
           children: [
             Center(
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: size.width * .4),
+              padding: EdgeInsets.only(top: size.width * .2),
               child: SizedBox(
                 width: size.width * 0.35,
                 child: ElevatedButton(

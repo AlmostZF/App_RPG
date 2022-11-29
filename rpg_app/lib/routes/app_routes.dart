@@ -1,3 +1,5 @@
+import 'package:rpg_app/view/splash_screen.dart';
+
 class AppRoutes {
   static const home = "/";
   static const persomForm = "/person-form";
@@ -8,4 +10,5 @@ class AppRoutes {
   static const roomForm = "/room-form";
   static const modalForm = "/modal-form";
   static const masterScreen = "/master-screen";
+  static const splashScreen = "/splash-Screen";
 }
