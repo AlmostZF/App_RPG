@@ -9,20 +9,15 @@ class ModalItem extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: defaultColor,
+      appBar: AppBar(
+        title: Text("Criar Item"),
+      ),
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: size.width * 0.3),
+          padding: EdgeInsets.only(top: size.width * .25),
           child: Column(
             children: [
-              const Text('Criar Item',
-                  style: TextStyle(
-                      color: otherColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20)),
-              Padding(
-                  padding: EdgeInsets.only(
-                      right: size.width * 0.3, top: size.width * 0.03)),
               Stack(
                 children: [
                   Padding(
@@ -34,6 +29,9 @@ class ModalItem extends StatelessWidget {
                       child: const TextField(
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ),
                             labelText: "Nome do Item"),
                       ),
                     ),
@@ -46,6 +44,14 @@ class ModalItem extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Container(
+                        child: GestureDetector(
+                          child: Icon(
+                            Icons.add_photo_alternate_outlined,
+                            color: defaultColor,
+                            size: size.width * .08,
+                          ),
+                          onTap: () => {print("clicado")},
+                        ),
                         width: size.width * 0.2,
                         height: size.height * 0.1,
                         color: otherColor,
@@ -63,7 +69,10 @@ class ModalItem extends StatelessWidget {
                   height: size.height * 0.06,
                   child: const TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Peso"),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ), labelText: "Peso"),
                   ),
                 ),
               ),
@@ -74,7 +83,10 @@ class ModalItem extends StatelessWidget {
                   height: size.height * 0.06,
                   child: const TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Alcance"),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ), labelText: "Alcance"),
                   ),
                 ),
               ),
@@ -85,7 +97,10 @@ class ModalItem extends StatelessWidget {
                   height: size.height * 0.06,
                   child: const TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Dano"),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ), labelText: "Dano"),
                   ),
                 ),
               ),
@@ -96,7 +111,10 @@ class ModalItem extends StatelessWidget {
                   height: size.height * 0.06,
                   child: const TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Resistencia"),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ), labelText: "Resistencia"),
                   ),
                 ),
               ),
@@ -107,7 +125,11 @@ class ModalItem extends StatelessWidget {
                   height: size.height * 0.06,
                   child: const TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Preço"),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: defaultColor),
+                        ),
+                        labelText: "Preço"),
                   ),
                 ),
               ),
