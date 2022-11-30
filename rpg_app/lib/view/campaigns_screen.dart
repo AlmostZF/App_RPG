@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/campaign_controller.dart';
+import 'package:rpg_app/controller/campaign_controller.dart';
 import 'package:rpg_app/controller/service/campaign_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
