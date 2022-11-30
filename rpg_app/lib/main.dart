@@ -51,7 +51,6 @@ class MyApp extends StatelessWidget {
           AppRoutes.splashScreen: (_) => const SplashScreen(),
           AppRoutes.home: (_) => const HomePage(),
           AppRoutes.persomForm: (_) => const RegisterScreen(),
-          AppRoutes.personScreen: (_) => const PersonScreen(),
           AppRoutes.campaignForm: (_) => const RegisterCampaignScreen(),
           AppRoutes.roomsScreen: (_) => const CampaignsScreen(),
           AppRoutes.masterScreen: (_) => const MasterScreen(Campaign(

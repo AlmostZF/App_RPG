@@ -6,9 +6,17 @@ import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
 import 'package:rpg_app/view/master_screen.dart';
 
-class CampaignCard extends StatelessWidget {
+class CampaignCard extends StatefulWidget {
   final Campaign campaign;
-  const CampaignCard(this.campaign);
+  CampaignCard(this.campaign);
+
+  @override
+  State<CampaignCard> createState() => _CampaignCardState(campaign);
+}
+
+class _CampaignCardState extends State<CampaignCard> {
+  final Campaign campaign;
+  _CampaignCardState(this.campaign);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +43,7 @@ class CampaignCard extends StatelessWidget {
                         primary: secondColor,
                       ),
                       child: const Text(
-                        "Sim",
+                        "Iniciar",
                         style: TextStyle(color: Colors.black),
                       ),
                       onPressed: () {
@@ -106,10 +114,16 @@ class CampaignCard extends StatelessWidget {
                                   primary: secondColor,
                                 ),
                                 child: const Text(
-                                  "Não",
+                                  "Sim",
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 onPressed: () {
+                                  Provider.of<Campaigns>(context, listen: false)
+                                      .remove(campaign);
+                                  // setState(() {
+                                  //   _futureCampaign =
+                                  //       _campaignService.fetchCampaigns();
+                                  // });
                                   Navigator.of(context).pop();
                                 },
                               ),
@@ -118,15 +132,13 @@ class CampaignCard extends StatelessWidget {
                                   primary: secondColor,
                                 ),
                                 child: const Text(
-                                  "Sim",
+                                  "Não",
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 onPressed: () {
-                                  Provider.of<Campaigns>(context, listen: false)
-                                      .remove(campaign);
                                   Navigator.of(context).pop();
                                 },
-                              )
+                              ),
                             ],
                           ),
                         );

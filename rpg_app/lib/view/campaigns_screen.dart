@@ -69,9 +69,9 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
                     return const CircularProgressIndicator();
                   default:
                     return ListView.builder(
-                      itemCount: campaign.count,
+                      itemCount: snapshot.data?.length,
                       itemBuilder: (ctx, i) => CampaignCard(
-                        campaign.byIndex(i),
+                        snapshot.data![i],
                       ),
                     );
                 }

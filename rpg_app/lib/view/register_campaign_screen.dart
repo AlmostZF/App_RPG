@@ -33,8 +33,6 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String codigosala =
-        Provider.of<Campaigns>(context, listen: false).all.last.id;
     try {
       final campaing = ModalRoute.of(context)?.settings.arguments as Campaign;
       isEdit = true;
@@ -57,6 +55,12 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Por favor insira um nome para a campanha.";
+                    }
+                    return null;
+                  },
                   initialValue: _formData['nome'],
                   style: const TextStyle(color: otherColor),
                   decoration: const InputDecoration(
@@ -71,6 +75,12 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Por favor insira uma descrição para a campanha.";
+                    }
+                    return null;
+                  },
                   initialValue: _formData['descricao'],
                   style: const TextStyle(color: otherColor),
                   maxLines: 4,
@@ -90,46 +100,48 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: secondColor,
         onPressed: () {
-          _form.currentState?.save();
-          Provider.of<Campaigns>(context, listen: false).put(isEdit
-              ? Campaign(
-                  id: _formData['id'].toString(),
-                  nome: _formData['nome'].toString(),
-                  descricao: _formData['descricao'].toString(),
-                  pAtivos: _formData['pAtivos'].toString(),
-                )
-              : Campaign(
-                  id: _formData['id'].toString(),
-                  nome: _formData['nome'].toString(),
-                  descricao: _formData['descricao'].toString(),
-                  pAtivos: "",
-                ));
-          Navigator.of(context).pop();
-          String codigo =
-              Provider.of<Campaigns>(context, listen: false).all.last.id;
-          showDialog(
-              context: context,
-              builder: (ctx) => AlertDialog(
-                    backgroundColor: defaultColor,
-                    title: Text(
-                      "Campanha criada!",
-                      style: TextStyle(color: otherColor),
-                    ),
-                    content: Text("O código da sala é: $codigo",
-                        style: TextStyle(color: otherColor)),
-                    actions: [
-                      IconButton(
-                        onPressed: () {
-                          Clipboard.setData(ClipboardData(text: codigo));
-                        },
-                        icon: Icon(
-                          Icons.copy,
-                          size: 30,
-                        ),
-                        color: secondColor,
-                      )
-                    ],
+          if (_form.currentState!.validate()) {
+            _form.currentState?.save();
+            Provider.of<Campaigns>(context, listen: false).put(isEdit
+                ? Campaign(
+                    id: _formData['id'].toString(),
+                    nome: _formData['nome'].toString(),
+                    descricao: _formData['descricao'].toString(),
+                    pAtivos: _formData['pAtivos'].toString(),
+                  )
+                : Campaign(
+                    id: _formData['id'].toString(),
+                    nome: _formData['nome'].toString(),
+                    descricao: _formData['descricao'].toString(),
+                    pAtivos: "",
                   ));
+            Navigator.of(context).pop();
+            String codigo =
+                Provider.of<Campaigns>(context, listen: false).all.last.id;
+            showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                      backgroundColor: defaultColor,
+                      title: Text(
+                        "Campanha criada!",
+                        style: TextStyle(color: otherColor),
+                      ),
+                      content: Text("O código da sala é: $codigo",
+                          style: TextStyle(color: otherColor)),
+                      actions: [
+                        IconButton(
+                          onPressed: () {
+                            Clipboard.setData(ClipboardData(text: codigo));
+                          },
+                          icon: Icon(
+                            Icons.copy,
+                            size: 30,
+                          ),
+                          color: secondColor,
+                        )
+                      ],
+                    ));
+          }
         },
         child: const Icon(
           Icons.save,
