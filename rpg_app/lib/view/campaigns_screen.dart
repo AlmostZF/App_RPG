@@ -71,12 +71,19 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
                   case ConnectionState.waiting:
                     return const CircularProgressIndicator();
                   default:
-                    return ListView.builder(
-                      itemCount: snapshot.data?.length,
-                      itemBuilder: (ctx, i) => CampaignCard(
-                        snapshot.data![i],
-                      ),
-                    );
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: snapshot.data?.length,
+                        itemBuilder: (ctx, i) => CampaignCard(
+                          snapshot.data![i],
+                        ),
+                      );
+                    } else {
+                      return Text(
+                        "Crie uma nova campanha",
+                        style: TextStyle(fontSize: 30, color: otherColor),
+                      );
+                    }
                 }
               })),
     );

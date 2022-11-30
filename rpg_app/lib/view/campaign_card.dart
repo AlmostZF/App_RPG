@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/campaign_controller.dart';
 import 'package:rpg_app/controller/service/campaign_service.dart';
@@ -36,9 +37,43 @@ class _CampaignCardState extends State<CampaignCard> {
                 context: context,
                 builder: (ctx) => AlertDialog(
                   backgroundColor: defaultColor,
-                  title: Text(
-                    "Iniciar campanha",
-                    style: TextStyle(color: Colors.white),
+                  title: SizedBox(
+                    height: 75,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Iniciar campanha",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "${campaign.id}",
+                              style: TextStyle(color: otherColor, fontSize: 20),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: campaign.id));
+                              },
+                              icon: Icon(
+                                Icons.copy,
+                                size: 20,
+                              ),
+                              color: secondColor,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   actions: [
                     ElevatedButton(

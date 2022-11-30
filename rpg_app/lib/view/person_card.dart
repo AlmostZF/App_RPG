@@ -166,18 +166,6 @@ class PersomCard extends StatelessWidget {
                                   primary: secondColor,
                                 ),
                                 child: const Text(
-                                  "Não",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: secondColor,
-                                ),
-                                child: const Text(
                                   "Sim",
                                   style: TextStyle(color: Colors.black),
                                 ),
@@ -186,7 +174,19 @@ class PersomCard extends StatelessWidget {
                                       .remove(person);
                                   Navigator.of(context).pop();
                                 },
-                              )
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: secondColor,
+                                ),
+                                child: const Text(
+                                  "Não",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
                             ],
                           ),
                         );

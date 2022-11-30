@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/controller/service/campaign_service.dart';
@@ -100,16 +101,43 @@ class _MasterScreenState extends State<MasterScreen> {
                             case ConnectionState.waiting:
                               return CircularProgressIndicator();
                             default:
-                              return ListView.builder(
-                                itemCount: snapshot2.data?.length,
-                                itemBuilder: (ctx, i) => snapshot.data!.pAtivos
-                                        .split(",")
-                                        .contains(snapshot2.data![i].id)
-                                    ? ActivePersonCard(
-                                        snapshot2.data![i],
+                              if (snapshot.hasData && snapshot2.hasData) {
+                                return ListView.builder(
+                                  itemCount: snapshot2.data?.length,
+                                  itemBuilder: (ctx, i) => snapshot
+                                          .data!.pAtivos
+                                          .split(",")
+                                          .contains(snapshot2.data![i].id)
+                                      ? ActivePersonCard(
+                                          snapshot2.data![i],
+                                        )
+                                      : Container(),
+                                );
+                              } else {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Convide jogadores para a campanha, com o código ${snapshot.data?.id}",
+                                        style: TextStyle(
+                                            fontSize: 30, color: otherColor),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          Clipboard.setData(ClipboardData(
+                                              text: snapshot.data?.id));
+                                        },
+                                        icon: Icon(
+                                          Icons.copy,
+                                          size: 30,
+                                        ),
+                                        color: secondColor,
                                       )
-                                    : Container(),
-                              );
+                                    ],
+                                  ),
+                                );
+                              }
                           }
                         },
                       );
