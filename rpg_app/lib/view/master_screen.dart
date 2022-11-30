@@ -52,8 +52,10 @@ class _MasterScreenState extends State<MasterScreen> {
   @override
   Widget build(BuildContext context) {
     final Persons persons = Provider.of(context);
+
     String pAtivos = campaign.pAtivos;
     List<String> ativosList = pAtivos.split(",");
+
     return Scaffold(
         appBar: AppBar(
           actions: [
@@ -86,9 +88,9 @@ class _MasterScreenState extends State<MasterScreen> {
                     default:
                       return ListView.builder(
                         itemBuilder: (ctx, i) =>
-                            ativosList.contains(persons.byIndex(i).id)
+                            ativosList.contains(snapshot.data![i].id)
                                 ? ActivePersonCard(
-                                    persons.byIndex(i),
+                                    snapshot.data![i],
                                   )
                                 : Container(),
                       );
