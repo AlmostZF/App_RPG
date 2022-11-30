@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/controller/service/campaign_service.dart';
 import 'package:rpg_app/controller/service/person_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/model/person_model.dart';
@@ -16,8 +17,10 @@ class MasterScreen extends StatefulWidget {
 
 class _MasterScreenState extends State<MasterScreen> {
   late Future<List<Person>> _futurePerson;
+  late Future<Campaign> _futureActivesPerson;
 
   PersonService _personService = new PersonService();
+  CampaignService _campaignService = CampaignService();
 
   final Campaign campaign;
   _MasterScreenState(this.campaign);
@@ -43,6 +46,7 @@ class _MasterScreenState extends State<MasterScreen> {
     super.initState();
 
     _futurePerson = _personService.fetchPersons();
+    _futureActivesPerson = _campaignService.fetchCampaign(campaign.id);
   }
 
   @override
@@ -56,6 +60,12 @@ class _MasterScreenState extends State<MasterScreen> {
             IconButton(
                 onPressed: () {
                   setState(() {
+                    _futureActivesPerson =
+                        _campaignService.fetchCampaign(campaign.id);
+                    _futureActivesPerson.then((value) {
+                      ativosList = value.pAtivos.split(",");
+                    });
+
                     _futurePerson = _personService.fetchPersons();
                   });
                 },
@@ -75,7 +85,6 @@ class _MasterScreenState extends State<MasterScreen> {
                       return CircularProgressIndicator();
                     default:
                       return ListView.builder(
-                        itemCount: persons.count,
                         itemBuilder: (ctx, i) =>
                             ativosList.contains(persons.byIndex(i).id)
                                 ? ActivePersonCard(

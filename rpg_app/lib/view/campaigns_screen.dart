@@ -38,6 +38,15 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
         title: const Text(
           "Minhas Campanhas",
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  _futureCampaign = _campaignService.fetchCampaigns();
+                });
+              },
+              icon: Icon(Icons.refresh))
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: secondColor,

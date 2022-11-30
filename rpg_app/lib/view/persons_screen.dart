@@ -37,6 +37,16 @@ class _PersonScreenState extends State<PersonScreen> {
         title: const Text(
           "Meus Personagens",
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _futurePerson = _personService.fetchPersons();
+              });
+            },
+            icon: const Icon(Icons.refresh),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: secondColor,
@@ -59,10 +69,8 @@ class _PersonScreenState extends State<PersonScreen> {
                     return CircularProgressIndicator();
                   default:
                     return ListView.builder(
-                      itemCount: persons.count,
-                      itemBuilder: (ctx, i) => PersomCard(
-                        persons.byIndex(i),
-                      ),
+                      itemCount: snapshot.data?.length,
+                      itemBuilder: (ctx, i) => PersomCard(snapshot.data![i]),
                     );
                 }
               })),
