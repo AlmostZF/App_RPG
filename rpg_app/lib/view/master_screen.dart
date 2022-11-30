@@ -64,8 +64,9 @@ class _MasterScreenState extends State<MasterScreen> {
                   setState(() {
                     _futureActivesPerson =
                         _campaignService.fetchCampaign(campaign.id);
+
                     _futureActivesPerson.then((value) {
-                      ativosList = value.pAtivos.split(",");
+                      print(ativosList = value.pAtivos.split(","));
                     });
 
                     _futurePerson = _personService.fetchPersons();
