@@ -52,6 +52,15 @@ class _MasterScreenState extends State<MasterScreen> {
     List<String> ativosList = pAtivos.split(",");
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    _futurePerson = _personService.fetchPersons();
+                  });
+                },
+                icon: const Icon(Icons.refresh))
+          ],
           foregroundColor: colorFist,
           title: Text("Em batalha"),
         ),
