@@ -27,6 +27,9 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
   }
 
   Widget build(BuildContext context) {
+    setState(() {
+      _futureCampaign = _campaignService.fetchCampaigns();
+    });
     final Campaigns campaign = Provider.of(context);
 
     Size size = MediaQuery.of(context).size;

@@ -28,6 +28,9 @@ class _PersonScreenState extends State<PersonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      _futurePerson = _personService.fetchPersons();
+    });
     final Persons persons = Provider.of(context);
 
     return Scaffold(

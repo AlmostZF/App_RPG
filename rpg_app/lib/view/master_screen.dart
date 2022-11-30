@@ -60,15 +60,12 @@ class _MasterScreenState extends State<MasterScreen> {
         appBar: AppBar(
           actions: [
             IconButton(
-                onPressed: () {
+                onPressed: () async {
                   setState(() {
                     _futureActivesPerson =
                         _campaignService.fetchCampaign(campaign.id);
-
-                    _futureActivesPerson.then((value) {
-                      print(ativosList = value.pAtivos.split(","));
-                    });
-
+                    _futureActivesPerson
+                        .then((value) => ativosList = value.pAtivos.split(","));
                     _futurePerson = _personService.fetchPersons();
                   });
                 },
@@ -80,21 +77,44 @@ class _MasterScreenState extends State<MasterScreen> {
         body: Center(
             child: FutureBuilder<List<Person>>(
                 future: _futurePerson,
-                builder: (context, snapshot) {
-                  switch (snapshot.connectionState) {
+                builder: (context, snapshot2) {
+                  switch (snapshot2.connectionState) {
                     case ConnectionState.none:
                       return Text('none');
                     case ConnectionState.waiting:
                       return CircularProgressIndicator();
                     default:
-                      return ListView.builder(
-                        itemBuilder: (ctx, i) =>
-                            ativosList.contains(snapshot.data![i].id)
-                                ? ActivePersonCard(
-                                    snapshot.data![i],
-                                  )
-                                : Container(),
+                      return FutureBuilder<Campaign>(
+                        future: _futureActivesPerson,
+                        builder: (context, snapshot) {
+                          switch (snapshot.connectionState) {
+                            case ConnectionState.none:
+                              return Text('none');
+                            case ConnectionState.waiting:
+                              return CircularProgressIndicator();
+                            default:
+                              return ListView.builder(
+                                itemCount: snapshot2.data?.length,
+                                itemBuilder: (ctx, i) => snapshot.data!.pAtivos
+                                        .split(",")
+                                        .contains(snapshot2.data![i].id)
+                                    ? ActivePersonCard(
+                                        snapshot2.data![i],
+                                      )
+                                    : Container(),
+                              );
+                          }
+                        },
                       );
+                    // ListView.builder(
+                    //   itemCount: snapshot.data?.length,
+                    //   itemBuilder: (ctx, i) =>
+                    //       ativosList.contains(snapshot.data![i].id)
+                    //           ? ActivePersonCard(
+                    //               snapshot.data![i],
+                    //             )
+                    //           : Container(),
+                    // );
                   }
                 })));
   }

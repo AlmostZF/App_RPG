@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/campaign_controller.dart';
+import 'package:rpg_app/controller/service/campaign_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
@@ -17,7 +18,9 @@ class CampaignCard extends StatefulWidget {
 class _CampaignCardState extends State<CampaignCard> {
   final Campaign campaign;
   _CampaignCardState(this.campaign);
+  late Future<List<Campaign>> _futureCampaign;
 
+  CampaignService _campaignService = new CampaignService();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -120,10 +123,7 @@ class _CampaignCardState extends State<CampaignCard> {
                                 onPressed: () {
                                   Provider.of<Campaigns>(context, listen: false)
                                       .remove(campaign);
-                                  // setState(() {
-                                  //   _futureCampaign =
-                                  //       _campaignService.fetchCampaigns();
-                                  // });
+
                                   Navigator.of(context).pop();
                                 },
                               ),
