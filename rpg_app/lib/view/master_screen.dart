@@ -56,6 +56,13 @@ class _MasterScreenState extends State<MasterScreen> {
     String pAtivos = campaign.pAtivos;
     List<String> ativosList = pAtivos.split(",");
 
+    setState(() {
+      _futureActivesPerson = _campaignService.fetchCampaign(campaign.id);
+      _futureActivesPerson
+          .then((value) => ativosList = value.pAtivos.split(","));
+      _futurePerson = _personService.fetchPersons();
+    });
+
     return Scaffold(
         appBar: AppBar(
           actions: [
