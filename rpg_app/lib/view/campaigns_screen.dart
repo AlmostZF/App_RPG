@@ -54,9 +54,9 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
               builder: (context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
-                    return Text('none');
+                    return const Text('none');
                   case ConnectionState.waiting:
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   default:
                     return ListView.builder(
                       itemCount: campaign.count,
