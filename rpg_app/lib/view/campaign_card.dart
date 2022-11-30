@@ -24,9 +24,9 @@ class CampaignCard extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (ctx) => AlertDialog(
-                  backgroundColor: const Color(0xFF432986),
+                  backgroundColor: defaultColor,
                   title: Text(
-                    "Iniciar campanha ${campaign.nome}",
+                    "Iniciar campanha",
                     style: TextStyle(color: Colors.white),
                   ),
                   actions: [

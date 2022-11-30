@@ -25,7 +25,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -46,12 +45,13 @@ class MyApp extends StatelessWidget {
             primarySwatch: secondColorMaterial,
             scaffoldBackgroundColor: backgroundColor,
             hintColor: otherColor),
-            initialRoute: AppRoutes.splashScreen,
+        initialRoute: AppRoutes.splashScreen,
         routes: {
           AppRoutes.personScreen: (_) => const PersonScreen(),
           AppRoutes.splashScreen: (_) => const SplashScreen(),
           AppRoutes.home: (_) => const HomePage(),
           AppRoutes.persomForm: (_) => const RegisterScreen(),
+          AppRoutes.personScreen: (_) => const PersonScreen(),
           AppRoutes.campaignForm: (_) => const RegisterCampaignScreen(),
           AppRoutes.roomsScreen: (_) => const CampaignsScreen(),
           AppRoutes.masterScreen: (_) => const MasterScreen(Campaign(
@@ -61,9 +61,6 @@ class MyApp extends StatelessWidget {
                 pAtivos: "",
               )),
           AppRoutes.modalForm: (_) => const ModalPoder(Power(
-          //AppRoutes.roomsScreen: (_) => const RoomsScreen(),
-          //AppRoutes.roomForm: (_) => const RegisterRoomScreen(),
-          //AppRoutes.modalForm: (_) => const ModalPoder(Power(
                 alcance: "",
                 componente: "",
                 dano: "",
