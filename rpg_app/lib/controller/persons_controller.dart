@@ -27,18 +27,41 @@ class Persons with ChangeNotifier {
 
   //Inclui/altera
   void put(Person person) {
-    if (person == null) {
-      return;
-    }
+    getPersons().then((value) {
+      if (person == null) {
+        return;
+      }
 
-    if (person.id != null &&
-        person.id.trim().isNotEmpty &&
-        _items.containsKey(person.id)) {
-      postSinglePerson(person, person.id);
+      if (person.id != null &&
+          person.id.trim().isNotEmpty &&
+          _items.containsKey(person.id)) {
+        postSinglePerson(person, person.id);
 
-      _items.update(
-        person.id,
-        (_) => Person(
+        _items.update(
+          person.id,
+          (_) => Person(
+              avatarUrl: person.avatarUrl,
+              carisma: person.carisma,
+              classe: person.classe,
+              constituicao: person.constituicao,
+              destreza: person.destreza,
+              forca: person.forca,
+              historia: person.historia,
+              id: person.id,
+              ideais: person.ideais,
+              inteligencia: person.inteligencia,
+              jogador: person.jogador,
+              mana: person.mana,
+              nivel: person.nivel,
+              nome: person.nome,
+              raca: person.raca,
+              sabedoria: person.sabedoria,
+              vida: person.vida),
+        );
+      } else {
+        final id = Random().nextInt(33333333).toString();
+
+        final finalp = Person(
             avatarUrl: person.avatarUrl,
             carisma: person.carisma,
             classe: person.classe,
@@ -46,7 +69,7 @@ class Persons with ChangeNotifier {
             destreza: person.destreza,
             forca: person.forca,
             historia: person.historia,
-            id: person.id,
+            id: id,
             ideais: person.ideais,
             inteligencia: person.inteligencia,
             jogador: person.jogador,
@@ -55,35 +78,14 @@ class Persons with ChangeNotifier {
             nome: person.nome,
             raca: person.raca,
             sabedoria: person.sabedoria,
-            vida: person.vida),
-      );
-    } else {
-      final id = Random().nextInt(33333333).toString();
+            vida: person.vida);
 
-      final finalp = Person(
-          avatarUrl: person.avatarUrl,
-          carisma: person.carisma,
-          classe: person.classe,
-          constituicao: person.constituicao,
-          destreza: person.destreza,
-          forca: person.forca,
-          historia: person.historia,
-          id: id,
-          ideais: person.ideais,
-          inteligencia: person.inteligencia,
-          jogador: person.jogador,
-          mana: person.mana,
-          nivel: person.nivel,
-          nome: person.nome,
-          raca: person.raca,
-          sabedoria: person.sabedoria,
-          vida: person.vida);
+        postSinglePerson(finalp, id);
 
-      postSinglePerson(finalp, id);
-
-      _items.putIfAbsent(id, () => finalp);
-    }
-    notifyListeners();
+        _items.putIfAbsent(id, () => finalp);
+      }
+      notifyListeners();
+    });
   }
 
   void remove(Person person) {

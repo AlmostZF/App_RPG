@@ -29,7 +29,6 @@ class Campaigns with ChangeNotifier {
   void put(Campaign campaign) {
     getCampaign().then(
       (value) {
-        print("TENM}? ${_itemsCampaign.containsKey(campaign.id)}");
         if (campaign.id.trim().isNotEmpty &&
             _itemsCampaign.containsKey(campaign.id)) {
           postSingleCampaing(campaign, campaign.id)
