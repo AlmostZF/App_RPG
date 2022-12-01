@@ -49,7 +49,7 @@ class ActivePersonCard extends StatelessWidget {
                         style: TextStyle(color: otherColor),
                       ),
                       content: SizedBox(
-                        height: size.height * .3,
+                        height: size.height * .4,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

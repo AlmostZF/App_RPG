@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/campaign_controller.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
@@ -53,6 +54,10 @@ class PersomCard extends StatelessWidget {
                             style: TextStyle(color: otherColor),
                           ),
                           content: TextFormField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return "Por favor insira o ID da sala.";
