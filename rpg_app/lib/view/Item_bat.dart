@@ -35,7 +35,7 @@ class ItemBar extends StatelessWidget {
                         ), 
                 Padding(
                   padding: EdgeInsets.only(left: size.width * 0.1),
-                  child: Text("Adicione um poder"),
+                  child: Text("Adicione um Item"),
                 ),
             ],
           )
