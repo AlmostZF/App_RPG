@@ -21,16 +21,41 @@ class ItemBar extends StatelessWidget {
               );
       },
       child: item.id == "1"
-          ? CircleAvatar(
-              child: ClipOval(
-                child: Icon(Icons.add),
-              ),
-            )
+          ? Row(
+            children: [
+              ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Center(
+                          child: Container(
+                            width: size.width * 0.3,
+                            height: size.height * 0.15,
+                           child: Icon(Icons.add),
+                            ),
+                            ),
+                        ), 
+                Padding(
+                  padding: EdgeInsets.only(left: size.width * 0.1),
+                  child: Text("Adicione um poder"),
+                ),
+            ],
+          )
           : Row(
             children: [
-              CircleAvatar(
-                  backgroundImage: NetworkImage(item.itemUrl),
-                ),
+              ClipRRect(
+                        //borderRadius: BorderRadius.circular(15),
+                        child: Center(
+                          child: Container(
+                            width: size.width * 0.3,
+                            height: size.height * 0.15,
+                            decoration:BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(item.itemUrl),
+                                fit: BoxFit.cover,
+                              )
+                            ),
+                            ),
+                        )
+                        ),
                  Padding(
                                 padding:
                                     EdgeInsets.only(top: size.width * 0.02, left: size.width * 0.02),
