@@ -27,29 +27,35 @@ class Campaigns with ChangeNotifier {
 
   //Inclui/altera
   void put(Campaign campaign) {
-    if (campaign.id.trim().isNotEmpty &&
-        _itemsCampaign.containsKey(campaign.id)) {
-      postSingleCampaing(campaign, campaign.id)
-          .then((value) => _itemsCampaign.update(
-                campaign.id,
-                (_) => Campaign(
-                    id: campaign.id,
-                    nome: campaign.nome,
-                    descricao: campaign.descricao,
-                    pAtivos: campaign.pAtivos),
-              ));
-    } else {
-      final id = Random().nextInt(33333333).toString();
-      final finalp = Campaign(
-          id: id,
-          nome: campaign.nome,
-          descricao: campaign.descricao,
-          pAtivos: campaign.pAtivos);
+    getCampaign().then(
+      (value) {
+        print("TENM}? ${_itemsCampaign.containsKey(campaign.id)}");
+        if (campaign.id.trim().isNotEmpty &&
+            _itemsCampaign.containsKey(campaign.id)) {
+          postSingleCampaing(campaign, campaign.id)
+              .then((value) => _itemsCampaign.update(
+                    campaign.id,
+                    (_) => Campaign(
+                        id: campaign.id,
+                        nome: campaign.nome,
+                        descricao: campaign.descricao,
+                        pAtivos: campaign.pAtivos),
+                  ));
+        } else {
+          print("A");
+          final id = Random().nextInt(33333333).toString();
+          final finalp = Campaign(
+              id: id,
+              nome: campaign.nome,
+              descricao: campaign.descricao,
+              pAtivos: campaign.pAtivos);
 
-      postSingleCampaing(finalp, id)
-          .then((value) => _itemsCampaign.putIfAbsent(id, () => finalp));
-    }
-    notifyListeners();
+          postSingleCampaing(finalp, id)
+              .then((value) => _itemsCampaign.putIfAbsent(id, () => finalp));
+        }
+        notifyListeners();
+      },
+    );
   }
 
   void remove(Campaign campaign) {
