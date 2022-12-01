@@ -126,20 +126,20 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
                         "Campanha criada!",
                         style: TextStyle(color: otherColor),
                       ),
-                      content: Text("O código da sala é: $codigo",
-                          style: TextStyle(color: otherColor)),
-                      actions: [
-                        IconButton(
-                          onPressed: () {
-                            Clipboard.setData(ClipboardData(text: codigo));
-                          },
-                          icon: Icon(
-                            Icons.copy,
-                            size: 30,
-                          ),
-                          color: secondColor,
-                        )
-                      ],
+                      // content: Text("O código da sala é: $codigo",
+                      //     style: TextStyle(color: otherColor)),
+                      // actions: [
+                      //   IconButton(
+                      //     onPressed: () {
+                      //       Clipboard.setData(ClipboardData(text: codigo));
+                      //     },
+                      //     icon: Icon(
+                      //       Icons.copy,
+                      //       size: 30,
+                      //     ),
+                      //     color: secondColor,
+                      //   )
+                      // ],
                     ));
           }
         },
