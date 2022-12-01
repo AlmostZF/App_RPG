@@ -16,24 +16,23 @@ class PowerCircle extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return InkWell(
-        onTap: () {
-          power.id == "1"
-              ? Navigator.of(context).pushNamed(AppRoutes.modalForm)
-              : Navigator.of(context).pushNamed(
-                  AppRoutes.modalForm,
-                  arguments: power,
-                );
-        },
-        child: power.id == "1"
-            ? CircleAvatar(
-                child: ClipOval(
-                  child: Icon(Icons.add),
-                ),
-              )
-            : CircleAvatar(
-                child: ClipOval(
-                  child: Text("${power.nome}"),
-                ),
-              ));
+      onTap: () {
+        power.id == "1"
+            ? Navigator.of(context).pushNamed(AppRoutes.modalForm)
+            : Navigator.of(context).pushNamed(
+                AppRoutes.modalForm,
+                arguments: power,
+              );
+      },
+      child: power.id == "1"
+          ? CircleAvatar(
+              child: ClipOval(
+                child: Icon(Icons.add),
+              ),
+            )
+          : CircleAvatar(
+              backgroundImage: NetworkImage(power.poderUrl),
+            ),
+    );
   }
 }

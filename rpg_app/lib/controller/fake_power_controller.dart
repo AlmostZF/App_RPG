@@ -10,5 +10,6 @@ const FAKE_POWER = {
       mana: "mana",
       dano: "dano",
       componente: "componente",
-      nivel: "nivel"),
+      nivel: "nivel",
+      poderUrl: ""),
 };
