@@ -31,6 +31,7 @@ class _RegisterPageState extends State<RegisterScreen> {
   final Map<String, String> _formData = {};
 
   late Future<List<Person>> _futurePerson;
+  bool isLoading = false;
 
   PersonService _personService = PersonService();
 
@@ -89,109 +90,125 @@ class _RegisterPageState extends State<RegisterScreen> {
         backgroundColor: secondColor,
         foregroundColor: colorFist,
       ),
-      body: Form(
-        key: _form,
-        child: Row(
-          children: [
-            Expanded(
-              child: Stepper(
-                physics: const ClampingScrollPhysics(),
-                type: stepperType,
-                steps: _mySteps(),
-                currentStep: _currentstep,
-                onStepTapped: (step) {
-                  setState(() {
-                    _currentstep = step;
-                  });
-                },
-                onStepContinue: () async {
-                  if (_currentstep < _mySteps().length - 1) {
-                    setState(() {
-                      _currentstep = _currentstep + 1;
-                    });
-                  } else if (imagemFinal == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Por favor, selecione uma imagem")));
-                    return;
-                  } else if (_form.currentState!.validate()) {
-                    _form.currentState?.save();
-                    await storage.uploadFile(path, fileName);
-                    dynamic download = await storage.downloadURL(fileName);
-                    Provider.of<Persons>(context, listen: false).put(
-                      Person(
-                        id: _formData['id'].toString(),
-                        nome: _formData['nome'].toString(),
-                        jogador: _formData['jogador'].toString(),
-                        raca: _formData['raca'].toString(),
-                        classe: _formData['classe'].toString(),
-                        nivel: _formData['nivel'].toString(),
-                        historia: _formData['historia'].toString(),
-                        ideais: _formData['ideais'].toString(),
-                        forca: _formData['forca'].toString(),
-                        destreza: _formData['destreza'].toString(),
-                        constituicao: _formData['constituicao'].toString(),
-                        inteligencia: _formData['inteligencia'].toString(),
-                        sabedoria: _formData['sabedoria'].toString(),
-                        carisma: _formData['carisma'].toString(),
-                        vida: _formData['vida'].toString(),
-                        mana: _formData['mana'].toString(),
-                        avatarUrl: download.toString(),
-                      ),
-                    );
-                    setState(() {
-                      _futurePerson = _personService.fetchPersons();
-                      _futurePerson
-                          .then((value) => Navigator.of(context).pop());
-                    });
-                  }
-                },
-                onStepCancel: () {
-                  setState(() {
-                    if (_currentstep > 0) {
-                      _currentstep = _currentstep - 1;
-                    } else {
-                      _currentstep = 0;
-                    }
-                  });
-                },
-                controlsBuilder:
-                    (BuildContext context, ControlsDetails details) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: <Widget>[
-                        ElevatedButton(
-                          onPressed: details.onStepContinue,
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(secondColor),
-                              foregroundColor:
-                                  MaterialStateProperty.all<Color>(colorFist)),
-                          child: Text(_currentstep < _mySteps().length - 1
-                              ? "CONTINUAR"
-                              : "SALVAR"),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        ElevatedButton(
-                          onPressed: details.onStepCancel,
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(colorFist),
-                              foregroundColor: MaterialStateProperty.all<Color>(
-                                  secondColor)),
-                          child: const Text("CANCELAR"),
-                        ),
-                      ],
+      body: isLoading
+          ? Center(child: const CircularProgressIndicator())
+          : Form(
+              key: _form,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Stepper(
+                      physics: const ClampingScrollPhysics(),
+                      type: stepperType,
+                      steps: _mySteps(),
+                      currentStep: _currentstep,
+                      onStepTapped: (step) {
+                        setState(() {
+                          _currentstep = step;
+                        });
+                      },
+                      onStepContinue: () async {
+                        if (_currentstep < _mySteps().length - 1) {
+                          setState(() {
+                            _currentstep = _currentstep + 1;
+                          });
+                        } else if (imagemFinal == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content:
+                                      Text("Por favor, selecione uma imagem")));
+                          return;
+                        } else if (_form.currentState!.validate()) {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          _form.currentState?.save();
+                          await storage.uploadFile(path, fileName);
+                          dynamic download =
+                              await storage.downloadURL(fileName);
+                          Provider.of<Persons>(context, listen: false).put(
+                            Person(
+                              id: _formData['id'].toString(),
+                              nome: _formData['nome'].toString(),
+                              jogador: _formData['jogador'].toString(),
+                              raca: _formData['raca'].toString(),
+                              classe: _formData['classe'].toString(),
+                              nivel: _formData['nivel'].toString(),
+                              historia: _formData['historia'].toString(),
+                              ideais: _formData['ideais'].toString(),
+                              forca: _formData['forca'].toString(),
+                              destreza: _formData['destreza'].toString(),
+                              constituicao:
+                                  _formData['constituicao'].toString(),
+                              inteligencia:
+                                  _formData['inteligencia'].toString(),
+                              sabedoria: _formData['sabedoria'].toString(),
+                              carisma: _formData['carisma'].toString(),
+                              vida: _formData['vida'].toString(),
+                              mana: _formData['mana'].toString(),
+                              avatarUrl: download.toString(),
+                            ),
+                          );
+                          setState(() {
+                            _futurePerson = _personService.fetchPersons();
+                            _futurePerson.then((value) {
+                              isLoading = false;
+                              Navigator.of(context).pop();
+                            });
+                          });
+                        }
+                      },
+                      onStepCancel: () {
+                        setState(() {
+                          if (_currentstep > 0) {
+                            _currentstep = _currentstep - 1;
+                          } else {
+                            _currentstep = 0;
+                          }
+                        });
+                      },
+                      controlsBuilder:
+                          (BuildContext context, ControlsDetails details) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: <Widget>[
+                              ElevatedButton(
+                                onPressed: details.onStepContinue,
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            secondColor),
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            colorFist)),
+                                child: Text(_currentstep < _mySteps().length - 1
+                                    ? "CONTINUAR"
+                                    : "SALVAR"),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              ElevatedButton(
+                                onPressed: details.onStepCancel,
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            colorFist),
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            secondColor)),
+                                child: const Text("CANCELAR"),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 

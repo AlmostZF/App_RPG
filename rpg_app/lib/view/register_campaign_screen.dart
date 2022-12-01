@@ -19,7 +19,6 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
   final Map<String, String> _formData = {};
   bool isEdit = false;
   late Future<List<Campaign>> _futureCampaign;
-
   CampaignService _campaignService = CampaignService();
 
   void _loadFormData(Campaign campaing) {
