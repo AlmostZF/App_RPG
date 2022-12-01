@@ -27,6 +27,9 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
   }
 
   Widget build(BuildContext context) {
+    setState(() {
+      _futureCampaign = _campaignService.fetchCampaigns();
+    });
     final Campaigns campaign = Provider.of(context);
 
     Size size = MediaQuery.of(context).size;
@@ -38,6 +41,15 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
         title: const Text(
           "Minhas Campanhas",
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  _futureCampaign = _campaignService.fetchCampaigns();
+                });
+              },
+              icon: Icon(Icons.refresh))
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: secondColor,
@@ -59,12 +71,19 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
                   case ConnectionState.waiting:
                     return const CircularProgressIndicator();
                   default:
-                    return ListView.builder(
-                      itemCount: campaign.count,
-                      itemBuilder: (ctx, i) => CampaignCard(
-                        campaign.byIndex(i),
-                      ),
-                    );
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: snapshot.data?.length,
+                        itemBuilder: (ctx, i) => CampaignCard(
+                          snapshot.data![i],
+                        ),
+                      );
+                    } else {
+                      return Text(
+                        "Crie uma nova campanha",
+                        style: TextStyle(fontSize: 30, color: otherColor),
+                      );
+                    }
                 }
               })),
     );

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/persons_controller.dart';
+import 'package:rpg_app/controller/service/person_service.dart';
 import 'package:rpg_app/controller/service/storage_service.dart';
 import 'package:rpg_app/model/person_model.dart';
 import 'package:rpg_app/style/colors.dart';
@@ -26,7 +27,12 @@ class _RegisterPageState extends State<RegisterScreen> {
   StepperType stepperType = StepperType.vertical;
 
   final _form = GlobalKey<FormState>();
+
   final Map<String, String> _formData = {};
+
+  late Future<List<Person>> _futurePerson;
+
+  PersonService _personService = PersonService();
 
   void _loadFormData(Person person) {
     if (person != null) {
@@ -128,7 +134,10 @@ class _RegisterPageState extends State<RegisterScreen> {
                         avatarUrl: download.toString(),
                       ),
                     );
-                    Navigator.of(context).pop();
+                    setState(() {
+                      _futurePerson = _personService.fetchPersons();
+                      Navigator.of(context).pop();
+                    });
                   }
                 },
                 onStepCancel: () {

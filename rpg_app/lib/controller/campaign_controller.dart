@@ -29,16 +29,15 @@ class Campaigns with ChangeNotifier {
   void put(Campaign campaign) {
     if (campaign.id.trim().isNotEmpty &&
         _itemsCampaign.containsKey(campaign.id)) {
-      postSingleCampaing(campaign, campaign.id);
-
-      _itemsCampaign.update(
-        campaign.id,
-        (_) => Campaign(
-            id: campaign.id,
-            nome: campaign.nome,
-            descricao: campaign.descricao,
-            pAtivos: campaign.pAtivos),
-      );
+      postSingleCampaing(campaign, campaign.id)
+          .then((value) => _itemsCampaign.update(
+                campaign.id,
+                (_) => Campaign(
+                    id: campaign.id,
+                    nome: campaign.nome,
+                    descricao: campaign.descricao,
+                    pAtivos: campaign.pAtivos),
+              ));
     } else {
       final id = Random().nextInt(33333333).toString();
       final finalp = Campaign(
@@ -47,9 +46,8 @@ class Campaigns with ChangeNotifier {
           descricao: campaign.descricao,
           pAtivos: campaign.pAtivos);
 
-      postSingleCampaing(finalp, id);
-
-      _itemsCampaign.putIfAbsent(id, () => finalp);
+      postSingleCampaing(finalp, id)
+          .then((value) => _itemsCampaign.putIfAbsent(id, () => finalp));
     }
     notifyListeners();
   }

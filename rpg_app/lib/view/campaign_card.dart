@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/campaign_controller.dart';
+import 'package:rpg_app/controller/service/campaign_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
 import 'package:rpg_app/view/master_screen.dart';
 
-class CampaignCard extends StatelessWidget {
+class CampaignCard extends StatefulWidget {
   final Campaign campaign;
-  const CampaignCard(this.campaign);
+  CampaignCard(this.campaign);
 
+  @override
+  State<CampaignCard> createState() => _CampaignCardState(campaign);
+}
+
+class _CampaignCardState extends State<CampaignCard> {
+  final Campaign campaign;
+  _CampaignCardState(this.campaign);
+  late Future<List<Campaign>> _futureCampaign;
+
+  CampaignService _campaignService = new CampaignService();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,9 +37,43 @@ class CampaignCard extends StatelessWidget {
                 context: context,
                 builder: (ctx) => AlertDialog(
                   backgroundColor: defaultColor,
-                  title: Text(
-                    "Iniciar campanha",
-                    style: TextStyle(color: Colors.white),
+                  title: SizedBox(
+                    height: 75,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Iniciar campanha",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "${campaign.id}",
+                              style: TextStyle(color: otherColor, fontSize: 20),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: campaign.id));
+                              },
+                              icon: Icon(
+                                Icons.copy,
+                                size: 20,
+                              ),
+                              color: secondColor,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   actions: [
                     ElevatedButton(
@@ -35,7 +81,7 @@ class CampaignCard extends StatelessWidget {
                         primary: secondColor,
                       ),
                       child: const Text(
-                        "Sim",
+                        "Iniciar",
                         style: TextStyle(color: Colors.black),
                       ),
                       onPressed: () {
@@ -106,10 +152,13 @@ class CampaignCard extends StatelessWidget {
                                   primary: secondColor,
                                 ),
                                 child: const Text(
-                                  "Não",
+                                  "Sim",
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 onPressed: () {
+                                  Provider.of<Campaigns>(context, listen: false)
+                                      .remove(campaign);
+
                                   Navigator.of(context).pop();
                                 },
                               ),
@@ -118,15 +167,13 @@ class CampaignCard extends StatelessWidget {
                                   primary: secondColor,
                                 ),
                                 child: const Text(
-                                  "Sim",
+                                  "Não",
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 onPressed: () {
-                                  Provider.of<Campaigns>(context, listen: false)
-                                      .remove(campaign);
                                   Navigator.of(context).pop();
                                 },
-                              )
+                              ),
                             ],
                           ),
                         );

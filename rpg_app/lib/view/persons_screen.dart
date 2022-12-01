@@ -28,6 +28,10 @@ class _PersonScreenState extends State<PersonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      _futurePerson = _personService.fetchPersons();
+    });
+
     final Persons persons = Provider.of(context);
 
     return Scaffold(
@@ -37,6 +41,16 @@ class _PersonScreenState extends State<PersonScreen> {
         title: const Text(
           "Meus Personagens",
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _futurePerson = _personService.fetchPersons();
+              });
+            },
+            icon: const Icon(Icons.refresh),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: secondColor,
@@ -58,12 +72,17 @@ class _PersonScreenState extends State<PersonScreen> {
                   case ConnectionState.waiting:
                     return CircularProgressIndicator();
                   default:
-                    return ListView.builder(
-                      itemCount: persons.count,
-                      itemBuilder: (ctx, i) => PersomCard(
-                        persons.byIndex(i),
-                      ),
-                    );
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: snapshot.data?.length,
+                        itemBuilder: (ctx, i) => PersomCard(snapshot.data![i]),
+                      );
+                    } else {
+                      return Text(
+                        "Crie um novo personagem",
+                        style: TextStyle(fontSize: 30, color: otherColor),
+                      );
+                    }
                 }
               })),
     );
