@@ -358,10 +358,10 @@ class _BattleScreenState extends State<BattleScreen> {
                                 onPressed: () {
                                   _futurePerson = _personService
                                       .fetchPerson(person.id.toString());
-                                  _futurePerson.then((value) =>
-                                      Provider.of<Persons>(context,
-                                              listen: false)
-                                          .put(Person())));
+                                  // _futurePerson.then((value) =>
+                                  //     Provider.of<Persons>(context,
+                                  //             listen: false)
+                                  //         .put(Person())));
                                 },
                               ),
                               SfSlider(
