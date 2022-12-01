@@ -136,8 +136,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                     );
                     setState(() {
                       _futurePerson = _personService.fetchPersons();
+                      Navigator.of(context).pop();
                     });
-                    Navigator.of(context).pop();
                   }
                 },
                 onStepCancel: () {
