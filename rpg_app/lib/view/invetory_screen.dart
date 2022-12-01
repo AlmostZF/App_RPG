@@ -3,6 +3,8 @@ import 'package:rpg_app/style/colors.dart';
 import 'package:rpg_app/model/carousel_model.dart';
 import 'package:rpg_app/view/modal_Item.dart';
 
+import '../routes/app_routes.dart';
+
 class Invetory extends StatefulWidget {
   const Invetory({Key? key}) : super(key: key);
 
@@ -104,10 +106,7 @@ class _InvetoryState extends State<Invetory> {
                 top: size.width * 0.23, left: size.width * 0.85),
             child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => const ModalItem())));
+                 Navigator.of(context).pushNamed(AppRoutes.modalItem);
                 },
                 child: Icon(
                   Icons.add,
