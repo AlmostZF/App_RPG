@@ -62,20 +62,7 @@ class _BattleScreenState extends State<BattleScreen> {
       });
     }
 
-    double _currentSliderValue = 20;
-
     maiorAtributo();
-    int _counter = 0;
-    void _incrementCounter() {
-      setState(() {
-        // This call to setState tells the Flutter framework that something has
-        // changed in this State, which causes it to rerun the build method below
-        // so that the display can reflect the updated values. If we changed
-        // _counter without calling setState(), then the build method would not be
-        // called again, and so nothing would appear to happen.
-        _counter++;
-      });
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -353,10 +340,6 @@ class _BattleScreenState extends State<BattleScreen> {
                                   "${valueVida}/${maxVida}",
                                   style: const TextStyle(color: otherColor),
                                 ),
-                                Text(
-                                  '$_counter',
-                                  style: Theme.of(context).textTheme.headline4,
-                                ),
                               ],
                             ),
                           ),
@@ -365,43 +348,33 @@ class _BattleScreenState extends State<BattleScreen> {
                               IconButton(
                                 icon: Icon(Icons.remove),
                                 color: otherColor,
-                                onPressed: () {
-                                  print("A");
+                                onPressed: () {},
+                              ),
+                              SfSlider(
+                                activeColor: Colors.red,
+                                min: 0.0,
+                                max: maxVida,
+                                value: valueVida,
+                                showTicks: false,
+                                showLabels: false,
+                                enableTooltip: true,
+                                minorTicksPerInterval: 1,
+                                onChanged: (dynamic value) {
                                   setState(() {
-                                    valueVida--;
+                                    maxVida = value;
                                   });
-                                  print(valueVida);
-                                  // _futurePerson = _personService
-                                  //     .fetchPerson(person.id.toString());
-                                  // _futurePerson.then((value) =>
-                                  //     Provider.of<Persons>(context,
-                                  //             listen: false)
-                                  //         .put(Person(
-                                  //             id: value.id,
-                                  //             nome: value.nome,
-                                  //             jogador: value.jogador,
-                                  //             raca: value.raca,
-                                  //             classe: value.classe,
-                                  //             nivel: value.nivel,
-                                  //             historia: value.historia,
-                                  //             ideais: value.ideais,
-                                  //             forca: value.forca,
-                                  //             destreza: value.destreza,
-                                  //             constituicao: value.constituicao,
-                                  //             inteligencia: value.inteligencia,
-                                  //             sabedoria: value.sabedoria,
-                                  //             carisma: value.carisma,
-                                  //             vida: valueVida.toString(),
-                                  //             mana: value.mana,
-                                  //             avatarUrl: value.avatarUrl)));
                                 },
+                                thumbIcon: const Icon(
+                                  Icons.health_and_safety_outlined,
+                                  size: 20,
+                                ),
+                                showDividers: true,
+                                stepSize: 1,
                               ),
                               IconButton(
                                 icon: Icon(Icons.add),
                                 color: otherColor,
-                                onPressed: () {
-                                  _incrementCounter;
-                                },
+                                onPressed: () {},
                               ),
                             ],
                           )
