@@ -19,6 +19,7 @@ class ActivePersonCard extends StatelessWidget {
     late Future<Campaign> _futureCampaign;
     final _form = GlobalKey<FormState>();
     final Map<String, String> _formData = {};
+    Size size = MediaQuery.of(context).size;
 
     final avatar = person.avatarUrl.isEmpty
         ? const CircleAvatar(
@@ -36,24 +37,120 @@ class ActivePersonCard extends StatelessWidget {
       padding: const EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 3),
       child: Card(
         color: colorFist,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListTile(
-            leading: avatar,
-            title: Text(
-              person.nome,
-              style: const TextStyle(fontWeight: FontWeight.w800),
+        child: InkWell(
+          splashColor: secondColor,
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                      backgroundColor: defaultColor,
+                      title: Text(
+                        person.nome,
+                        style: TextStyle(color: otherColor),
+                      ),
+                      content: SizedBox(
+                        height: size.height * .3,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  person.historia,
+                                  style: TextStyle(
+                                      color: secondColor,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Pontos",
+                                      style: TextStyle(
+                                          color: otherColor,
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 18),
+                                    ),
+                                    Text(
+                                      "Constituição: ${person.constituicao}",
+                                      style: TextStyle(
+                                        color: otherColor,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Destreza: ${person.destreza}",
+                                      style: TextStyle(color: otherColor),
+                                    ),
+                                    Text(
+                                      "Força: ${person.forca}",
+                                      style: TextStyle(color: otherColor),
+                                    ),
+                                    Text(
+                                      "Inteligência: ${person.inteligencia}",
+                                      style: TextStyle(color: otherColor),
+                                    ),
+                                    Text(
+                                      "Sabedoria: ${person.sabedoria}",
+                                      style: TextStyle(color: otherColor),
+                                    ),
+                                    Text(
+                                      "Carisma: ${person.carisma}",
+                                      style: TextStyle(color: otherColor),
+                                    ),
+                                    Text(
+                                      "Constituição: ${person.constituicao}",
+                                      style: TextStyle(color: otherColor),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ));
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              leading: avatar,
+              title: Text(
+                person.nome,
+                style: const TextStyle(fontWeight: FontWeight.w800),
+              ),
+              textColor: Colors.white,
+              subtitle: Text(
+                  "Nível: ${person.nivel} | ${person.raca}\n${person.classe}"),
+              trailing: SizedBox(
+                width: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Column(
+                      children: [
+                        Icon(Icons.favorite),
+                        Text(person.vida),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      children: [
+                        Icon(Icons.hourglass_bottom),
+                        Text(person.mana),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              iconColor: secondColor,
             ),
-            textColor: Colors.white,
-            subtitle: Text(
-                "Nível: ${person.nivel} | ${person.raca}\n${person.classe}"),
-            trailing: Column(
-              children: [
-                Icon(Icons.favorite),
-                Text("${person.vida}"),
-              ],
-            ),
-            iconColor: secondColor,
           ),
         ),
       ),
