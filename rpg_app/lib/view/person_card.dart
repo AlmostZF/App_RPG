@@ -53,6 +53,12 @@ class PersomCard extends StatelessWidget {
                             style: TextStyle(color: otherColor),
                           ),
                           content: TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Por favor insira o ID da sala.";
+                              }
+                              return null;
+                            },
                             style: const TextStyle(
                               color: otherColor,
                             ),
@@ -76,33 +82,38 @@ class PersomCard extends StatelessWidget {
                                 style: TextStyle(color: Colors.black),
                               ),
                               onPressed: () {
-                                _form.currentState?.save();
-                                _futureCampaign =
-                                    _campaignService.fetchCampaign(
-                                        _formData['idSala'].toString());
-                                _futureCampaign.then((value) => (Provider.of<
-                                        Campaigns>(context, listen: false)
-                                    .put(value.pAtivos == ""
-                                        ? Campaign(
-                                            id: _formData['idSala'].toString(),
-                                            nome: value.nome,
-                                            descricao: value.descricao,
-                                            pAtivos: "${person.id},",
-                                          )
-                                        : Campaign(
-                                            id: _formData['idSala'].toString(),
-                                            nome: value.nome,
-                                            descricao: value.descricao,
-                                            pAtivos:
-                                                "${value.pAtivos}${person.id},",
-                                          ))));
+                                if (_form.currentState!.validate()) {
+                                  _form.currentState?.save();
+                                  _futureCampaign =
+                                      _campaignService.fetchCampaign(
+                                          _formData['idSala'].toString());
+                                  _futureCampaign.then((value) =>
+                                      (Provider.of<Campaigns>(context,
+                                              listen: false)
+                                          .put(value.pAtivos == ""
+                                              ? Campaign(
+                                                  id: _formData['idSala']
+                                                      .toString(),
+                                                  nome: value.nome,
+                                                  descricao: value.descricao,
+                                                  pAtivos: "${person.id},",
+                                                )
+                                              : Campaign(
+                                                  id: _formData['idSala']
+                                                      .toString(),
+                                                  nome: value.nome,
+                                                  descricao: value.descricao,
+                                                  pAtivos:
+                                                      "${value.pAtivos}${person.id},",
+                                                ))));
 
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => BattleScreen(
-                                              person,
-                                            )));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => BattleScreen(
+                                                person,
+                                              )));
+                                }
                               },
                             ),
                             ElevatedButton(

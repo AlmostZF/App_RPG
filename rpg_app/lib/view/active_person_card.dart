@@ -47,6 +47,13 @@ class ActivePersonCard extends StatelessWidget {
             textColor: Colors.white,
             subtitle: Text(
                 "Nível: ${person.nivel} | ${person.raca}\n${person.classe}"),
+            trailing: Column(
+              children: [
+                Icon(Icons.favorite),
+                Text("${person.vida}"),
+              ],
+            ),
+            iconColor: secondColor,
           ),
         ),
       ),

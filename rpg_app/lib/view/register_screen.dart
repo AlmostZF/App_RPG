@@ -608,108 +608,108 @@ class _RegisterPageState extends State<RegisterScreen> {
           ),
           isActive: _currentstep >= 2,
           state: _currentstep == 2 ? StepState.editing : StepState.complete),
-      Step(
-          title: Text(
-            _currentstep == 3 ? "Habilidades" : "",
-            style: const TextStyle(color: otherColor),
-          ),
-          content: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  style: const TextStyle(color: otherColor),
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: defaultColor)),
-                      labelText: "Nome"),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: TextFormField(
-                        style: const TextStyle(color: otherColor),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: defaultColor)),
-                          labelText: "Dano / Defesa",
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: TextFormField(
-                        style: const TextStyle(color: otherColor),
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: defaultColor)),
-                            labelText: "Bônus"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  style: const TextStyle(color: otherColor),
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: defaultColor)),
-                      labelText: "Nome"),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: TextFormField(
-                        style: const TextStyle(color: otherColor),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: defaultColor)),
-                          labelText: "Dano / Defesa",
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: TextFormField(
-                        style: const TextStyle(color: otherColor),
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: defaultColor)),
-                            labelText: "Bônus"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          isActive: _currentstep >= 3,
-          state: _currentstep == 3 ? StepState.editing : StepState.complete),
+      // Step(
+      //     title: Text(
+      //       _currentstep == 3 ? "Habilidades" : "",
+      //       style: const TextStyle(color: otherColor),
+      //     ),
+      //     content: Column(
+      //       children: [
+      //         Padding(
+      //           padding: const EdgeInsets.all(8.0),
+      //           child: TextFormField(
+      //             style: const TextStyle(color: otherColor),
+      //             decoration: const InputDecoration(
+      //                 border: OutlineInputBorder(),
+      //                 enabledBorder: OutlineInputBorder(
+      //                     borderSide: BorderSide(color: defaultColor)),
+      //                 labelText: "Nome"),
+      //           ),
+      //         ),
+      //         Padding(
+      //           padding: const EdgeInsets.all(8.0),
+      //           child: Row(
+      //             children: [
+      //               Expanded(
+      //                 flex: 3,
+      //                 child: TextFormField(
+      //                   style: const TextStyle(color: otherColor),
+      //                   decoration: const InputDecoration(
+      //                     border: OutlineInputBorder(),
+      //                     enabledBorder: OutlineInputBorder(
+      //                         borderSide: BorderSide(color: defaultColor)),
+      //                     labelText: "Dano / Defesa",
+      //                   ),
+      //                 ),
+      //               ),
+      //               const SizedBox(
+      //                 width: 15,
+      //               ),
+      //               Expanded(
+      //                 flex: 2,
+      //                 child: TextFormField(
+      //                   style: const TextStyle(color: otherColor),
+      //                   decoration: const InputDecoration(
+      //                       border: OutlineInputBorder(),
+      //                       enabledBorder: OutlineInputBorder(
+      //                           borderSide: BorderSide(color: defaultColor)),
+      //                       labelText: "Bônus"),
+      //                 ),
+      //               ),
+      //             ],
+      //           ),
+      //         ),
+      //         const SizedBox(
+      //           height: 25,
+      //         ),
+      //         Padding(
+      //           padding: const EdgeInsets.all(8.0),
+      //           child: TextFormField(
+      //             style: const TextStyle(color: otherColor),
+      //             decoration: const InputDecoration(
+      //                 border: OutlineInputBorder(),
+      //                 enabledBorder: OutlineInputBorder(
+      //                     borderSide: BorderSide(color: defaultColor)),
+      //                 labelText: "Nome"),
+      //           ),
+      //         ),
+      //         Padding(
+      //           padding: const EdgeInsets.all(8.0),
+      //           child: Row(
+      //             children: [
+      //               Expanded(
+      //                 flex: 3,
+      //                 child: TextFormField(
+      //                   style: const TextStyle(color: otherColor),
+      //                   decoration: const InputDecoration(
+      //                     border: OutlineInputBorder(),
+      //                     enabledBorder: OutlineInputBorder(
+      //                         borderSide: BorderSide(color: defaultColor)),
+      //                     labelText: "Dano / Defesa",
+      //                   ),
+      //                 ),
+      //               ),
+      //               const SizedBox(
+      //                 width: 15,
+      //               ),
+      //               Expanded(
+      //                 flex: 2,
+      //                 child: TextFormField(
+      //                   style: const TextStyle(color: otherColor),
+      //                   decoration: const InputDecoration(
+      //                       border: OutlineInputBorder(),
+      //                       enabledBorder: OutlineInputBorder(
+      //                           borderSide: BorderSide(color: defaultColor)),
+      //                       labelText: "Bônus"),
+      //                 ),
+      //               ),
+      //             ],
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //     isActive: _currentstep >= 3,
+      //     state: _currentstep == 3 ? StepState.editing : StepState.complete),
     ];
     return _steps;
   }

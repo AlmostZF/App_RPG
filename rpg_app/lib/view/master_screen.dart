@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -68,7 +70,7 @@ class _MasterScreenState extends State<MasterScreen> {
         appBar: AppBar(
           actions: [
             IconButton(
-                onPressed: () async {
+                onPressed: () {
                   setState(() {
                     _futureActivesPerson =
                         _campaignService.fetchCampaign(campaign.id);
