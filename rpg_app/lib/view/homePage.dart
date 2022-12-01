@@ -18,34 +18,42 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.only(top: size.width * .6),
         child: Column(
           children: [
-            Center(
-              child: SizedBox(
-                height: size.width * .7,
-                width: size.width * .7,
-                child: const Center(
-                    child: Image(
-                  image: AssetImage('asset/images/logo.png'),
-                )),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: size.width * .2),
-              child: SizedBox(
-                width: size.width * 0.35,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(AppRoutes.roomsScreen);
-                    },
-                    child: const Text("Criar sala")),
-              ),
+            Expanded(
+              child: const Center(
+                  child: Image(
+                image: AssetImage('asset/images/logo.png'),
+              )),
             ),
             SizedBox(
-              width: size.width * 0.35,
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(AppRoutes.personScreen);
-                  },
-                  child: const Text("Entrar na sala")),
+              height: 300,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 40,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.roomsScreen);
+                          },
+                          child: const Text("Criar sala")),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 40,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.personScreen);
+                          },
+                          child: const Text("Entrar na sala")),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

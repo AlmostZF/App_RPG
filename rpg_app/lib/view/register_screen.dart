@@ -109,6 +109,9 @@ class _RegisterPageState extends State<RegisterScreen> {
                     setState(() {
                       _currentstep = _currentstep + 1;
                     });
+                  } else if (imagemFinal == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Por favor, selecione uma imagem")));
                   } else if (_form.currentState!.validate()) {
                     _form.currentState?.save();
                     await storage.uploadFile(path, fileName);
