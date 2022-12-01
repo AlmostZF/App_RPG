@@ -18,8 +18,7 @@ class ModalItem extends StatefulWidget {
 }
 
 class _ModalPageState extends State<ModalItem> {
-
-    final Storage storage = Storage();
+  final Storage storage = Storage();
   File? imagemFinal;
   String path = "";
   String fileName = "";
@@ -29,7 +28,6 @@ class _ModalPageState extends State<ModalItem> {
   bool isEdit = false;
   final Item item;
   _ModalPageState(this.item);
-
 
   void _loadFormData(Item item) {
     if (item != null) {
@@ -47,19 +45,18 @@ class _ModalPageState extends State<ModalItem> {
       _formData['resistencia'] = item.resistencia;
       preco:
       _formData['preco'] = item.preco;
-       itemUrl:
+      itemUrl:
       _formData['itemUrl'] = item.itemUrl;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
-        title: isEdit
-        ? const Text("Criar Item")
-        : const Text('Adicionar Item'),
+        title: isEdit ? const Text("Criar Item") : const Text('Adicionar Item'),
         backgroundColor: secondColor,
         foregroundColor: colorFist,
       ),
@@ -103,36 +100,31 @@ class _ModalPageState extends State<ModalItem> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: Container(
-                          width: size.width * 0.2,
-                          height: size.height * 0.1,
-                          color: otherColor,
-                          child: imagemFinal == null 
-                          ?GestureDetector(
-                            child: Icon(
-                              Icons.add_photo_alternate_outlined,
-                              color: defaultColor,
-                              size: size.width * .08,
-                            ),
-                            onTap: () => {
-                            pegarImagemGaleria()
-                            },
-                          )
-                          :ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Center(
-                          child: Container(
                             width: size.width * 0.2,
                             height: size.height * 0.1,
-                            decoration:BoxDecoration(
-                              image: DecorationImage(
-                                image: FileImage(imagemFinal!),
-                                fit: BoxFit.cover,
-                              )
-                            ),
-                            ),
-                        )
-                        )
-                        ),
+                            color: otherColor,
+                            child: imagemFinal == null
+                                ? GestureDetector(
+                                    child: Icon(
+                                      Icons.add_photo_alternate_outlined,
+                                      color: defaultColor,
+                                      size: size.width * .08,
+                                    ),
+                                    onTap: () => {pegarImagemGaleria()},
+                                  )
+                                : ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: Center(
+                                      child: Container(
+                                        width: size.width * 0.2,
+                                        height: size.height * 0.1,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                          image: FileImage(imagemFinal!),
+                                          fit: BoxFit.cover,
+                                        )),
+                                      ),
+                                    ))),
                       ),
                     ),
                   ],
@@ -149,8 +141,7 @@ class _ModalPageState extends State<ModalItem> {
                         color: otherColor,
                       ),
                       initialValue: _formData['peso'],
-                      onSaved: (value) =>
-                          _formData['peso'] = value.toString(),
+                      onSaved: (value) => _formData['peso'] = value.toString(),
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
@@ -170,7 +161,8 @@ class _ModalPageState extends State<ModalItem> {
                         color: otherColor,
                       ),
                       initialValue: _formData['alcance'],
-                      onSaved: (value) => _formData['alcance'] = value.toString(),
+                      onSaved: (value) =>
+                          _formData['alcance'] = value.toString(),
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
@@ -210,7 +202,8 @@ class _ModalPageState extends State<ModalItem> {
                         color: otherColor,
                       ),
                       initialValue: _formData['resistencia'],
-                      onSaved: (value) => _formData['resistencia'] = value.toString(),
+                      onSaved: (value) =>
+                          _formData['resistencia'] = value.toString(),
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
@@ -222,7 +215,7 @@ class _ModalPageState extends State<ModalItem> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: size.height * 0.03),
-                  child:SizedBox(
+                  child: SizedBox(
                     width: size.width * 0.7,
                     height: size.height * 0.06,
                     child: TextFormField(
@@ -251,9 +244,17 @@ class _ModalPageState extends State<ModalItem> {
                               backgroundColor:
                                   MaterialStateProperty.all(secondColor)),
                           onPressed: () async {
+                            if (imagemFinal == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          "Por favor, selecione uma imagem")));
+                                          return;
+                            }
                             _form.currentState?.save();
                             await storage.uploadFile(path, fileName);
-                             dynamic download = await storage.downloadURL(fileName);
+                            dynamic download =
+                                await storage.downloadURL(fileName);
                             Provider.of<Items>(context, listen: false).put(
                               Item(
                                 id: _formData['id'].toString(),
@@ -261,7 +262,8 @@ class _ModalPageState extends State<ModalItem> {
                                 peso: _formData['peso'].toString(),
                                 alcance: _formData['alcance'].toString(),
                                 dano: _formData['dano'].toString(),
-                                resistencia: _formData['resistencia'].toString(),
+                                resistencia:
+                                    _formData['resistencia'].toString(),
                                 preco: _formData['preco'].toString(),
                                 itemUrl: download.toString(),
                               ),
@@ -288,7 +290,7 @@ class _ModalPageState extends State<ModalItem> {
                       padding: EdgeInsets.only(left: size.height * 0.05),
                       child: SizedBox(
                         width: size.width * 0.25,
-                        child:  ElevatedButton(
+                        child: ElevatedButton(
                             style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all(secondColor)),
@@ -310,7 +312,8 @@ class _ModalPageState extends State<ModalItem> {
       ),
     );
   }
-     pegarImagemGaleria() async {
+
+  pegarImagemGaleria() async {
     final imagem = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.custom,
