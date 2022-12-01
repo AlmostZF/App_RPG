@@ -58,14 +58,16 @@ class Campaigns with ChangeNotifier {
   }
 
   void remove(Campaign campaign) {
-    if (campaign.id == "") {
-      return;
-    }
-    removeSingleCampaign(campaign, campaign.id);
+    getCampaign().then((value) {
+      if (campaign.id == "") {
+        return;
+      }
+      removeSingleCampaign(campaign, campaign.id);
 
-    _itemsCampaign.remove(campaign.id);
+      _itemsCampaign.remove(campaign.id);
 
-    notifyListeners();
+      notifyListeners();
+    });
   }
 
   //Adiciona no banco ou atualiza

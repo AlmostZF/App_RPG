@@ -158,8 +158,12 @@ class _CampaignCardState extends State<CampaignCard> {
                                 onPressed: () {
                                   Provider.of<Campaigns>(context, listen: false)
                                       .remove(campaign);
-
-                                  Navigator.of(context).pop();
+                                  setState(() {
+                                    _futureCampaign =
+                                        _campaignService.fetchCampaigns();
+                                    _futureCampaign.then(
+                                        (value) => Navigator.of(context).pop());
+                                  });
                                 },
                               ),
                               ElevatedButton(

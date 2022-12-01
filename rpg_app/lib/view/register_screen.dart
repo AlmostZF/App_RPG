@@ -114,7 +114,6 @@ class _RegisterPageState extends State<RegisterScreen> {
                         content: Text("Por favor, selecione uma imagem")));
                     return;
                   } else if (_form.currentState!.validate()) {
-                    print("Passei aq");
                     _form.currentState?.save();
                     await storage.uploadFile(path, fileName);
                     dynamic download = await storage.downloadURL(fileName);
