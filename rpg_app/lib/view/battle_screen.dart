@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:kg_charts/kg_charts.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/battele_controller.dart';
-import 'package:rpg_app/controller/persons_controller.dart';
 import 'package:rpg_app/controller/power_controller.dart';
-import 'package:rpg_app/controller/service/person_service.dart';
-import 'package:rpg_app/model/power_model.dart';
+//import 'package:rpg_app/controller/service/person_service.dart';
+//import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:rpg_app/style/colors.dart';
-import 'package:rpg_app/view/invetory_screen.dart';
 import 'package:rpg_app/model/person_model.dart';
-import 'package:rpg_app/view/modal_poder.dart';
 import 'package:rpg_app/view/power_circle.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:rpg_app/model/carousel_model.dart';
@@ -244,16 +241,24 @@ class _BattleScreenState extends State<BattleScreen> {
                                 child: CircleAvatar(
                                   backgroundColor: secondColor,
                                   child: GestureDetector(
-                                    child: Icon(
-                                      Icons.post_add_sharp,
-                                      color: colorFist,
-                                      size: size.width * .1,
-                                    ),
-                                    onTap: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: ((context) =>
-                                                const Invetory()))),
+                                      child: Icon(
+                                        Icons.post_add_sharp,
+                                        color: colorFist,
+                                        size: size.width * .1,
+                                      ),
+                                    onTap: () {
+                                       Navigator.of(context).pushNamed(AppRoutes.invetory);
+                                    }
+                                    //child: Icon(
+                                   //   Icons.post_add_sharp,
+                                   //   color: colorFist,
+                                  //    size: size.width * .1,
+                                  //  ),
+                                  //  onTap: () => Navigator.push(
+                                   //     context,
+                                  //      MaterialPageRoute(
+                                  //          builder: ((context) =>
+                                  //              const Invetory()))),
                                   ),
                                 ),
                               ),
