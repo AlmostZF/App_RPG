@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/campaign_controller.dart';
+import 'package:rpg_app/controller/service/campaign_service.dart';
 import 'package:rpg_app/model/campaign_model.dart';
 import 'package:rpg_app/style/colors.dart';
 
@@ -17,6 +18,9 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
   bool isEdit = false;
+  late Future<List<Campaign>> _futureCampaign;
+
+  CampaignService _campaignService = CampaignService();
 
   void _loadFormData(Campaign campaing) {
     if (campaing != null) {
@@ -30,6 +34,8 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
       _formData['pAtivos'] = campaing.pAtivos;
     }
   }
+
+  String? codigosala;
 
   @override
   Widget build(BuildContext context) {
@@ -115,9 +121,13 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
                     descricao: _formData['descricao'].toString(),
                     pAtivos: "",
                   ));
-            Navigator.of(context).pop();
-            String codigo =
-                Provider.of<Campaigns>(context, listen: false).all.last.id;
+            setState(() {
+              _futureCampaign = _campaignService.fetchCampaigns();
+              _futureCampaign.then((value) {
+                Navigator.of(context).pop();
+                codigosala = value.last.id;
+              });
+            });
             showDialog(
                 context: context,
                 builder: (ctx) => AlertDialog(
@@ -126,20 +136,20 @@ class _RegisterCampaignScreenState extends State<RegisterCampaignScreen> {
                         "Campanha criada!",
                         style: TextStyle(color: otherColor),
                       ),
-                      // content: Text("O código da sala é: $codigo",
-                      //     style: TextStyle(color: otherColor)),
-                      // actions: [
-                      //   IconButton(
-                      //     onPressed: () {
-                      //       Clipboard.setData(ClipboardData(text: codigo));
-                      //     },
-                      //     icon: Icon(
-                      //       Icons.copy,
-                      //       size: 30,
-                      //     ),
-                      //     color: secondColor,
-                      //   )
-                      // ],
+                      content: Text("O código da sala é: $codigosala",
+                          style: TextStyle(color: otherColor)),
+                      actions: [
+                        IconButton(
+                          onPressed: () {
+                            Clipboard.setData(ClipboardData(text: codigosala));
+                          },
+                          icon: Icon(
+                            Icons.copy,
+                            size: 30,
+                          ),
+                          color: secondColor,
+                        )
+                      ],
                     ));
           }
         },

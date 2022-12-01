@@ -112,7 +112,9 @@ class _RegisterPageState extends State<RegisterScreen> {
                   } else if (imagemFinal == null) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Por favor, selecione uma imagem")));
+                    return;
                   } else if (_form.currentState!.validate()) {
+                    print("Passei aq");
                     _form.currentState?.save();
                     await storage.uploadFile(path, fileName);
                     dynamic download = await storage.downloadURL(fileName);
@@ -139,7 +141,8 @@ class _RegisterPageState extends State<RegisterScreen> {
                     );
                     setState(() {
                       _futurePerson = _personService.fetchPersons();
-                      Navigator.of(context).pop();
+                      _futurePerson
+                          .then((value) => Navigator.of(context).pop());
                     });
                   }
                 },
