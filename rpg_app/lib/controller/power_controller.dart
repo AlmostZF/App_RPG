@@ -49,6 +49,7 @@ class Powers with ChangeNotifier {
           componente: power.componente,
           id: power.id,
           nivel: power.nivel,
+          poderUrl: power.poderUrl,
         ),
       );
     } else {
@@ -64,6 +65,7 @@ class Powers with ChangeNotifier {
         componente: power.componente,
         id: id,
         nivel: power.nivel,
+        poderUrl: power.poderUrl
       );
 
       postSinglePower(finalp, id);
@@ -135,6 +137,7 @@ class Powers with ChangeNotifier {
             componente: data["componente"],
             id: data["id"],
             nivel: data["nivel"],
+            poderUrl: data["poderUrl"]
           ),
         );
         notifyListeners();

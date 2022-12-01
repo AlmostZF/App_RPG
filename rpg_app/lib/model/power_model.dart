@@ -8,6 +8,7 @@ class Power {
   final String dano;
   final String componente;
   final String nivel;
+  final String poderUrl;
 
   const Power({
     required this.id,
@@ -19,6 +20,7 @@ class Power {
     required this.dano,
     required this.componente,
     required this.nivel,
+    required this.poderUrl
   });
 
   factory Power.fromJson(Map<String, dynamic> json) => Power(
@@ -31,6 +33,7 @@ class Power {
         mana: json['mana'],
         dano: json['dano'],
         componente: json['componente'],
+        poderUrl: json['poderUrl']
       );
 
   Map<String, dynamic> toJson() {
@@ -44,6 +47,7 @@ class Power {
     data['mana'] = mana;
     data['dano'] = dano;
     data['componente'] = componente;
+    data['poderUrl'] = poderUrl;
 
     return data;
   }

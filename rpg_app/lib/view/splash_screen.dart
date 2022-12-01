@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
    void getRoute() async {
-    Navigator.of(context).pushNamed(AppRoutes.home);
+    Navigator.of(context).pushReplacementNamed(AppRoutes.home);
   }
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,18 @@
+
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/controller/power_controller.dart';
 import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/style/colors.dart';
 
+import '../controller/service/storage_service.dart';
+
 class ModalPoder extends StatefulWidget {
+  
+  
   final Power power;
   const ModalPoder(this.power);
 
@@ -13,11 +21,17 @@ class ModalPoder extends StatefulWidget {
 }
 
 class _ModalPageState extends State<ModalPoder> {
+  final Storage storage = Storage();
+  File? imagemFinal;
+  String path = "";
+  String fileName = "";
+
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
   bool isEdit = false;
   final Power power;
   _ModalPageState(this.power);
+
 
   void _loadFormData(Power power) {
     if (power != null) {
@@ -39,11 +53,14 @@ class _ModalPageState extends State<ModalPoder> {
       _formData['componente'] = power.componente;
       nivel:
       _formData['nivel'] = power.nivel;
+       poderUrl:
+      _formData['poderUrl'] = power.poderUrl;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final Storage storage = Storage();
     try {
       final power = ModalRoute.of(context)?.settings.arguments as Power;
       isEdit = true;
@@ -102,20 +119,39 @@ class _ModalPageState extends State<ModalPoder> {
                         left: size.width * 0.5,
                         bottom: size.width * 0.02,
                       ),
+                      
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: Container(
                           width: size.width * 0.2,
                           height: size.height * 0.1,
                           color: otherColor,
-                          child: GestureDetector(
+                          child: imagemFinal == null 
+                          ?GestureDetector(
                             child: Icon(
                               Icons.add_photo_alternate_outlined,
                               color: defaultColor,
                               size: size.width * .08,
                             ),
-                            onTap: () => {print("clicado")},
-                          ),
+                            onTap: () => {
+                            pegarImagemGaleria()
+                            },
+                          )
+                          :ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Center(
+                          child: Container(
+                            width: size.width * 0.2,
+                            height: size.height * 0.1,
+                            decoration:BoxDecoration(
+                              image: DecorationImage(
+                                image: FileImage(imagemFinal!),
+                                fit: BoxFit.cover,
+                              )
+                            ),
+                            ),
+                        )
+                        )
                         ),
                       ),
                     ),
@@ -275,8 +311,10 @@ class _ModalPageState extends State<ModalPoder> {
                           style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(secondColor)),
-                          onPressed: () {
+                          onPressed: () async {
                             _form.currentState?.save();
+                            await storage.uploadFile(path, fileName);
+                             dynamic download = await storage.downloadURL(fileName);
                             Provider.of<Powers>(context, listen: false).put(
                               Power(
                                 id: _formData['id'].toString(),
@@ -289,6 +327,7 @@ class _ModalPageState extends State<ModalPoder> {
                                 dano: _formData['dano'].toString(),
                                 componente: _formData['componente'].toString(),
                                 nivel: _formData['nivel'].toString(),
+                                poderUrl: download.toString(),
                               ),
                             );
                             Navigator.of(context).pop();
@@ -333,6 +372,27 @@ class _ModalPageState extends State<ModalPoder> {
           ),
         ),
       ),
+    ); 
+  }
+   pegarImagemGaleria() async {
+    final imagem = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.custom,
+      allowedExtensions: ['png', 'jpg'],
     );
+
+    if (imagem == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Nenhum arquivo selecionado")));
+      return null;
+    }
+
+    setState(() {
+      path = imagem.files.single.path!;
+      fileName = imagem.files.single.name;
+      imagemFinal = File(path);
+    });
+
+    //convert bytes to base64 string
   }
 }

@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
                 nivel: "",
                 nome: "",
                 tempoconjuracao: "",
+                poderUrl:"",
               )),
         },
       ),
