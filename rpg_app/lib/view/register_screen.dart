@@ -119,13 +119,13 @@ class _RegisterPageState extends State<RegisterScreen> {
                                       Text("Por favor, selecione uma imagem")));
                           return;
                         } else if (_form.currentState!.validate()) {
-                          setState(() {
-                            isLoading = true;
-                          });
                           _form.currentState?.save();
                           await storage.uploadFile(path, fileName);
                           dynamic download =
                               await storage.downloadURL(fileName);
+                          setState(() {
+                            isLoading = true;
+                          });
                           Provider.of<Persons>(context, listen: false).put(
                             Person(
                               id: _formData['id'].toString(),
