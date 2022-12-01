@@ -10,6 +10,7 @@ import 'package:rpg_app/model/power_model.dart';
 import 'package:rpg_app/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 import 'package:rpg_app/style/colors.dart';
+import 'package:rpg_app/view/invetory_screen.dart';
 import 'package:rpg_app/view/master_screen.dart';
 import 'package:rpg_app/view/modal_Item.dart';
 import 'package:rpg_app/view/modal_poder.dart';
@@ -78,6 +79,7 @@ class MyApp extends StatelessWidget {
                 tempoconjuracao: "",
                 poderUrl:"",
               )),
+            AppRoutes.invetory: (_) => Invetory(Items())
         },
       ),
     );

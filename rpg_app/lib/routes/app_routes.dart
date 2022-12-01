@@ -1,4 +1,5 @@
 import 'package:flutter/animation.dart';
+import 'package:rpg_app/view/invetory_screen.dart';
 import 'package:rpg_app/view/splash_screen.dart';
 
 class AppRoutes {
@@ -13,4 +14,5 @@ class AppRoutes {
   static const masterScreen = "/master-screen";
   static const splashScreen = "/splash-Screen";
   static const modalItem = "/modal-Item";
+  static const invetory = "/invetario";
 }
