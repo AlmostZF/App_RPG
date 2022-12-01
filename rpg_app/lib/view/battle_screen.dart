@@ -64,15 +64,6 @@ class _BattleScreenState extends State<BattleScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  _futurePerson = _personService.fetchPerson(person.id);
-                });
-              },
-              icon: const Icon(Icons.refresh))
-        ],
         foregroundColor: colorFist,
         title: Text("Em batalha"),
       ),
@@ -364,7 +355,14 @@ class _BattleScreenState extends State<BattleScreen> {
                               IconButton(
                                 icon: Icon(Icons.remove),
                                 color: otherColor,
-                                onPressed: () {},
+                                onPressed: () {
+                                  _futurePerson = _personService
+                                      .fetchPerson(person.id.toString());
+                                  _futurePerson.then((value) =>
+                                      Provider.of<Persons>(context,
+                                              listen: false)
+                                          .put(Person())));
+                                },
                               ),
                               SfSlider(
                                 activeColor: Colors.red,
