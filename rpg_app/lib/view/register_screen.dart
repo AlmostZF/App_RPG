@@ -109,7 +109,7 @@ class _RegisterPageState extends State<RegisterScreen> {
                     setState(() {
                       _currentstep = _currentstep + 1;
                     });
-                  } else {
+                  } else if (_form.currentState!.validate()) {
                     _form.currentState?.save();
                     await storage.uploadFile(path, fileName);
                     dynamic download = await storage.downloadURL(fileName);
@@ -395,6 +395,12 @@ class _RegisterPageState extends State<RegisterScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor insira pontos de força.";
+                          }
+                          return null;
+                        },
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['forca'],
                         keyboardType: TextInputType.number,
@@ -413,6 +419,12 @@ class _RegisterPageState extends State<RegisterScreen> {
                     ),
                     Expanded(
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor insira pontos de destreza.";
+                          }
+                          return null;
+                        },
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['destreza'],
                         keyboardType: TextInputType.number,
@@ -434,6 +446,12 @@ class _RegisterPageState extends State<RegisterScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor insira pontos de constituicao.";
+                          }
+                          return null;
+                        },
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['constituicao'],
                         keyboardType: TextInputType.number,
@@ -452,6 +470,12 @@ class _RegisterPageState extends State<RegisterScreen> {
                     ),
                     Expanded(
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor insira pontos de inteligencia.";
+                          }
+                          return null;
+                        },
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['inteligencia'],
                         keyboardType: TextInputType.number,
@@ -473,6 +497,12 @@ class _RegisterPageState extends State<RegisterScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor insira pontos de sabedoria.";
+                          }
+                          return null;
+                        },
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['sabedoria'],
                         keyboardType: TextInputType.number,
@@ -491,6 +521,12 @@ class _RegisterPageState extends State<RegisterScreen> {
                     ),
                     Expanded(
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor insira pontos de carisma.";
+                          }
+                          return null;
+                        },
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['carisma'],
                         keyboardType: TextInputType.number,
@@ -523,6 +559,12 @@ class _RegisterPageState extends State<RegisterScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor insira pontos de vida.";
+                          }
+                          return null;
+                        },
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['vida'],
                         keyboardType: TextInputType.number,
@@ -541,6 +583,12 @@ class _RegisterPageState extends State<RegisterScreen> {
                     ),
                     Expanded(
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor insira pontos de mana.";
+                          }
+                          return null;
+                        },
                         style: const TextStyle(color: otherColor),
                         initialValue: _formData['mana'],
                         keyboardType: TextInputType.number,
