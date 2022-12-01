@@ -28,10 +28,14 @@ class _HomePageState extends State<HomePage> {
               height: 300,
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
                       height: 40,
+                      width: 130,
                       child: ElevatedButton(
                           onPressed: () {
                             Navigator.of(context)
@@ -43,6 +47,7 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
+                      width: 130,
                       height: 40,
                       child: ElevatedButton(
                           onPressed: () {
