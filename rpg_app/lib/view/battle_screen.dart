@@ -540,13 +540,14 @@ class _BattleScreenState extends State<BattleScreen> {
                       double.parse(person.carisma),
                     ]),
                   ],
-                  radius: 130,
+                  radius: 110,
                   duration: 2000,
                   shape: Shape.square,
-                  maxWidth: 70,
+                  maxWidth: 79,
+                  outTextSize: 10,
                   line: LineModel(1),
                 ),
-                textStyle: const TextStyle(color: otherColor, fontSize: 14),
+                textStyle: const TextStyle(color: otherColor, fontSize: 13),
                 //Mudei pra falso pois acedito q nao precisamos disso
                 isNeedDrawLegend: false,
                 //Precisamos dessa info?
